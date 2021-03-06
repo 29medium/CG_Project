@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\jfmps\OneDrive\Ambiente de Trabalho\universidade\3 ano\2 Semestre\CG\TP\CG_Project\engine\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jfmps\OneDrive\Ambiente de Trabalho\universidade\3 ano\2 Semestre\CG\TP\CG_Project\src\point.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jfmps\OneDrive\Ambiente de Trabalho\universidade\3 ano\2 Semestre\CG\TP\CG_Project\src\shape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\jfmps\OneDrive\Ambiente de Trabalho\universidade\3 ano\2 Semestre\CG\TP\CG_Project\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{735C4282-3AD6-3B8A-BE30-93699E424E1E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

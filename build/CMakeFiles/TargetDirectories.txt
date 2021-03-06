@@ -1,0 +1,4 @@
+C:/Users/jfmps/OneDrive/Ambiente de Trabalho/universidade/3 ano/2 Semestre/CG/TP/CG_Project/build/CMakeFiles/engine.dir
+C:/Users/jfmps/OneDrive/Ambiente de Trabalho/universidade/3 ano/2 Semestre/CG/TP/CG_Project/build/CMakeFiles/generator.dir
+C:/Users/jfmps/OneDrive/Ambiente de Trabalho/universidade/3 ano/2 Semestre/CG/TP/CG_Project/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/jfmps/OneDrive/Ambiente de Trabalho/universidade/3 ano/2 Semestre/CG/TP/CG_Project/build/CMakeFiles/ZERO_CHECK.dir
