@@ -1,0 +1,10 @@
+^C:\USERS\JFMPS\ONEDRIVE\AMBIENTE DE TRABALHO\UNIVERSIDADE\3 ANO\2 SEMESTRE\CG\TP\CG_PROJECT\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/jfmps/OneDrive/Ambiente de Trabalho/universidade/3 ano/2 Semestre/CG/TP/CG_Project" "-BC:/Users/jfmps/OneDrive/Ambiente de Trabalho/universidade/3 ano/2 Semestre/CG/TP/CG_Project/build" --check-stamp-file "C:/Users/jfmps/OneDrive/Ambiente de Trabalho/universidade/3 ano/2 Semestre/CG/TP/CG_Project/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
