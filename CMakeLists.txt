@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.5)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-project(engine)
-add_executable(${PROJECT_NAME} ./engine/main.cpp ./src/point.cpp ./src/shape.cpp)
-project(generator)
+PROJECT(engine)
+add_executable(${PROJECT_NAME} ./engine/main.cpp ./src/point.cpp ./src/shape.cpp) 
+PROJECT(generator)
 add_executable(${PROJECT_NAME} ./generator/main.cpp ./generator/box.cpp ./generator/box.h ./src/point.cpp ./src/shape.cpp generator/cone.cpp generator/cone.h generator/plane.cpp generator/plane.h generator/sphere.cpp generator/sphere.h)
 
 find_package(OpenGL REQUIRED)

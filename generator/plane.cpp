@@ -3,13 +3,15 @@
 Shape* plane(float size) {
     Shape *s = new Shape();
 
-    s->addPoint(size/2, 0.0f, size/2);
-    s->addPoint(-size/2, 0.0f, -size/2);
-    s->addPoint(-size/2, 0.0f, size/2);
+    float shapeSize = size / 2;
 
-    s->addPoint(size / 2, 0.0f, size / 2);
-    s->addPoint(size / 2, 0.0f, -size / 2);
-    s->addPoint(-size / 2, 0.0f, -size / 2);
+    s->addPoint(new Point(shapeSize, 0.0f, shapeSize));
+    s->addPoint(new Point(-shapeSize, 0.0f, -shapeSize));
+    s->addPoint(new Point(-shapeSize, 0.0f, shapeSize));
+
+    s->addPoint(new Point(shapeSize, 0.0f, shapeSize));
+    s->addPoint(new Point(shapeSize, 0.0f, -shapeSize));
+    s->addPoint(new Point(-shapeSize, 0.0f, -shapeSize));
 
     return s;
 }
