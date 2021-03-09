@@ -4,11 +4,15 @@
 #include <vector>
 #include "point.h"
 
-class Shape {
+class Shape
+{
 private:
-    std::vector<Point*> points;
+    std::vector<Point *> points;
+
 public:
     void addPoint(Point *p);
+    Point *getPoint(int i);
+    int size();
 };
 
 #endif //__SHAPE_H__
