@@ -1,3 +1,6 @@
 .vs
 .idea
 .DS_Store
+build
+out
+cmake-build-debug

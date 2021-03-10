@@ -21,19 +21,20 @@
 
 using namespace std;
 
-void printFile(Shape *s, char *path)
+void printFile(Shape *s, char *file_path)
 {
     char buff[1024];
-    char final_path[1024];
+    char path[1024];
+    int i;
     int size = s->size();
-    Point *p;
+    Point* p;
 
-    strcpy(final_path, "../files/");
-    strcat(final_path, path);
-    ofstream file(final_path, std::ofstream::out);
+    system("mkdir -p ..\\files3d\\ ");
+    strcpy(path, "..\\files3d\\");
+    strcat(path, file_path);
+    ofstream file(path, std::ofstream::out);
 
-    for (int i = 0; i < size; i++)
-    {
+    for (i = 0; i < size; i++) {
         p = s->getPoint(i);
         sprintf(buff, "%f %f %f\n", p->getX(), p->getY(), p->getZ());
         file << buff;
@@ -50,21 +51,25 @@ void help()
 void generate_plane(float size, char *path)
 {
     Shape *s = plane(size);
+    printFile(s, path);
 }
 
 void generate_box(float x, float y, float z, int div, char *path)
 {
     Shape *s = box(x, y, z, div);
+    //printFile(s, path);
 }
 
 void generate_sphere(float radius, int slices, int stacks, char *path)
 {
     Shape *s = sphere(radius, slices, stacks);
+    printFile(s, path);
 }
 
 void generate_cone(float radius, float height, int slices, int stacks, char *path)
 {
     Shape *s = cone(radius, height, slices, stacks);
+    printFile(s, path);
 }
 
 int main(int argc, char **argv)
