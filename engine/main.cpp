@@ -4,16 +4,107 @@
 #else
 #include <GL/glut.h>
 #endif
-
+#include <iostream>
+#include <fstream>
 #include <cmath>
+#include <string>
+#include <sstream>
+#include <vector>
+#include "tinyxml2.h"
 #include "../src/shape.h"
+#include "../src/point.h"
 
-float coordx=0.0f;
-float coordy=0.0f;
-float coordz=0.0f;
-float height=3.0f;
-float scale=1;
-float angle=0.0f;
+using namespace tinyxml2;
+using namespace std;
+
+// Global Variables
+vector<Point> model;
+
+void readXML(char * path){
+    XMLDocument doc;
+    XMLElement *element;
+    tinyxml2::XMLError eResult = doc.LoadFile(path);// path2
+    if(!eResult){
+        element = doc.FirstChildElement()->FirstChildElement(); //<scene><model>
+        for (; element; element = element->NextSiblingElement()) { // itera por os model
+            string ficheiro = element->Attribute("file"); // pega no valor do atributo file  em cada  Model
+            char * aux = const_cast<char *>(ficheiro.c_str());
+            vector<string> tokens;
+            ifstream file(aux);
+            if (file.is_open()) {
+                std::string line;
+                while (getline(file, line)) {
+                    vector<string> tokens2;
+                    stringstream check1(line);
+                    string intermediate;
+
+                    while(getline(check1, intermediate, ' '))
+                        tokens.push_back(intermediate);
+
+                    float x=atof(tokens2[0].c_str());
+                    float y=atof(tokens2[1].c_str());
+                    float z=atof(tokens2[2].c_str());
+
+                    Point p = Point(x, y, z);
+                    model.push_back(p);
+                }
+                file.close();
+            }
+            else {
+                cout << "File didn't open" << endl;
+            }
+        }
+
+    }
+    else {
+        cout << "File didn't load" << endl;
+    }
+}
+
+// Process Normal keys
+void processNormalKeys(unsigned char key, int x, int y) {
+    switch(key) {
+        case 27:
+            exit(0);
+        default:
+            break;
+    }
+
+    glutPostRedisplay();
+}
+
+// Process Special Keys
+void processSpecialKeys(int key, int x, int y) {
+    switch(key) {
+        case 27:
+            exit(0);
+        default:
+            break;
+    }
+
+    glutPostRedisplay();
+}
+
+// Draw XYZ axis
+void drawXYZ() {
+    glBegin(GL_LINES);
+
+    // draw line for x axis
+    glColor3f(1.0, 0.0, 0.0);
+    glVertex3f(0.0, 0.0, 0.0);
+    glVertex3f(1.5, 0.0, 0.0);
+
+    // draw line for y axis
+    glColor3f(0.0, 1.0, 0.0);
+    glVertex3f(0.0, 0.0, 0.0);
+    glVertex3f(0.0, 1.5, 0.0);
+
+    // draw line for Z axis
+    glColor3f(0.0, 0.0, 1.0);
+    glVertex3f(0.0, 0.0, 0.0);
+    glVertex3f(0.0, 0.0, 1.5);
+    glEnd();
+}
 
 void changeSize(int w, int h) {
     // Prevent a divide by zero, when window is too short
@@ -39,63 +130,7 @@ void changeSize(int w, int h) {
     glMatrixMode(GL_MODELVIEW);
 }
 
-void drawXYZ() {
-    glBegin(GL_LINES);
-    glColor3f(1.0f, 0.0f, 0.0f);
-    glVertex3f(-100, 0, 0);
-    glVertex3f(100,  0, 0);
-
-    glColor3f(0.0f, 1.0f, 0.0f);
-    glVertex3f(0, -100, 0);
-    glVertex3f(0,  100, 0);
-
-    glColor3f(0.0f, 0.0f, 1.0f);
-    glVertex3f(0, 0, 100);
-    glVertex3f(0,  0, -100);
-    glEnd();
-}
-
-void drawPiramid() {
-    glBegin(GL_TRIANGLES);
-    glColor3f(1.0f, 1.0f, 1.0f);
-    // fisrt triangle base
-    glVertex3f( + 1.0f, 0,  + 1.0f);
-    glVertex3f( + 1.0f,  0,  - 1.0f);
-    glVertex3f( - 1.0f, 0, - 1.0f);
-
-    // second triangle base
-    glVertex3f( - 1.0f, 0.0f,  - 1.0f);
-    glVertex3f( - 1.0f,  0.0f,  + 1.0f);
-    glVertex3f( + 1.0f, 0.0f,  + 1.0f);
-
-    // first face red
-    glColor3f(1.0f, 0.0f, 0.0f);
-    glVertex3f(0.0f, height, 0.0f);
-    glVertex3f( + 1.0f, 0.0f,  + 1.0f);
-    glVertex3f( + 1.0f, 0.0f ,  - 1.0f);
-
-    // second face green
-    glColor3f(0.0f, 1.0f, 0.0f);
-    glVertex3f(0.0f, height, 0.0f);
-    glVertex3f( - 1.0f,  0.0f,  + 1.0f);
-    glVertex3f( + 1.0f, 0.0f,  + 1.0f);
-
-    // third face blue
-    glColor3f(0.0f, 0.0f, 1.0f);
-    glVertex3f(0.0f, height, 0.0f);
-    glVertex3f( - 1.0f,  0.0f,  - 1.0f);
-    glVertex3f( - 1.0f, 0.0f,  + 1.0f);
-
-    // fourth face some color
-    glColor3f(0.5f, 0.5f, 1.0f);
-    glVertex3f(0.0f, height, 0.0f);
-    glVertex3f( + 1.0f, 0.0f,  - 1.0f);
-    glVertex3f( - 1.0f,  0.0f,  - 1.0f);
-
-    glScalef(1, scale,1);
-}
-
-void renderScene(void) {
+void renderScene() {
 
     // clear buffers
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -105,15 +140,22 @@ void renderScene(void) {
     gluLookAt(5.0,5.0,5.0,
               0.0,0.0,0.0,
               0.0f,1.0f,0.0f);
+
+    // draw XYZ axis
     drawXYZ();
 
-    // put the geometric transformations here
-    glTranslatef(coordx, coordy, coordz);
-    glScalef(1,scale,1);
-    glRotatef(angle,0,1,0);
+    // geometric transformations
+    //geometricTransformations();
 
     // put drawing instructions here
-    drawPiramid();
+    for(int i=0; i<model.size(); i+=3) {
+        glColor3f(sin(i),cos(i),1);
+        glBegin(GL_TRIANGLES);
+        glVertex3f(model[i].getX(),model[i].getY(),model[i].getZ());
+        glVertex3f(model[i+1].getX(),model[i+1].getY(),model[i+1].getZ());
+        glVertex3f(model[i+2].getX(),model[i+2].getY(),model[i+2].getZ());
+        glEnd();
+    }
 
     glEnd();
 
@@ -121,50 +163,10 @@ void renderScene(void) {
     glutSwapBuffers();
 }
 
-// write function to process keyboard events
-void processNormalKeys(unsigned char key, int x, int y) {
-    switch(key) {
-        case 27:
-            exit(0);
-        case 'w':
-            coordx += 0.1f;
-            break;
-        case 's':
-            coordx -= 0.1f;
-            break;
-        case 'a':
-            coordz += 0.1f;
-            break;
-        case 'd':
-            coordz -= 0.1f;
-            break;
-        case 'q':
-            coordy += 0.1f;
-            break;
-        case 'e':
-            coordy -= 0.1f;
-            break;
-        case '+':
-            scale += 0.1f;
-            break;
-        case '-':
-            scale -= 0.1f;
-            break;
-        case 'u':
-            angle += 20.0f;
-            break;
-        case 'i':
-            angle -= 20.0f;
-            break;
-        default:
-            break;
-    }
-
-    glutPostRedisplay();
-}
-
 int main(int argc, char **argv) {
-    Shape s = Shape();
+    if(argc<2)
+        return 0;
+
     // init GLUT and the window
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
@@ -172,13 +174,15 @@ int main(int argc, char **argv) {
     glutInitWindowSize(800,800);
     glutCreateWindow("CG@DI-UM");
 
+    readXML(argv[1]);
     // Required callback registry
     glutDisplayFunc(renderScene);
+    glutIdleFunc(renderScene);
     glutReshapeFunc(changeSize);
 
     // put here the registration of the keyboard callbacks
     glutKeyboardFunc(processNormalKeys);
-    //glutSpecialFunc(processSpecialKeys);
+    glutSpecialFunc(processSpecialKeys);
 
     //  OpenGL settings
     glEnable(GL_DEPTH_TEST);

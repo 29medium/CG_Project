@@ -16,8 +16,6 @@
 #include "box.h"
 #include "sphere.h"
 #include "cone.h"
-#include "../src/shape.h"
-#include "../src/point.h"
 
 using namespace std;
 
