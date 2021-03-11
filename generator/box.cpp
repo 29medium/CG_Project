@@ -5,7 +5,7 @@ void drawBackFront(float x, float y, float z, int divisions, Shape* s) {
     float retangleY = y / divisions;
     float zFront = z / 2;
     float zBack = -zFront;
-    float xLine = x / 2;
+    float xLine = -(x / 2);
     float yLine = y / 2;
     int i, j;
 
@@ -34,7 +34,7 @@ void drawBackFront(float x, float y, float z, int divisions, Shape* s) {
             xLine += retangleX;
         }
 
-        xLine = x/2;
+        xLine = -(x / 2);
         yLine -= retangleY;
     }
 }
