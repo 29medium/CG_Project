@@ -7,6 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <cstring>
 #include <string>
 #include <sstream>
 #include <vector>
@@ -21,29 +22,40 @@ using namespace std;
 vector<Point> model;
 
 void readXML(char * path){
+    char final_path[1024];
+    strcpy(final_path, "../xmlfiles/");
+    strcat(final_path, path);
+
     XMLDocument doc;
     XMLElement *element;
-    tinyxml2::XMLError eResult = doc.LoadFile(path);// path2
+    tinyxml2::XMLError eResult = doc.LoadFile(final_path);// path2
     if(!eResult){
         element = doc.FirstChildElement()->FirstChildElement(); //<scene><model>
         for (; element; element = element->NextSiblingElement()) { // itera por os model
             string ficheiro = element->Attribute("file"); // pega no valor do atributo file  em cada  Model
-            char * aux = const_cast<char *>(ficheiro.c_str());
+            char * file_name = const_cast<char *>(ficheiro.c_str());
             vector<string> tokens;
-            ifstream file(aux);
-            if (file.is_open()) {
+            ifstream file;
+            file.open(file_name);
+            if (file.is_open(), ios::in) {
                 std::string line;
+                char *token, *linha;
+                float x, y, z;
+
                 while (getline(file, line)) {
                     vector<string> tokens2;
                     stringstream check1(line);
                     string intermediate;
 
-                    while(getline(check1, intermediate, ' '))
-                        tokens.push_back(intermediate);
+                    linha = const_cast<char *>(line.c_str());
+                    token = strtok(linha, " ");
+                    x=atof(token);
 
-                    float x=atof(tokens2[0].c_str());
-                    float y=atof(tokens2[1].c_str());
-                    float z=atof(tokens2[2].c_str());
+                    token = strtok(NULL, " ");
+                    y=atof(token);
+
+                    token = strtok(NULL, " ");
+                    z=atof(token);
 
                     Point p = Point(x, y, z);
                     model.push_back(p);
@@ -175,6 +187,9 @@ int main(int argc, char **argv) {
     glutCreateWindow("CG@DI-UM");
 
     readXML(argv[1]);
+
+    for(Point i : model)
+        cout << i.getX() << endl;
     // Required callback registry
     glutDisplayFunc(renderScene);
     glutIdleFunc(renderScene);
