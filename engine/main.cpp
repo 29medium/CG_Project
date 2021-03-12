@@ -20,19 +20,21 @@ using namespace std;
 
 // Global Variables
 vector<Point> model;
+int pointLineFill = 2; // 0-Point 1-Line 2-Fill
+int color = 2; // 0-White 1-RGB 2-Random
 
-void readXML(char * path){
+int readXML(char * path){
     char final_path[1024];
     strcpy(final_path, "../xmlfiles/");
     strcat(final_path, path);
 
     XMLDocument doc;
     XMLElement *element;
-    tinyxml2::XMLError eResult = doc.LoadFile(final_path);// path2
+    tinyxml2::XMLError eResult = doc.LoadFile(final_path);
     if(!eResult){
-        element = doc.FirstChildElement()->FirstChildElement(); //<scene><model>
-        for (; element; element = element->NextSiblingElement()) { // itera por os model
-            string ficheiro = element->Attribute("file"); // pega no valor do atributo file  em cada  Model
+        element = doc.FirstChildElement()->FirstChildElement();
+        for (; element; element = element->NextSiblingElement()) {
+            string ficheiro = element->Attribute("file");
             char * file_name = const_cast<char *>(ficheiro.c_str());
             vector<string> tokens;
             ifstream file;
@@ -64,20 +66,28 @@ void readXML(char * path){
             }
             else {
                 cout << "File didn't open" << endl;
+                return 0;
             }
         }
 
     }
     else {
         cout << "File didn't load" << endl;
+        return 0;
     }
+    return 1;
 }
 
-// Process Normal keys
 void processNormalKeys(unsigned char key, int x, int y) {
     switch(key) {
         case 27:
             exit(0);
+        case 't':
+            pointLineFill = (pointLineFill+1)%3;
+            break;
+        case 'c':
+            color = (color+1)%3;
+            break;
         default:
             break;
     }
@@ -85,33 +95,17 @@ void processNormalKeys(unsigned char key, int x, int y) {
     glutPostRedisplay();
 }
 
-// Process Special Keys
-void processSpecialKeys(int key, int x, int y) {
-    switch(key) {
-        case 27:
-            exit(0);
-        default:
-            break;
-    }
-
-    glutPostRedisplay();
-}
-
-// Draw XYZ axis
 void drawXYZ() {
     glBegin(GL_LINES);
 
-    // draw line for x axis
     glColor3f(1.0, 0.0, 0.0);
     glVertex3f(0.0, 0.0, 0.0);
     glVertex3f(1.5, 0.0, 0.0);
 
-    // draw line for y axis
     glColor3f(0.0, 1.0, 0.0);
     glVertex3f(0.0, 0.0, 0.0);
     glVertex3f(0.0, 1.5, 0.0);
 
-    // draw line for Z axis
     glColor3f(0.0, 0.0, 1.0);
     glVertex3f(0.0, 0.0, 0.0);
     glVertex3f(0.0, 0.0, 1.5);
@@ -119,49 +113,44 @@ void drawXYZ() {
 }
 
 void changeSize(int w, int h) {
-    // Prevent a divide by zero, when window is too short
-    // (you cant make a window with zero width).
     if(h == 0)
         h = 1;
 
-    // compute window's aspect ratio
     float ratio = w * 1.0 / h;
 
-    // Set the projection matrix as current
     glMatrixMode(GL_PROJECTION);
-    // Load Identity Matrix
     glLoadIdentity();
 
-    // Set the viewport to be the entire window
     glViewport(0, 0, w, h);
-
-    // Set perspective
     gluPerspective(45.0f ,ratio, 1.0f ,1000.0f);
-
-    // return to the model view matrix mode
     glMatrixMode(GL_MODELVIEW);
 }
 
 void renderScene() {
-
-    // clear buffers
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    // set the camera
     glLoadIdentity();
     gluLookAt(5.0,5.0,5.0,
               0.0,0.0,0.0,
               0.0f,1.0f,0.0f);
 
-    // draw XYZ axis
+    glPolygonMode(GL_FRONT, pointLineFill==0 ? GL_POINT : (pointLineFill==1 ? GL_LINE : GL_FILL));
+
     drawXYZ();
 
-    // geometric transformations
-    //geometricTransformations();
-
-    // put drawing instructions here
     for(int i=0; i<model.size(); i+=3) {
-        glColor3f(sin(i),cos(i),1);
+        if(color==0)
+            glColor3f(1, 1, 1);
+        else if(color==2) {
+            if (i % 9 == 0)
+                glColor3f(1, 0, 0);
+            else if(i%9 == 3)
+                glColor3f(0,1,0);
+            else
+                glColor3f(0,0,1);
+        } else
+            glColor3f(sin(i),cos(i),1);
+
         glBegin(GL_TRIANGLES);
         glVertex3f(model[i].getX(),model[i].getY(),model[i].getZ());
         glVertex3f(model[i+1].getX(),model[i+1].getY(),model[i+1].getZ());
@@ -171,39 +160,33 @@ void renderScene() {
 
     glEnd();
 
-    // End of frame
     glutSwapBuffers();
 }
 
 int main(int argc, char **argv) {
-    if(argc<2)
+    if(argc<2) {
+        cout << "Wrong number of arguments" << endl;
         return 0;
+    }
 
-    // init GLUT and the window
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
     glutInitWindowPosition(100,100);
     glutInitWindowSize(800,800);
     glutCreateWindow("CG@DI-UM");
 
-    readXML(argv[1]);
+    if(!readXML(argv[1]))
+        return 1;
 
-    for(Point i : model)
-        cout << i.getX() << endl;
-    // Required callback registry
     glutDisplayFunc(renderScene);
     glutIdleFunc(renderScene);
     glutReshapeFunc(changeSize);
 
-    // put here the registration of the keyboard callbacks
     glutKeyboardFunc(processNormalKeys);
-    glutSpecialFunc(processSpecialKeys);
 
-    //  OpenGL settings
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
 
-    // enter GLUT's main cycle
     glutMainLoop();
 
     return 1;

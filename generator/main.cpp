@@ -43,8 +43,10 @@ void printFile(Shape *s, char *path)
 
 int main(int argc, char **argv)
 {
-    if (argc < 2)
-        return 1;
+    if (argc < 2) {
+        cout << "Not enough arguments" << endl;
+        return 0;
+    }
 
     Shape* s;
     char* path;
@@ -65,10 +67,13 @@ int main(int argc, char **argv)
         s = cone(atof(argv[2]), atof(argv[3]), atoi(argv[4]), atoi(argv[5]));
         path = argv[6];
     }
-    else
-        return 1;
+    else {
+        cout << "Wrong Arguments" << endl;
+        return 0;
+    }
 
     printFile(s, path);
+    cout << "File: " << path << endl;
 
-    return 0;
+    return 1;
 }
