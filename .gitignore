@@ -7,3 +7,5 @@ cmake-build-debug
 engine/cmake-build-debug
 engine/.idea
 generator/.idea
+files
+xmlfiles
