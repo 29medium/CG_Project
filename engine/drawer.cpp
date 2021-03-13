@@ -4,20 +4,21 @@
 
 #include "drawer.h"
 
-void drawAxis() {
+void drawAxis(int axis) {
+    float size = axis==1 ? 1.5 : 10;
     glBegin(GL_LINES);
 
     glColor3f(1.0, 0.0, 0.0);
     glVertex3f(0.0, 0.0, 0.0);
-    glVertex3f(1.5, 0.0, 0.0);
+    glVertex3f(size, 0.0, 0.0);
 
     glColor3f(0.0, 1.0, 0.0);
     glVertex3f(0.0, 0.0, 0.0);
-    glVertex3f(0.0, 1.5, 0.0);
+    glVertex3f(0.0, size, 0.0);
 
     glColor3f(0.0, 0.0, 1.0);
     glVertex3f(0.0, 0.0, 0.0);
-    glVertex3f(0.0, 0.0, 1.5);
+    glVertex3f(0.0, 0.0, size);
     glEnd();
 }
 

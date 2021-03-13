@@ -19,7 +19,7 @@ using namespace std;
 vector<Point> model;
 int pointLineFill = 2; // 0-Point 1-Line 2-Fill
 int color = 2; // 0-White 1-RGB 2-Random
-int axis = 1; // 0-No 1-Yes
+int axis = 1; // 0-No 1-Small 2-Big
 
 void processNormalKeys(unsigned char key, int x, int y) {
     switch(key) {
@@ -32,7 +32,7 @@ void processNormalKeys(unsigned char key, int x, int y) {
             color = (color+1)%3;
             break;
         case 'v':
-            axis = abs(axis-1);
+            axis = (axis+1)%3;
             break;
         default:
             break;
@@ -66,7 +66,7 @@ void renderScene() {
     glPolygonMode(GL_FRONT, pointLineFill==0 ? GL_POINT : (pointLineFill==1 ? GL_LINE : GL_FILL));
 
     if(axis)
-        drawAxis();
+        drawAxis(axis);
 
     drawShape(model, color);
 
@@ -95,7 +95,7 @@ int main(int argc, char **argv) {
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
     glutInitWindowPosition(100,100);
     glutInitWindowSize(800,800);
-    glutCreateWindow("CG@DI-UM");
+    glutCreateWindow("CG-TP14");
 
     model = readXML(argv[1]);
 

@@ -17,7 +17,7 @@
 
 using namespace std;
 
-void drawAxis();
+void drawAxis(int axis);
 void drawShape(vector<Point> model, int color);
 
 #endif //GENERATOR_DRAWER_H
