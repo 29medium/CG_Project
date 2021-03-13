@@ -9,7 +9,6 @@
 #include <vector>
 #include <cstring>
 #include <string>
-#include <sstream>
 #include <fstream>
 #include "tinyxml2.h"
 #include "../src/point.h"

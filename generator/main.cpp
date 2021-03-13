@@ -7,8 +7,6 @@
 #include <GL/glut.h>
 #endif
 
-#include <cmath>
-#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <fstream>

@@ -17,19 +17,14 @@ vector<Point> readXML(char * path){
         for (element = doc.FirstChildElement()->FirstChildElement(); element; element = element->NextSiblingElement()) {
             string ficheiro = element->Attribute("file");
             char * file_name = const_cast<char *>(ficheiro.c_str());
-            vector<string> tokens;
             ifstream file;
             file.open(file_name);
             if (file.is_open(), ios::in) {
-                std::string line;
+                string line;
                 char *token, *linha;
                 float x, y, z;
 
                 while (getline(file, line)) {
-                    vector<string> tokens2;
-                    stringstream check1(line);
-                    string intermediate;
-
                     linha = const_cast<char *>(line.c_str());
                     token = strtok(linha, " ");
                     x=atof(token);
@@ -45,11 +40,7 @@ vector<Point> readXML(char * path){
                 }
                 file.close();
             }
-            else {
-                cout << "File didn't open" << endl;
-            }
         }
-
     }
     else {
         cout << "File didn't load" << endl;
