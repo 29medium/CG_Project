@@ -1,9 +1,9 @@
+#include <stdlib.h>
+
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
-#include <stdlib.h>
 #include <GLUT/glut.h>
 #else
-#include <stdlib.h>
 #include <GL/glut.h>
 #endif
 

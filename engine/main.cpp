@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
 #include <GLUT/glut.h>
@@ -23,8 +24,8 @@ int axis = 1; // 0-No 1-Small 2-Big
 
 void processNormalKeys(unsigned char key, int x, int y) {
     switch(key) {
-        case 27:
-            exit(0);
+        /*case 27:
+            _exit(0);*/ 
         case 't':
             pointLineFill = (pointLineFill+1)%3;
             break;
