@@ -44,3 +44,10 @@ Scale::Scale(float xx, float yy, float zz) : Transformation(xx, yy, zz) {}
 void Scale::transform() {
     glScalef(getX(), getY(), getZ());
 }
+
+// Colour
+Colour::Colour(float r, float g, float b) : Transformation(r, g, b) {}
+
+void Colour::transform() {
+    glColor3f(getX()/255, getY()/255, getZ()/255);
+}

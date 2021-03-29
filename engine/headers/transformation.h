@@ -47,4 +47,10 @@ public:
     void transform();
 };
 
+class Colour : public Transformation {
+public:
+    Colour(float r, float g, float b);
+    void transform();
+};
+
 #endif //GENERATOR_TRANSFORMATION_H

@@ -1,51 +1,36 @@
 #include "headers/parser.h"
 
 Transformation * parseTranslate(XMLElement* element) {
-    float x=0, y=0, z=0;
-
-    if(element->Attribute("X"))
-        x = stof(element->Attribute("X"));
-
-    if(element->Attribute("Y"))
-        y = stof(element->Attribute("Y"));
-
-    if(element->Attribute("Z"))
-        z = stof(element->Attribute("Z"));
+    float x = (element->Attribute("X") ? stof(element->Attribute("X")) : 0);
+    float y = (element->Attribute("Y") ? stof(element->Attribute("Y")) : 0);
+    float z = (element->Attribute("Z") ? stof(element->Attribute("Z")) : 0);
 
     return new Translation(x, y, z);
 }
 
 Transformation * parseRotate(XMLElement* element) {
-    float angle=0, x=0, y=0, z=0;
-
-    if(element->Attribute("angle"))
-        angle = stof(element->Attribute("angle"));
-
-    if(element->Attribute("axisX"))
-        x = stof(element->Attribute("axisX"));
-
-    if(element->Attribute("axisY"))
-        y = stof(element->Attribute("axisY"));
-
-    if(element->Attribute("axisZ"))
-        z = stof(element->Attribute("axisZ"));
+    float angle = (element->Attribute("angle") ? stof(element->Attribute("angle")) : 0);
+    float x = (element->Attribute("axiX") ? stof(element->Attribute("axisX")) : 0);
+    float y = (element->Attribute("axisY") ? stof(element->Attribute("axisY")) : 0);
+    float z = (element->Attribute("axisZ") ? stof(element->Attribute("axisZ")) : 0);
 
     return new Rotation(angle, x, y, z);
 }
 
 Transformation * parseScale(XMLElement* element) {
-    float x=0, y=0, z=0;
+    float x = (element->Attribute("X") ? stof(element->Attribute("X")) : 0);
+    float y = (element->Attribute("Y") ? stof(element->Attribute("Y")) : 0);
+    float z = (element->Attribute("Z") ? stof(element->Attribute("Z")) : 0);
 
-    if(element->Attribute("X"))
-        x = stof(element->Attribute("X"));
+    return new Scale(x, y, z);
+}
 
-    if(element->Attribute("Y"))
-        y = stof(element->Attribute("Y"));
+Transformation * parseColour(XMLElement* element) {
+    float r = (element->Attribute("R") ? stof(element->Attribute("R")) : 0);
+    float g = (element->Attribute("G") ? stof(element->Attribute("G")) : 0);
+    float b = (element->Attribute("B") ? stof(element->Attribute("B")) : 0);
 
-    if(element->Attribute("Z"))
-        z = stof(element->Attribute("Z"));
-
-    return new Translation(x, y, z);
+    return new Colour(r, g, b);
 }
 
 vector<Shape *> parseModel(XMLElement* element) {
@@ -69,14 +54,10 @@ vector<Shape *> parseModel(XMLElement* element) {
 
             while (getline(file, line)) {
                 lineC = const_cast<char *>(line.c_str());
-                token = strtok(lineC, " ");
-                x=stof(token);
 
-                token = strtok(nullptr, " ");
-                y=stof(token);
-
-                token = strtok(nullptr, " ");
-                z=stof(token);
+                x=stof(strtok(lineC, " "));
+                y=stof(strtok(nullptr, " "));
+                z=stof(strtok(nullptr, " "));
 
                 Point *p = new Point(x, y, z);
                 points.push_back(p);
@@ -97,11 +78,13 @@ Group* parseGroup(XMLElement* element) {
 
     for(XMLElement *elem = element->FirstChildElement(); elem; elem = elem->NextSiblingElement()) {
         if(strcmp(elem->Name(),"translate") == 0)
-            transf.push_back(parseTranslate(element));
+            transf.push_back(parseTranslate(elem));
         if(strcmp(elem->Name(),"rotate") == 0)
-            transf.push_back(parseRotate(element));
+            transf.push_back(parseRotate(elem));
         if(strcmp(elem->Name(), "scale") == 0)
-            transf.push_back(parseScale(element));
+            transf.push_back(parseScale(elem));
+        if(strcmp(elem->Name(), "colour") == 0)
+            transf.push_back(parseColour(elem));
         if(strcmp(elem->Name(), "models") == 0)
             models = parseModel(elem);
         if(strcmp(elem->Name(), "groups") == 0)

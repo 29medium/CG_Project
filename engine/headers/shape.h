@@ -24,7 +24,7 @@ public:
     void addPoint(Point *p);
     Point *getPoint(int i);
     int size();
-    void draw(int color);
+    void draw();
 };
 
 #endif //__SHAPE_H__

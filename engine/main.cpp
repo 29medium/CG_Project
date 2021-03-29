@@ -14,11 +14,25 @@
 using namespace tinyxml2;
 using namespace std;
 
-// Global Variables
 Group* group = nullptr;
 int pointLineFill = 2; // 0-Point 1-Line 2-Fill
-int color = 2; // 0-White 1-RGB 2-Random
 int axis = 1; // 0-No 1-Small 2-Big
+
+int window;
+
+void changeSize(int w, int h) {
+    if(h == 0)
+        h = 1;
+
+    float ratio = w * 1.0 / h;
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+
+    glViewport(0, 0, w, h);
+    gluPerspective(45.0f ,ratio, 1.0f ,1000.0f);
+    glMatrixMode(GL_MODELVIEW);
+}
 
 void drawAxis(int a) {
     float size = a==1 ? 1.5 : 10;
@@ -38,40 +52,6 @@ void drawAxis(int a) {
     glEnd();
 }
 
-void processNormalKeys(unsigned char key, int x, int y) {
-    switch(key) {
-        /*case 27:
-            _exit(0);*/ 
-        case 't':
-            pointLineFill = (pointLineFill+1)%3;
-            break;
-        case 'c':
-            color = (color+1)%3;
-            break;
-        case 'v':
-            axis = (axis+1)%3;
-            break;
-        default:
-            break;
-    }
-
-    glutPostRedisplay();
-}
-
-void changeSize(int w, int h) {
-    if(h == 0)
-        h = 1;
-
-    float ratio = w * 1.0 / h;
-
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-
-    glViewport(0, 0, w, h);
-    gluPerspective(45.0f ,ratio, 1.0f ,1000.0f);
-    glMatrixMode(GL_MODELVIEW);
-}
-
 void renderGroup(Group* g) {
     vector<Transformation*> transfs = g->getTransf();
     for(int i=0; i<transfs.size(); i++)
@@ -79,7 +59,7 @@ void renderGroup(Group* g) {
 
     vector<Shape*> models = g->getModels();
     for(int i=0; i<models.size(); i++)
-        models[i]->draw(color);
+        models[i]->draw();
 
     vector<Group*> subgroups = g->getGroups();
     for(int i=0; i<subgroups.size(); i++)
@@ -94,7 +74,7 @@ void renderScene() {
               0.0,0.0,0.0,
               0.0f,1.0f,0.0f);
 
-    glPolygonMode(GL_FRONT, pointLineFill==0 ? GL_POINT : (pointLineFill==1 ? GL_LINE : GL_FILL));
+    glPolygonMode(GL_FRONT_AND_BACK,pointLineFill==0 ? GL_POINT : (pointLineFill==1 ? GL_LINE : GL_FILL));
 
     if(axis)
         drawAxis(axis);
@@ -102,6 +82,27 @@ void renderScene() {
     renderGroup(group);
 
     glutSwapBuffers();
+}
+
+void processNormalKeys(unsigned char key, int x, int y) {
+    switch(key) {
+        case 27:
+            glutDestroyWindow(window);
+            exit(0);
+        case 't':
+            pointLineFill = (pointLineFill+1)%3;
+            break;
+        case 'v':
+            axis = (axis+1)%3;
+            break;
+        case 'f':
+            glutFullScreen();
+            break;
+        default:
+            break;
+    }
+
+    glutPostRedisplay();
 }
 
 void help() {
@@ -126,7 +127,7 @@ int main(int argc, char **argv) {
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
     glutInitWindowPosition(100,100);
     glutInitWindowSize(800,800);
-    glutCreateWindow("CG-TP14");
+    window = glutCreateWindow("CG-TP14");
 
     group = parseXML(argv[1]);
 
