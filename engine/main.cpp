@@ -15,7 +15,7 @@ using namespace tinyxml2;
 using namespace std;
 
 // Global Variables
-vector<Group*> groups;
+Group* group = nullptr;
 int pointLineFill = 2; // 0-Point 1-Line 2-Fill
 int color = 2; // 0-White 1-RGB 2-Random
 int axis = 1; // 0-No 1-Small 2-Big
@@ -99,8 +99,7 @@ void renderScene() {
     if(axis)
         drawAxis(axis);
 
-    for(int i=0; i<groups.size(); i++)
-        renderGroup(groups[i]);
+    renderGroup(group);
 
     glutSwapBuffers();
 }
@@ -129,9 +128,9 @@ int main(int argc, char **argv) {
     glutInitWindowSize(800,800);
     glutCreateWindow("CG-TP14");
 
-    groups = parseXML(argv[1]);
+    group = parseXML(argv[1]);
 
-    if(groups.empty())
+    if(group == nullptr)
         return 1;
 
     glutDisplayFunc(renderScene);

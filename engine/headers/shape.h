@@ -19,6 +19,7 @@ private:
     vector<Point *> points;
 
 public:
+    Shape();
     Shape(vector<Point *> p);
     void addPoint(Point *p);
     Point *getPoint(int i);

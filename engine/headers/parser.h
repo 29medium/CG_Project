@@ -17,6 +17,6 @@
 using namespace tinyxml2;
 using namespace std;
 
-vector<Group *> parseXML(char * path);
+Group * parseXML(char * path);
 
 #endif //GENERATOR_PARSER_H

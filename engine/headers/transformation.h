@@ -29,14 +29,14 @@ public:
 class Translation : public Transformation {
 public:
     Translation(float xx, float yy, float zz);
-    void transform() override;
+    void transform();
 };
 
 class Rotation : public Transformation {
     float angle;
 public:
     Rotation(float angle, float xx, float yy, float zz);
-    void transform() override;
+    void transform();
 
     float getAngle() const;
 };
@@ -44,7 +44,7 @@ public:
 class Scale : public Transformation {
 public:
     Scale(float xx, float yy, float zz);
-    void transform() override;
+    void transform();
 };
 
 #endif //GENERATOR_TRANSFORMATION_H

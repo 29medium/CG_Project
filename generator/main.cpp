@@ -14,6 +14,7 @@
 #include "headers/box.h"
 #include "headers/sphere.h"
 #include "headers/cone.h"
+#include "headers/torus.h"
 
 using namespace std;
 
@@ -50,19 +51,23 @@ int main(int argc, char **argv)
     char* path;
 
     if (strcmp(argv[1], "plane") == 0 && argc == 4) {
-        s = plane(atof(argv[2]));
+        s = plane(stof(argv[2]));
         path = argv[3];
     }
     else if (strcmp(argv[1], "box") == 0 && (argc == 6 || argc == 7)) {
-        s = box(atof(argv[2]), atof(argv[3]), atof(argv[4]), argc==6 ? 1 : atoi(argv[5]));
+        s = box(stof(argv[2]), stof(argv[3]), stof(argv[4]), argc==6 ? 1 : stoi(argv[5]));
         path = argc==6 ? argv[5] : argv[6];
     }
     else if (strcmp(argv[1], "sphere") == 0 && argc == 6) {
-        s = sphere(atof(argv[2]), atoi(argv[3]), atoi(argv[4]));
+        s = sphere(stof(argv[2]), stoi(argv[3]), stoi(argv[4]));
         path = argv[5];
     }
     else if (strcmp(argv[1], "cone") == 0 && argc == 7) {
-        s = cone(atof(argv[2]), atof(argv[3]), atoi(argv[4]), atoi(argv[5]));
+        s = cone(stof(argv[2]), stof(argv[3]), stoi(argv[4]), stoi(argv[5]));
+        path = argv[6];
+    }
+    else if (strcmp(argv[1], "torus") == 0 && argc == 7) {
+        s = torus(stof(argv[2]), stof(argv[3]), stoi(argv[4]), stoi(argv[5]));
         path = argv[6];
     }
     else {

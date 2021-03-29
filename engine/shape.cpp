@@ -1,5 +1,7 @@
 #include "headers/shape.h"
 
+Shape::Shape() {}
+
 Shape::Shape(vector<Point *> p) {
     points = p;
 }
