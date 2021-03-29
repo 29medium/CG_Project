@@ -1,4 +1,4 @@
-#include "parser.h"
+#include "headers/parser.h"
 
 Transformation * parseTranslate(XMLElement* element) {
     float x=0, y=0, z=0;
@@ -12,7 +12,7 @@ Transformation * parseTranslate(XMLElement* element) {
     if(element->Attribute("Z"))
         z = atof(element->Attribute("Z"));
 
-    return new Transformation("translate", 0, x, y, z);
+    return new Translation(x, y, z);
 }
 
 Transformation * parseRotate(XMLElement* element) {
@@ -30,7 +30,7 @@ Transformation * parseRotate(XMLElement* element) {
     if(element->Attribute("axisZ"))
         z = atof(element->Attribute("axisZ"));
 
-    return new Transformation("rotate", angle, x, y, z);
+    return new Rotation(angle, x, y, z);
 }
 
 Transformation * parseScale(XMLElement* element) {
@@ -45,7 +45,7 @@ Transformation * parseScale(XMLElement* element) {
     if(element->Attribute("Z"))
         z = atof(element->Attribute("Z"));
 
-    return new Transformation("scale", 0, x, y, z);
+    return new Translation(x, y, z);
 }
 
 vector<Shape *> parseModel(XMLElement* element) {
@@ -67,10 +67,10 @@ vector<Shape *> parseModel(XMLElement* element) {
                 token = strtok(linha, " ");
                 x=atof(token);
 
-                token = strtok(NULL, " ");
+                token = strtok(nullptr, " ");
                 y=atof(token);
 
-                token = strtok(NULL, " ");
+                token = strtok(nullptr, " ");
                 z=atof(token);
 
                 Point *p = new Point(x, y, z);
@@ -128,7 +128,7 @@ vector<Group *> parseXML(char * path){
         }
     }
     else {
-        cout << "File " << path << " didn't load" << endl;
+        cout << "File " << path << " didn't load." << endl;
     }
 
     return groups;

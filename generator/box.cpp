@@ -1,4 +1,4 @@
-#include "box.h"
+#include "headers/box.h"
 
 void drawBackFront(float x, float y, float z, int divisions, Shape* s) {
     float retangleX = x / divisions;

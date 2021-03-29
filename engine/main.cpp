@@ -7,11 +7,9 @@
 #endif
 
 #include <iostream>
-#include <cmath>
 #include <vector>
-#include "parser.h"
-#include "drawer.h"
-#include "group.h"
+#include "headers/parser.h"
+#include "headers/group.h"
 
 using namespace tinyxml2;
 using namespace std;
@@ -21,6 +19,24 @@ vector<Group*> groups;
 int pointLineFill = 2; // 0-Point 1-Line 2-Fill
 int color = 2; // 0-White 1-RGB 2-Random
 int axis = 1; // 0-No 1-Small 2-Big
+
+void drawAxis(int a) {
+    float size = a==1 ? 1.5 : 10;
+    glBegin(GL_LINES);
+
+    glColor3f(1.0, 0.0, 0.0);
+    glVertex3f(0.0, 0.0, 0.0);
+    glVertex3f(size, 0.0, 0.0);
+
+    glColor3f(0.0, 1.0, 0.0);
+    glVertex3f(0.0, 0.0, 0.0);
+    glVertex3f(0.0, size, 0.0);
+
+    glColor3f(0.0, 0.0, 1.0);
+    glVertex3f(0.0, 0.0, 0.0);
+    glVertex3f(0.0, 0.0, size);
+    glEnd();
+}
 
 void processNormalKeys(unsigned char key, int x, int y) {
     switch(key) {
@@ -56,6 +72,20 @@ void changeSize(int w, int h) {
     glMatrixMode(GL_MODELVIEW);
 }
 
+void renderGroup(Group* g) {
+    vector<Transformation*> transfs = g->getTransf();
+    for(int i=0; i<transfs.size(); i++)
+        transfs[i]->transform();
+
+    vector<Shape*> models = g->getModels();
+    for(int i=0; i<models.size(); i++)
+        models[i]->draw(color);
+
+    vector<Group*> subgroups = g->getGroups();
+    for(int i=0; i<subgroups.size(); i++)
+        renderGroup(subgroups[i]);
+}
+
 void renderScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -69,7 +99,8 @@ void renderScene() {
     if(axis)
         drawAxis(axis);
 
-    drawShape(groups, color);
+    for(int i=0; i<groups.size(); i++)
+        renderGroup(groups[i]);
 
     glutSwapBuffers();
 }

@@ -10,10 +10,10 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "plane.h"
-#include "box.h"
-#include "sphere.h"
-#include "cone.h"
+#include "headers/plane.h"
+#include "headers/box.h"
+#include "headers/sphere.h"
+#include "headers/cone.h"
 
 using namespace std;
 

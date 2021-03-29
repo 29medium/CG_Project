@@ -1,4 +1,4 @@
-#include "cone.h"
+#include "headers/cone.h"
 
 #define _USE_MATH_DEFINES
 #include <math.h>

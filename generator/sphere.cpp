@@ -1,6 +1,6 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include "sphere.h"
+#include "headers/sphere.h"
 
 
 Shape* sphere(float radius, int slices, int stacks) {
