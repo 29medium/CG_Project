@@ -1,5 +1,9 @@
 #include "shape.h"
 
+Shape::Shape(vector<Point *> p) {
+    points = p;
+}
+
 void Shape::addPoint(Point *p)
 {
     this->points.push_back(p);

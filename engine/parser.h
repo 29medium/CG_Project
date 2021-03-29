@@ -12,10 +12,11 @@
 #include <fstream>
 #include "tinyxml2.h"
 #include "../src/point.h"
+#include "group.h"
 
 using namespace tinyxml2;
 using namespace std;
 
-vector<Point> readXML(char * path);
+vector<Group *> parseXML(char * path);
 
 #endif //GENERATOR_PARSER_H
