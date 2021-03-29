@@ -9,15 +9,15 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
-#include "../src/shape.h"
 #include "parser.h"
 #include "drawer.h"
+#include "group.h"
 
 using namespace tinyxml2;
 using namespace std;
 
 // Global Variables
-vector<Point> model;
+vector<Group*> groups;
 int pointLineFill = 2; // 0-Point 1-Line 2-Fill
 int color = 2; // 0-White 1-RGB 2-Random
 int axis = 1; // 0-No 1-Small 2-Big
@@ -69,7 +69,7 @@ void renderScene() {
     if(axis)
         drawAxis(axis);
 
-    drawShape(model, color);
+    drawShape(groups, color);
 
     glutSwapBuffers();
 }
@@ -98,9 +98,9 @@ int main(int argc, char **argv) {
     glutInitWindowSize(800,800);
     glutCreateWindow("CG-TP14");
 
-    model = readXML(argv[1]);
+    groups = parseXML(argv[1]);
 
-    if(model.empty())
+    if(groups.empty())
         return 1;
 
     glutDisplayFunc(renderScene);
