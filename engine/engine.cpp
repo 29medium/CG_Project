@@ -51,20 +51,6 @@ void drawAxis(int a) {
     glEnd();
 }
 
-void renderGroup(Group* g) {
-    vector<Transformation*> transfs = g->getTransf();
-    for(int i=0; i<transfs.size(); i++)
-        transfs[i]->transform();
-
-    vector<Shape*> models = g->getModels();
-    for(int i=0; i<models.size(); i++)
-        models[i]->draw();
-
-    vector<Group*> subgroups = g->getGroups();
-    for(int i=0; i<subgroups.size(); i++)
-        renderGroup(subgroups[i]);
-}
-
 void renderScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -78,7 +64,7 @@ void renderScene() {
     if(axis)
         drawAxis(axis);
 
-    renderGroup(group);
+    group->render();
 
     glutSwapBuffers();
 }
