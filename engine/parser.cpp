@@ -87,7 +87,7 @@ Group* parseGroup(XMLElement* element) {
             transf.push_back(parseColour(elem));
         if(strcmp(elem->Name(), "models") == 0)
             models = parseModel(elem);
-        if(strcmp(elem->Name(), "groups") == 0)
+        if(strcmp(elem->Name(), "group") == 0)
             groups.push_back(parseGroup(elem));
     }
 

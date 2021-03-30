@@ -43,21 +43,21 @@ void Camera::processNormalKeys(unsigned char key, int x, int y) {
             radius -= speed;
             break;
         case 'a':
-            alpha -= speed;
+            alpha -= M_PI/64;
             break;
         case 's':
             radius += speed;
             break;
         case 'd':
-            alpha += speed;
+            alpha += M_PI/64;
             break;
         case 'q':
-            beta -= speed;
+            beta -= M_PI/64;
             if(beta<(-(M_PI/2)+(M_PI/64)))
                 beta = -(M_PI/2)+(M_PI/64);
             break;
         case 'e':
-            beta += speed;
+            beta += M_PI/64;
             if(beta>((M_PI/2)-(M_PI/64)))
                 beta = (M_PI/2)-(M_PI/64);
             break;

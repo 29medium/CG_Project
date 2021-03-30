@@ -1,6 +1,7 @@
 <scene>
     <!-- scale 1:12756 -->
     <!-- translation 1:1275600 -->
+
     <!-- Sol -->
     <!-- Diametro: 1392694km -->
     <group>
@@ -14,8 +15,8 @@
     <!-- Mercurio -->
     <!-- Diametro: 4879km Distancia: 57909000 km -->
     <group>
-        <translate X="45"/>
-        <scale X="0.2" Y="0.2" Z="0.2" />
+        <translate X="15.74"/>
+        <scale X="1" Y="0.2" Z="0.2" />
         <colour R="255" G="140" B="0" />
         <models>
             <model file="sphere.3d" />
@@ -25,7 +26,7 @@
     <!-- Venus -->
     <!-- Diametro: 12103km Distancia: 108160000 km -->
     <group>
-        <translate X="85"/>
+        <translate X="33.77"/>
         <scale X="0.45" Y="0.45" Z="0.45" />
         <colour R="255" G="140" B="0" />
         <models>
@@ -36,7 +37,7 @@
     <!-- Terra -->
     <!-- Diametro: 12756km Distancia: 149600000 km -->
     <group>
-        <translate X="117" />
+        <translate X="43.13" />
         <scale X="0.5" Y="0.5" Z="0.5" />
         <colour R="255" G="140" B="0" />
         <models>
@@ -57,8 +58,8 @@
     <!-- Marte -->
     <!-- Diametro: 6792km Distancia: 227990000 km -->
     <group>
-        <translate X="178" />
-        <scale X="0.55" Y="0.55" Z="0.55" />
+        <translate X="55.28" />
+        <scale X="2" Y="2" Z="2" /><!-- NOT IN SCALE 0.55-->
         <colour R="255" G="140" B="0" />
         <models>
             <model file="sphere.3d" />
@@ -67,8 +68,8 @@
         <!-- Diametro: 11km Distancia: 6000 km -->
         <group>
             <translate Z="3" />
-            <scale X="0.05" Y="0.05" Z="0.05" /> <!-- NOT IN SCALE -->
-            <colour R="255" G="140" B="0" />
+            <scale X="1" Y="1" Z="1" /> <!-- NOT IN SCALE 0.05-->
+            <colour R="0" G="140" B="0" />
             <models>
                 <model file="sphere.3d" />
             </models>
@@ -77,11 +78,56 @@
         <!-- Diametro: 6.2km Distancia: 23460 km -->
         <group>
             <translate Z="-3" />
-            <scale X="0.025" Y="0.025" Z="0.025" /> <!-- NOT IN SCALE -->
-            <colour R="255" G="140" B="0" />
+            <scale X="1" Y="1" Z="1" /> <!-- NOT IN SCALE 0.025-->
+            <colour R="255" G="0" B="0" />
             <models>
                 <model file="sphere.3d" />
             </models>
         </group>
     </group>
+
+    <!-- Jupiter -->
+    <!-- Diametro: 142984km Distancia: 778.330.000 km -->
+    <group>
+        <translate X="90.71"/>
+        <scale X="5.78" Y="5.78" Z="5.78" />
+        <colour R="255" G="140" B="0" />
+        <models>
+            <model file="sphere.3d" />
+        </models>
+    </group>
+
+    <!-- Saturno -->
+    <!-- Diametro: 120536km Distancia: 1.429.400.000 km -->
+    <group>
+        <translate X="108.25"/>
+        <scale X="2.44" Y="2.44" Z="2.44" />
+        <colour R="255" G="140" B="0" />
+        <models>
+            <model file="sphere.3d" />
+        </models>
+    </group>
+
+    <!-- Urano -->
+    <!-- Diametro: 51108km Distancia: 2.870.990.000 km -->
+    <group>
+        <translate X="128.37"/>
+        <scale X="0.52" Y="0.52" Z="0.52" />
+        <colour R="255" G="140" B="0" />
+        <models>
+            <model file="sphere.3d" />
+        </models>
+    </group>
+
+    <!-- Neptuno -->
+    <!-- Diametro: 49538km Distancia: 4.504.300.000 km -->
+    <group>
+        <translate X="141.37"/>
+        <scale X="0.5" Y="0.5" Z="0.5" />
+        <colour R="255" G="140" B="0" />
+        <models>
+            <model file="sphere.3d" />
+        </models>
+    </group>
+
 </scene>

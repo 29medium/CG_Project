@@ -1,5 +1,6 @@
 #include "headers/torus.h"
 
+
 Point* pointCoord(float radiusIn, float radiusOut, float alpha, float beta) {
   return new Point((radiusOut + radiusIn * (cos(beta))) * cos(alpha),
                    (radiusOut + radiusIn * (cos(beta))) * sin(alpha),
