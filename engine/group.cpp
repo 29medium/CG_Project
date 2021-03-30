@@ -6,28 +6,18 @@ Group::Group(vector<Transformation *> t, vector<Shape *> m, vector<Group *> g) {
     groups = g;
 }
 
-vector<Transformation *> Group::getTransf() {
-    return transf;
-}
-
-vector<Shape *> Group::getModels() {
-    return models;
-}
-
-vector<Group *> Group::getGroups() {
-    return groups;
-}
-
 void Group::render() {
-    vector<Transformation*> transfsV = getTransf();
-    for(int i=0; i<transfsV.size(); i++)
-        transfsV[i]->transform();
+    for(int i=0; i<transf.size(); i++)
+        transf[i]->transform();
 
-    vector<Shape*> modelsV = getModels();
-    for(int i=0; i<modelsV.size(); i++)
-        modelsV[i]->draw();
+    for(int i=0; i<models.size(); i++)
+        models[i]->draw();
 
-    vector<Group*> subgroups = getGroups();
-    for(int i=0; i<subgroups.size(); i++)
-        subgroups[i]->render();
+    for(int i=0; i<groups.size(); i++)
+        groups[i]->render();
+}
+
+void Group::renderGroups(vector<Group *> groups) {
+    for(int i=0; i<groups.size(); i++)
+        groups[i]->render();
 }

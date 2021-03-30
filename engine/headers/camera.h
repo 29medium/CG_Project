@@ -10,6 +10,7 @@ private:
     float alpha;
     float beta;
     float radius;
+    float speed;
     float camX;
     float camY;
     float camZ;
@@ -18,8 +19,6 @@ private:
     float centerZ;
 public:
     Camera();
-
-    void cameraDefault();
 
     float getCamX() const;
 
@@ -32,6 +31,10 @@ public:
     float getCenterY() const;
 
     float getCenterZ() const;
+
+    void processNormalKeys(unsigned char key, int x, int y);
+
+    void calculateCam();
 };
 
 #endif //GENERATOR_CAMERA_H

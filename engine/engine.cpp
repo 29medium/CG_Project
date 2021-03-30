@@ -15,7 +15,7 @@
 using namespace tinyxml2;
 using namespace std;
 
-Group* group = nullptr;
+vector<Group*> groups;
 Camera* cam = nullptr;
 int pointLineFill = 2; // 0-Point 1-Line 2-Fill
 int axis = 0; // 0-No 1-Small 2-Big
@@ -65,7 +65,7 @@ void renderScene() {
 
     if(axis) drawAxis(axis);
 
-    group->render();
+    Group::renderGroups(groups);
 
     glutSwapBuffers();
 }
@@ -85,6 +85,7 @@ void processNormalKeys(unsigned char key, int x, int y) {
             glutFullScreen();
             break;
         default:
+            cam->processNormalKeys(key, x, y);
             break;
     }
 
@@ -115,8 +116,8 @@ int main(int argc, char **argv) {
     glutInitWindowSize(800,800);
     window = glutCreateWindow("CG-TP14");
 
-    group = parseXML(argv[1]);
-    if(group == nullptr) return 1;
+    groups = parseXML(argv[1]);
+    if(groups.empty()) return 1;
 
     cam = new Camera();
 

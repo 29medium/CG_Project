@@ -1,83 +1,87 @@
 <scene>
     <!-- scale 1:12756 -->
     <!-- translation 1:1275600 -->
+    <!-- Sol -->
+    <!-- Diametro: 1392694km -->
     <group>
-        <!-- Sol -->
-        <!-- Diametro: 1392694km -->
+        <scale X="5" Y="5" Z="5" /> <!-- NOT IN SCALE -->
+        <colour R="255" G="140" B="0" />
+        <models>
+            <model file="sphere.3d" />
+        </models>
+    </group>
+
+    <!-- Mercurio -->
+    <!-- Diametro: 4879km Distancia: 57909000 km -->
+    <group>
+        <translate X="45"/>
+        <scale X="0.2" Y="0.2" Z="0.2" />
+        <colour R="255" G="140" B="0" />
+        <models>
+            <model file="sphere.3d" />
+        </models>
+    </group>
+
+    <!-- Venus -->
+    <!-- Diametro: 12103km Distancia: 108160000 km -->
+    <group>
+        <translate X="85"/>
+        <scale X="0.45" Y="0.45" Z="0.45" />
+        <colour R="255" G="140" B="0" />
+        <models>
+            <model file="sphere.3d" />
+        </models>
+    </group>
+
+    <!-- Terra -->
+    <!-- Diametro: 12756km Distancia: 149600000 km -->
+    <group>
+        <translate X="117" />
+        <scale X="0.5" Y="0.5" Z="0.5" />
+        <colour R="255" G="140" B="0" />
+        <models>
+            <model file="sphere.3d" />
+        </models>
+        <!-- Lua -->
+        <!-- Diametro: 1738km Distancia: 384400 km -->
         <group>
-            <scale X="5" Y="5" Z="5" /> <!-- NOT IN SCALE -->
+            <translate Z="3" />
+            <scale X="0.15" Y="0.15" Z="0.15" />
             <colour R="255" G="140" B="0" />
             <models>
                 <model file="sphere.3d" />
             </models>
         </group>
+    </group>
 
-        <!-- Mercurio -->
-        <!-- Diametro: 4879km Distancia: 57909000 km -->
+    <!-- Marte -->
+    <!-- Diametro: 6792km Distancia: 227990000 km -->
+    <group>
+        <translate X="178" />
+        <scale X="0.55" Y="0.55" Z="0.55" />
+        <colour R="255" G="140" B="0" />
+        <models>
+            <model file="sphere.3d" />
+        </models>
+        <!-- Phobos -->
+        <!-- Diametro: 11km Distancia: 6000 km -->
         <group>
-            <translate X="45"/>
-            <scale X="0.2" Y="0.2" Z="0.2" />
+            <translate Z="3" />
+            <scale X="0.05" Y="0.05" Z="0.05" /> <!-- NOT IN SCALE -->
+            <colour R="255" G="140" B="0" />
             <models>
                 <model file="sphere.3d" />
             </models>
         </group>
-
-        <!-- Venus -->
-        <!-- Diametro: 12103km Distancia: 108160000 km -->
+        <!-- Deimos -->
+        <!-- Diametro: 6.2km Distancia: 23460 km -->
         <group>
-            <translate X="85"/>
-            <scale X="0.45" Y="0.45" Z="0.45" />
+            <translate Z="-3" />
+            <scale X="0.025" Y="0.025" Z="0.025" /> <!-- NOT IN SCALE -->
+            <colour R="255" G="140" B="0" />
             <models>
                 <model file="sphere.3d" />
             </models>
         </group>
-
-        <!-- Terra -->
-        <!-- Diametro: 12756km Distancia: 149600000 km -->
-        <group>
-            <translate X="117" />
-            <scale X="0.5" Y="0.5" Z="0.5" />
-            <models>
-                <model file="sphere.3d" />
-            </models>
-            <!-- Lua -->
-            <!-- Diametro: 1738km Distancia: 384400 km -->
-            <group>
-                <translate Z="3" />
-                <scale X="0.15" Y="0.15" Z="0.15" />
-                <models>
-                    <model file="sphere.3d" />
-                </models>
-            </group>
-        </group>
-
-        <!-- Marte -->
-        <!-- Diametro: 6792km Distancia: 227990000 km -->
-        <group>
-            <translate X="178" />
-            <scale X="0.55" Y="0.55" Z="0.55" />
-            <models>
-                <model file="sphere.3d" />
-            </models>
-            <!-- Phobos -->
-            <!-- Diametro: 11km Distancia: 6000 km -->
-            <group>
-                <translate Z="3" />
-                <scale X="0.05" Y="0.05" Z="0.05" /> <!-- NOT IN SCALE -->
-                <models>
-                    <model file="sphere.3d" />
-                </models>
-            </group>
-            <!-- Deimos -->
-            <!-- Diametro: 6.2km Distancia: 23460 km -->
-            <group>
-                <translate Z="-3" />
-                <scale X="0.025" Y="0.025" Z="0.025" /> <!-- NOT IN SCALE -->
-                <models>
-                    <model file="sphere.3d" />
-                </models>
-            </group>
-        </group>
-
     </group>
 </scene>

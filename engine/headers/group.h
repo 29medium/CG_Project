@@ -16,13 +16,9 @@ private:
 public:
     Group(vector<Transformation*> t, vector<Shape*> m, vector<Group*> g);
 
-    vector<Transformation *> getTransf();
-
-    vector<Shape *> getModels();
-
-    vector<Group *> getGroups();
-
     void render();
+
+    static void renderGroups(vector<Group *> groups);
 };
 
 #endif //GENERATOR_GROUP_H

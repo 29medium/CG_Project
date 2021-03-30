@@ -49,7 +49,7 @@ vector<Shape *> parseModel(XMLElement* element) {
         file.open(final_path);
         if (file.is_open(), ios::in) {
             string line;
-            char *token, *lineC;
+            char *lineC;
             float x, y, z;
 
             while (getline(file, line)) {
@@ -94,8 +94,9 @@ Group* parseGroup(XMLElement* element) {
     return new Group(transf, models, groups);
 }
 
-Group* parseXML(char * path){
-    Group* group;
+vector<Group *> parseXML(char * path){
+    vector<Group *> groups;
+    Group* group = nullptr;
 
     char final_path[1024];
     strcpy(final_path, "../xmlfiles/");
@@ -108,13 +109,15 @@ Group* parseXML(char * path){
 
     if(!eResult){
         if((root=doc.FirstChild())) {
-            element = root->FirstChildElement("group");
-            group = parseGroup(element);
+            for(XMLElement *elem = root->FirstChildElement("group"); elem; elem = elem->NextSiblingElement("group")) {
+                group = parseGroup(elem);
+                groups.push_back(group);
+            }
         }
     }
     else {
         cout << "File " << path << " didn't load." << endl;
     }
 
-    return group;
+    return groups;
 }
