@@ -7,9 +7,9 @@
 #include <GL/glut.h>
 #endif
 
-#include <iostream.h>
+#include <iostream>
 #include <string.h>
-#include <fstream.h>
+#include <fstream>
 #include "headers/plane.h"
 #include "headers/box.h"
 #include "headers/sphere.h"

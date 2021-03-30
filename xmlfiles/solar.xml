@@ -1,6 +1,4 @@
 <scene>
-    <!-- scale 1:12756 -->
-    <!-- translation 1:1275600 -->
 
     <!-- Sol -->
     <!-- Diametro: 1392694km -->
@@ -13,42 +11,42 @@
     </group>
 
     <!-- Mercurio -->
-    <!-- Diametro: 4879km Distancia: 57909000 km -->
+    <!-- Diametro: 4879km Distancia: 57909000 km Inclinação: 6,34º -->
     <group>
         <translate X="15.74"/>
-        <scale X="1" Y="0.2" Z="0.2" />
-        <colour R="255" G="140" B="0" />
+        <scale X="0.2" Y="0.2" Z="0.2" />
+        <colour R="97" G="97" B="93" />
         <models>
             <model file="sphere.3d" />
         </models>
     </group>
 
     <!-- Venus -->
-    <!-- Diametro: 12103km Distancia: 108160000 km -->
+    <!-- Diametro: 12103km Distancia: 108160000 km Inclinação: 2,19º -->
     <group>
         <translate X="33.77"/>
         <scale X="0.45" Y="0.45" Z="0.45" />
-        <colour R="255" G="140" B="0" />
+        <colour R="239" G="203" B="141" />
         <models>
             <model file="sphere.3d" />
         </models>
     </group>
 
     <!-- Terra -->
-    <!-- Diametro: 12756km Distancia: 149600000 km -->
+    <!-- Diametro: 12756km Distancia: 149600000 km Inclinação: 1,57º -->
     <group>
         <translate X="43.13" />
         <scale X="0.5" Y="0.5" Z="0.5" />
-        <colour R="255" G="140" B="0" />
+        <colour R="11" G="28" B="102" />
         <models>
             <model file="sphere.3d" />
         </models>
         <!-- Lua -->
-        <!-- Diametro: 1738km Distancia: 384400 km -->
+        <!-- Diametro: 1738km Distancia: 384400 km Inclinação: ~20º (Com equador da terra) -->
         <group>
             <translate Z="3" />
             <scale X="0.15" Y="0.15" Z="0.15" />
-            <colour R="255" G="140" B="0" />
+            <colour R="207" G="207" B="207" />
             <models>
                 <model file="sphere.3d" />
             </models>
@@ -56,53 +54,108 @@
     </group>
 
     <!-- Marte -->
-    <!-- Diametro: 6792km Distancia: 227990000 km -->
+    <!-- Diametro: 6792km Distancia: 227990000 km Inclinação: 1.63º -->
     <group>
         <translate X="55.28" />
-        <scale X="2" Y="2" Z="2" /><!-- NOT IN SCALE 0.55-->
+        <scale X="0.55" Y="0.55" Z="0.55" />
         <colour R="255" G="140" B="0" />
         <models>
             <model file="sphere.3d" />
         </models>
         <!-- Phobos -->
-        <!-- Diametro: 11km Distancia: 6000 km -->
+        <!-- Diametro: 11km Distancia: 6000 km Inclinação: 1º -->
         <group>
             <translate Z="3" />
-            <scale X="1" Y="1" Z="1" /> <!-- NOT IN SCALE 0.05-->
-            <colour R="0" G="140" B="0" />
+            <scale X="0.05" Y="0.05" Z="0.05" /> <!-- NOT IN SCALE -->
+            <colour R="207" G="207" B="207" />
             <models>
                 <model file="sphere.3d" />
             </models>
         </group>
         <!-- Deimos -->
-        <!-- Diametro: 6.2km Distancia: 23460 km -->
+        <!-- Diametro: 6.2km Distancia: 23460 km Inclinação: 0.93º -->
         <group>
             <translate Z="-3" />
-            <scale X="1" Y="1" Z="1" /> <!-- NOT IN SCALE 0.025-->
-            <colour R="255" G="0" B="0" />
+            <scale X="0.025" Y="0.025" Z="0.025" /> <!-- NOT IN SCALE -->
+            <colour R="207" G="207" B="207" />
             <models>
                 <model file="sphere.3d" />
             </models>
         </group>
     </group>
 
-    <!-- Jupiter -->
-    <!-- Diametro: 142984km Distancia: 778.330.000 km -->
+    <!-- Ceres -->
+    <!-- Diametro: 974km Distancia: 413832947 km Inclinação: 9.20º -->
     <group>
-        <translate X="90.71"/>
-        <scale X="5.78" Y="5.78" Z="5.78" />
-        <colour R="255" G="140" B="0" />
+        <translate X="141.37"/><!-- Por calcular -->
+        <scale X="0.5" Y="0.5" Z="0.5" /><!-- Por calcular -->
+        <colour R="38" G="70" B="135" /><!-- Por calcular -->
         <models>
             <model file="sphere.3d" />
         </models>
     </group>
 
+    <!-- Jupiter -->
+    <!-- Diametro: 142984km Distancia: 778.330.000 km Inclinação: 0.32º -->
+    <group>
+        <translate X="90.71"/>
+        <scale X="5.78" Y="5.78" Z="5.78" />
+        <colour R="216" G="202" B="157" />
+        <models>
+            <model file="sphere.3d" />
+        </models>
+
+        <!-- Io -->
+        <!-- Diametro: 3642km Distancia: 422000 km Inclinação: 0.20º -->
+        <group>
+            <translate X="141.37"/><!-- Por calcular -->
+            <scale X="0.5" Y="0.5" Z="0.5" /><!-- Por calcular -->
+            <colour R="38" G="70" B="135" /><!-- Por calcular -->
+            <models>
+                <model file="sphere.3d" />
+            </models>
+        </group>
+
+        <!-- Europa -->
+        <!-- Diametro: 1560km Distancia: 670900 km Inclinação: 0.47º -->
+        <group>
+            <translate X="141.37"/><!-- Por calcular -->
+            <scale X="0.5" Y="0.5" Z="0.5" /><!-- Por calcular -->
+            <colour R="38" G="70" B="135" /><!-- Por calcular -->
+            <models>
+                <model file="sphere.3d" />
+            </models>
+        </group>
+
+        <!-- Ganymede -->
+        <!-- Diametro: 5268km Distancia: 1070400 km Inclinação: 0.47º -->
+        <group>
+            <translate X="141.37"/><!-- Por calcular -->
+            <scale X="0.5" Y="0.5" Z="0.5" /><!-- Por calcular -->
+            <colour R="38" G="70" B="135" /><!-- Por calcular -->
+            <models>
+                <model file="sphere.3d" />
+            </models>
+        </group>
+
+        <!-- Calisto -->
+        <!-- Diametro: 5268km Distancia: 1882700 km Inclinação: 0.47º -->
+        <group>
+            <translate X="141.37"/><!-- Por calcular -->
+            <scale X="0.5" Y="0.5" Z="0.5" /><!-- Por calcular -->
+            <colour R="38" G="70" B="135" /><!-- Por calcular -->
+            <models>
+                <model file="sphere.3d" />
+            </models>
+        </group>
+    </group>
+
     <!-- Saturno -->
-    <!-- Diametro: 120536km Distancia: 1.429.400.000 km -->
+    <!-- Diametro: 120536km Distancia: 1.429.400.000 km Inclinação: 0.05º -->
     <group>
         <translate X="108.25"/>
         <scale X="2.44" Y="2.44" Z="2.44" />
-        <colour R="255" G="140" B="0" />
+        <colour R="227" G="224" B="192" />
         <models>
             <model file="sphere.3d" />
         </models>
@@ -113,7 +166,7 @@
     <group>
         <translate X="128.37"/>
         <scale X="0.52" Y="0.52" Z="0.52" />
-        <colour R="255" G="140" B="0" />
+        <colour R="73" G="88" B="89" />
         <models>
             <model file="sphere.3d" />
         </models>
@@ -124,7 +177,18 @@
     <group>
         <translate X="141.37"/>
         <scale X="0.5" Y="0.5" Z="0.5" />
-        <colour R="255" G="140" B="0" />
+        <colour R="38" G="70" B="135" />
+        <models>
+            <model file="sphere.3d" />
+        </models>
+    </group>
+
+    <!-- Plutão -->
+    <!-- Diametro: 1188km Distancia: 5906380000 km -->
+    <group>
+        <translate X="141.37"/><!-- Por calcular -->
+        <scale X="0.5" Y="0.5" Z="0.5" /><!-- Por calcular -->
+        <colour R="38" G="70" B="135" /><!-- Por calcular -->
         <models>
             <model file="sphere.3d" />
         </models>
