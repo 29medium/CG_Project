@@ -10,11 +10,13 @@
 #include <vector>
 #include "headers/parser.h"
 #include "headers/group.h"
+#include "headers/camera.h"
 
 using namespace tinyxml2;
 using namespace std;
 
 Group* group = nullptr;
+Camera* cam = nullptr;
 int pointLineFill = 2; // 0-Point 1-Line 2-Fill
 int axis = 0; // 0-No 1-Small 2-Big
 
@@ -55,14 +57,13 @@ void renderScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glLoadIdentity();
-    gluLookAt(5.0,5.0,5.0,
-              0.0,0.0,0.0,
+    gluLookAt(cam->getCamX(),cam->getCamY(),cam->getCamZ(),
+              cam->getCenterX(),cam->getCenterY(),cam->getCenterZ(),
               0.0f,1.0f,0.0f);
 
     glPolygonMode(GL_FRONT_AND_BACK,pointLineFill==0 ? GL_POINT : (pointLineFill==1 ? GL_LINE : GL_FILL));
 
-    if(axis)
-        drawAxis(axis);
+    if(axis) drawAxis(axis);
 
     group->render();
 
@@ -115,9 +116,9 @@ int main(int argc, char **argv) {
     window = glutCreateWindow("CG-TP14");
 
     group = parseXML(argv[1]);
+    if(group == nullptr) return 1;
 
-    if(group == nullptr)
-        return 1;
+    cam = new Camera();
 
     glutDisplayFunc(renderScene);
     glutIdleFunc(renderScene);

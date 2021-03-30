@@ -21,6 +21,8 @@ public:
     vector<Shape *> getModels();
 
     vector<Group *> getGroups();
+
+    void render();
 };
 
 #endif //GENERATOR_GROUP_H

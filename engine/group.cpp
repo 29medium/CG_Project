@@ -17,3 +17,17 @@ vector<Shape *> Group::getModels() {
 vector<Group *> Group::getGroups() {
     return groups;
 }
+
+void Group::render() {
+    vector<Transformation*> transfsV = getTransf();
+    for(int i=0; i<transfsV.size(); i++)
+        transfsV[i]->transform();
+
+    vector<Shape*> modelsV = getModels();
+    for(int i=0; i<modelsV.size(); i++)
+        modelsV[i]->draw();
+
+    vector<Group*> subgroups = getGroups();
+    for(int i=0; i<subgroups.size(); i++)
+        subgroups[i]->render();
+}

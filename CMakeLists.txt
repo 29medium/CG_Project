@@ -5,7 +5,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 # ENGINE
 
 PROJECT(engine)
-add_executable(${PROJECT_NAME} engine/main.cpp engine/tinyxlm2.cpp engine/headers/tinyxml2.h engine/parser.cpp engine/headers/parser.h engine/group.cpp engine/headers/group.h engine/transformation.cpp engine/headers/transformation.h engine/point.cpp engine/headers/point.h engine/shape.cpp engine/headers/shape.h)
+add_executable(${PROJECT_NAME} engine/engine.cpp engine/tinyxlm2.cpp engine/headers/tinyxml2.h engine/parser.cpp engine/headers/parser.h engine/group.cpp engine/headers/group.h engine/transformation.cpp engine/headers/transformation.h engine/point.cpp engine/headers/point.h engine/shape.cpp engine/headers/shape.h engine/camera.cpp engine/headers/camera.h)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})
@@ -54,7 +54,7 @@ endif(WIN32)
 # GENERATOR
 
 PROJECT(generator)
-add_executable(${PROJECT_NAME} generator/main.cpp engine/point.cpp engine/headers/point.h engine/shape.cpp engine/headers/shape.h generator/box.cpp generator/headers/box.h generator/cone.cpp generator/headers/cone.h generator/plane.cpp generator/headers/plane.h generator/sphere.cpp generator/headers/sphere.h generator/torus.cpp generator/headers/torus.h)
+add_executable(${PROJECT_NAME} generator/generator.cpp engine/point.cpp engine/headers/point.h engine/shape.cpp engine/headers/shape.h generator/box.cpp generator/headers/box.h generator/cone.cpp generator/headers/cone.h generator/plane.cpp generator/headers/plane.h generator/sphere.cpp generator/headers/sphere.h generator/torus.cpp generator/headers/torus.h)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})
