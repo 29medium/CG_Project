@@ -16,7 +16,7 @@ using namespace std;
 
 Group* group = nullptr;
 int pointLineFill = 2; // 0-Point 1-Line 2-Fill
-int axis = 1; // 0-No 1-Small 2-Big
+int axis = 0; // 0-No 1-Small 2-Big
 
 int window;
 
@@ -35,18 +35,17 @@ void changeSize(int w, int h) {
 }
 
 void drawAxis(int a) {
-    float size = a==1 ? 1.5 : 10;
+    float size = a==1 ? 1.5 : 1000;
+
+    glColor3f(1.0, 1.0, 1.0);
     glBegin(GL_LINES);
 
-    glColor3f(1.0, 0.0, 0.0);
     glVertex3f(0.0, 0.0, 0.0);
     glVertex3f(size, 0.0, 0.0);
 
-    glColor3f(0.0, 1.0, 0.0);
     glVertex3f(0.0, 0.0, 0.0);
     glVertex3f(0.0, size, 0.0);
 
-    glColor3f(0.0, 0.0, 1.0);
     glVertex3f(0.0, 0.0, 0.0);
     glVertex3f(0.0, 0.0, size);
     glEnd();

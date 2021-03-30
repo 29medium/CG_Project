@@ -18,9 +18,9 @@ Transformation * parseRotate(XMLElement* element) {
 }
 
 Transformation * parseScale(XMLElement* element) {
-    float x = (element->Attribute("X") ? stof(element->Attribute("X")) : 0);
-    float y = (element->Attribute("Y") ? stof(element->Attribute("Y")) : 0);
-    float z = (element->Attribute("Z") ? stof(element->Attribute("Z")) : 0);
+    float x = (element->Attribute("X") ? stof(element->Attribute("X")) : 1);
+    float y = (element->Attribute("Y") ? stof(element->Attribute("Y")) : 1);
+    float z = (element->Attribute("Z") ? stof(element->Attribute("Z")) : 1);
 
     return new Scale(x, y, z);
 }
