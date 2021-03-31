@@ -17,14 +17,12 @@ using namespace std;
 
 vector<Group*> groups;
 Camera* cam = nullptr;
-int pointLineFill = 2; // 0-Point 1-Line 2-Fill
-int axis = 0; // 0-No 1-Small 2-Big
-
+int pointLineFill = 2;
+int axis = 0;
 int window;
 
 void changeSize(int w, int h) {
-    if(h == 0)
-        h = 1;
+    if(h == 0) h = 1;
 
     float ratio = w * 1.0 / h;
 
@@ -92,11 +90,24 @@ void processNormalKeys(unsigned char key, int x, int y) {
     glutPostRedisplay();
 }
 
+void processMouseMotion(int xx, int yy) {
+    cam->processMouseMotion(xx, yy);
+}
+
+void processMouseButtons(int button, int state, int xx, int yy) {
+    cam->processMouseButtons(button, state, xx, yy);
+}
+
 void help() {
     cout << "C - Change Color" << endl;
     cout << "V - Toogle Axis" << endl;
     cout << "T - Change Polygon Mode" << endl;
     cout << "ESC - Exit" << endl;
+}
+
+void init() {
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
 }
 
 int main(int argc, char **argv) {
@@ -126,9 +137,10 @@ int main(int argc, char **argv) {
     glutReshapeFunc(changeSize);
 
     glutKeyboardFunc(processNormalKeys);
+    glutMouseFunc(processMouseButtons);
+    glutMotionFunc(processMouseMotion);
 
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
+    init();
 
     glutMainLoop();
 
