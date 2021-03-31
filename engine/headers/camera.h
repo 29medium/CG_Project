@@ -9,10 +9,12 @@
 #endif
 
 #include <math.h>
+#include <vector>
 
 using namespace std;
 
-class Camera {
+class Camera
+{
 private:
     float alpha;
     float beta;
@@ -28,14 +30,27 @@ private:
     float centerX;
     float centerY;
     float centerZ;
+    std::vector<float> cameraPosition;
+    std::vector<float> cameraFront;
+    std::vector<float> cameraUp;
+    float cameraSpeed;
+
 public:
     Camera();
 
-    float getCamX() const;
+    vector<float> getCameraPosition() const;
 
-    float getCamY() const;
+    vector<float> getCameraFront() const;
 
-    float getCamZ() const;
+    vector<float> getCameraUp() const;
+
+    float getCameraSpeed() const;
+
+    // float getCamX() const;
+
+    // float getCamY() const;
+
+    // float getCamZ() const;
 
     float getCenterX() const;
 
@@ -50,6 +65,16 @@ public:
     void processMouseButtons(int button, int state, int xx, int yy);
 
     void calculateCam();
+
+    vector<float> multiplyVectorBySpeed(vector<float> vector);
+
+    void addVectors(vector<float> v1, vector<float> v2);
+
+    void subVectors(vector<float> v1, vector<float> v2);
+
+    vector<float> crossVectors(vector<float> v1, vector<float> v2);
+
+    vector<float> normalizeVector(vector<float> vector);
 };
 
 #endif //GENERATOR_CAMERA_H

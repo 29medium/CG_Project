@@ -3,12 +3,113 @@
     <!-- Sol -->
     <!-- Diametro: 1392694km -->
     <group>
-        <scale X="5" Y="5" Z="5" /> <!-- NOT IN SCALE -->
+        <scale X="5" Y="5" Z="5" />
+        <!-- NOT IN SCALE -->
         <colour R="255" G="140" B="0" />
         <models>
             <model file="sphere.3d" />
         </models>
     </group>
+
+    <!-- ================================================================================================================ -->
+
+    <!-- Órbitas -->
+
+    <!-- Órbita Mercúrio -->
+    <group>
+        <scale X="15.74" Y="15.74" Z="15.74" />
+        <rotate angle="90" axisX="1" />
+        <colour R="255" G="255" B="255" />
+        <models>
+            <model file="orbit.3d" />
+        </models>
+    </group>
+
+    <!-- Órbita Venus -->
+    <group>
+        <scale X="33.77" Y="33.77" Z="33.77" />
+        <rotate angle="90" axisX="1" />
+        <colour R="255" G="255" B="255" />
+        <models>
+            <model file="orbit.3d" />
+        </models>
+    </group>
+
+    <!-- Órbita Terra -->
+    <group>
+        <scale X="43.13" Y="43.13" Z="43.13" />
+        <rotate angle="90" axisX="1" />
+        <colour R="255" G="255" B="255" />
+        <models>
+            <model file="orbit.3d" />
+        </models>
+    </group>
+
+    <!-- Órbita Marte -->
+    <group>
+        <scale X="55.28" Y="55.28" Z="55.28" />
+        <rotate angle="90" axisX="1" />
+        <colour R="255" G="255" B="255" />
+        <models>
+            <model file="orbit.3d" />
+        </models>
+    </group>
+
+    <!-- Órbita Júpiter -->
+    <group>
+        <scale X="90.71" Y="90.71" Z="90.71" />
+        <rotate angle="90" axisX="1" />
+        <colour R="255" G="255" B="255" />
+        <models>
+            <model file="orbit.3d" />
+        </models>
+    </group>
+
+    <!-- Órbita Saturno -->
+    <group>
+        <scale X="108.25" Y="108.25" Z="108.25" />
+        <rotate angle="90" axisX="1" />
+        <colour R="255" G="255" B="255" />
+        <models>
+            <model file="orbit.3d" />
+        </models>
+    </group>
+
+    <!-- Órbita Urano -->
+    <group>
+        <scale X="128.37" Y="128.37" Z="128.37" />
+        <rotate angle="90" axisX="1" />
+        <colour R="255" G="255" B="255" />
+        <models>
+            <model file="orbit.3d" />
+        </models>
+    </group>
+
+    <!-- Órbita Neptuno -->
+    <group>
+        <scale X="141.37" Y="141.37" Z="141.37" />
+        <rotate angle="90" axisX="1" />
+        <colour R="255" G="255" B="255" />
+        <models>
+            <model file="orbit.3d" />
+        </models>
+    </group>
+
+    <!-- Órbita Plutão -->
+    <group>
+        <scale X="141.37" Y="141.37" Z="141.37" />
+        <rotate angle="90" axisX="1" />
+        <colour R="255" G="255" B="255" />
+        <models>
+            <model file="orbit.3d" />
+        </models>
+    </group>
+
+
+
+    <!-- ============================================================================================================ -->
+
+    <!-- Planetas e Satélites Naturais-->
 
     <!-- Mercurio -->
     <!-- Diametro: 4879km Distancia: 57909000 km Inclinação: 6,34º -->
@@ -66,7 +167,8 @@
         <!-- Diametro: 11km Distancia: 6000 km Inclinação: 1º -->
         <group>
             <translate Z="3" />
-            <scale X="0.05" Y="0.05" Z="0.05" /> <!-- NOT IN SCALE -->
+            <scale X="0.05" Y="0.05" Z="0.05" />
+            <!-- NOT IN SCALE -->
             <colour R="207" G="207" B="207" />
             <models>
                 <model file="sphere.3d" />
@@ -76,7 +178,8 @@
         <!-- Diametro: 6.2km Distancia: 23460 km Inclinação: 0.93º -->
         <group>
             <translate Z="-3" />
-            <scale X="0.025" Y="0.025" Z="0.025" /> <!-- NOT IN SCALE -->
+            <scale X="0.025" Y="0.025" Z="0.025" />
+            <!-- NOT IN SCALE -->
             <colour R="207" G="207" B="207" />
             <models>
                 <model file="sphere.3d" />
@@ -87,9 +190,12 @@
     <!-- Ceres -->
     <!-- Diametro: 974km Distancia: 413832947 km Inclinação: 9.20º -->
     <group>
-        <translate X="141.37"/><!-- Por calcular -->
-        <scale X="0.5" Y="0.5" Z="0.5" /><!-- Por calcular -->
-        <colour R="38" G="70" B="135" /><!-- Por calcular -->
+        <translate X="141.37"/>
+        <!-- Por calcular -->
+        <scale X="0.5" Y="0.5" Z="0.5" />
+        <!-- Por calcular -->
+        <colour R="38" G="70" B="135" />
+        <!-- Por calcular -->
         <models>
             <model file="sphere.3d" />
         </models>
@@ -108,9 +214,12 @@
         <!-- Io -->
         <!-- Diametro: 3642km Distancia: 422000 km Inclinação: 0.20º -->
         <group>
-            <translate X="141.37"/><!-- Por calcular -->
-            <scale X="0.5" Y="0.5" Z="0.5" /><!-- Por calcular -->
-            <colour R="38" G="70" B="135" /><!-- Por calcular -->
+            <translate X="141.37"/>
+            <!-- Por calcular -->
+            <scale X="0.5" Y="0.5" Z="0.5" />
+            <!-- Por calcular -->
+            <colour R="38" G="70" B="135" />
+            <!-- Por calcular -->
             <models>
                 <model file="sphere.3d" />
             </models>
@@ -119,9 +228,12 @@
         <!-- Europa -->
         <!-- Diametro: 1560km Distancia: 670900 km Inclinação: 0.47º -->
         <group>
-            <translate X="141.37"/><!-- Por calcular -->
-            <scale X="0.5" Y="0.5" Z="0.5" /><!-- Por calcular -->
-            <colour R="38" G="70" B="135" /><!-- Por calcular -->
+            <translate X="141.37"/>
+            <!-- Por calcular -->
+            <scale X="0.5" Y="0.5" Z="0.5" />
+            <!-- Por calcular -->
+            <colour R="38" G="70" B="135" />
+            <!-- Por calcular -->
             <models>
                 <model file="sphere.3d" />
             </models>
@@ -130,9 +242,12 @@
         <!-- Ganymede -->
         <!-- Diametro: 5268km Distancia: 1070400 km Inclinação: 0.47º -->
         <group>
-            <translate X="141.37"/><!-- Por calcular -->
-            <scale X="0.5" Y="0.5" Z="0.5" /><!-- Por calcular -->
-            <colour R="38" G="70" B="135" /><!-- Por calcular -->
+            <translate X="141.37"/>
+            <!-- Por calcular -->
+            <scale X="0.5" Y="0.5" Z="0.5" />
+            <!-- Por calcular -->
+            <colour R="38" G="70" B="135" />
+            <!-- Por calcular -->
             <models>
                 <model file="sphere.3d" />
             </models>
@@ -141,9 +256,12 @@
         <!-- Calisto -->
         <!-- Diametro: 5268km Distancia: 1882700 km Inclinação: 0.47º -->
         <group>
-            <translate X="141.37"/><!-- Por calcular -->
-            <scale X="0.5" Y="0.5" Z="0.5" /><!-- Por calcular -->
-            <colour R="38" G="70" B="135" /><!-- Por calcular -->
+            <translate X="141.37"/>
+            <!-- Por calcular -->
+            <scale X="0.5" Y="0.5" Z="0.5" />
+            <!-- Por calcular -->
+            <colour R="38" G="70" B="135" />
+            <!-- Por calcular -->
             <models>
                 <model file="sphere.3d" />
             </models>
@@ -159,6 +277,15 @@
         <models>
             <model file="sphere.3d" />
         </models>
+        <!-- Rings -->
+        <group>
+            <rotate angle="63" axisX="1" />
+            <scale X="3" Y="3" Z="0.1" />
+            <colour R="255" G="204" B="102" />
+            <models>
+                <model file="ring.3d" />
+            </models>
+        </group>
     </group>
 
     <!-- Urano -->
@@ -186,9 +313,12 @@
     <!-- Plutão -->
     <!-- Diametro: 1188km Distancia: 5906380000 km -->
     <group>
-        <translate X="141.37"/><!-- Por calcular -->
-        <scale X="0.5" Y="0.5" Z="0.5" /><!-- Por calcular -->
-        <colour R="38" G="70" B="135" /><!-- Por calcular -->
+        <translate X="141.37"/>
+        <!-- Por calcular -->
+        <scale X="0.5" Y="0.5" Z="0.5" />
+        <!-- Por calcular -->
+        <colour R="38" G="70" B="135" />
+        <!-- Por calcular -->
         <models>
             <model file="sphere.3d" />
         </models>
