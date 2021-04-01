@@ -59,9 +59,9 @@ void renderScene()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glLoadIdentity();
-    gluLookAt(cam->getCameraPosition()[0], cam->getCameraPosition()[1], cam->getCameraPosition()[2],
-              cam->getCameraPosition()[0] + cam->getCameraFront()[0], cam->getCameraPosition()[1] + cam->getCameraFront()[1], cam->getCameraPosition()[2] + cam->getCameraFront()[2],
-              cam->getCameraUp()[0], cam->getCameraUp()[1], cam->getCameraUp()[2]);
+    gluLookAt(cam->getCameraPositionX(), cam->getCameraPositionY(), cam->getCameraPositionZ(),
+              cam->getCameraPositionX() + cam->getCameraFrontX(), cam->getCameraPositionY() + cam->getCameraFrontY(), cam->getCameraPositionZ() + cam->getCameraFrontZ(),
+              cam->getCameraUpX(), cam->getCameraUpY(), cam->getCameraUpZ());
 
     glPolygonMode(GL_FRONT_AND_BACK, pointLineFill == 0 ? GL_POINT : (pointLineFill == 1 ? GL_LINE : GL_FILL));
 

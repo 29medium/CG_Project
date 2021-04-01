@@ -10,6 +10,7 @@
 
 #include <math.h>
 #include <vector>
+#include "point.h"
 
 using namespace std;
 
@@ -18,45 +19,35 @@ class Camera
 private:
     float alpha;
     float beta;
-    float radius;
     float r;
-    float speed;
     float startX;
     float startY;
     float tracking;
-    float camX;
-    float camY;
-    float camZ;
-    float centerX;
-    float centerY;
-    float centerZ;
-    std::vector<float> cameraPosition;
-    std::vector<float> cameraFront;
-    std::vector<float> cameraUp;
+    Point * cameraPosition;
+    Point * cameraFront;
+    Point * cameraUp;
     float cameraSpeed;
 
 public:
     Camera();
 
-    vector<float> getCameraPosition() const;
+    float getCameraPositionX();
 
-    vector<float> getCameraFront() const;
+    float getCameraPositionY();
 
-    vector<float> getCameraUp() const;
+    float getCameraPositionZ();
 
-    float getCameraSpeed() const;
+    float getCameraFrontX();
 
-    // float getCamX() const;
+    float getCameraFrontY();
 
-    // float getCamY() const;
+    float getCameraFrontZ();
 
-    // float getCamZ() const;
+    float getCameraUpX();
 
-    float getCenterX() const;
+    float getCameraUpY();
 
-    float getCenterY() const;
-
-    float getCenterZ() const;
+    float getCameraUpZ();
 
     void processNormalKeys(unsigned char key, int x, int y);
 
@@ -64,17 +55,15 @@ public:
 
     void processMouseButtons(int button, int state, int xx, int yy);
 
-    void calculateCam();
+    Point* multiplyVectorBySpeed(Point* p);
 
-    vector<float> multiplyVectorBySpeed(vector<float> vector);
+    void addVectors(Point* p1, Point* p2);
 
-    void addVectors(vector<float> v1, vector<float> v2);
+    void subVectors(Point* p1, Point* p2);
 
-    void subVectors(vector<float> v1, vector<float> v2);
+    Point* crossVectors(Point* p1, Point* p2);
 
-    vector<float> crossVectors(vector<float> v1, vector<float> v2);
-
-    vector<float> normalizeVector(vector<float> vector);
+    Point* normalizeVector(Point* p);
 };
 
 #endif //GENERATOR_CAMERA_H
