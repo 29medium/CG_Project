@@ -116,7 +116,7 @@
     <group>
         <translate X="15.74"/>
         <scale X="0.2" Y="0.2" Z="0.2" />
-        <colour R="97" G="97" B="93" />
+        <colour R="186" G="184" B="181" />
         <models>
             <model file="sphere.3d" />
         </models>
@@ -127,7 +127,7 @@
     <group>
         <translate X="33.77"/>
         <scale X="0.45" Y="0.45" Z="0.45" />
-        <colour R="239" G="203" B="141" />
+        <colour R="237" G="184" B="100" />
         <models>
             <model file="sphere.3d" />
         </models>
@@ -138,7 +138,7 @@
     <group>
         <translate X="43.13" />
         <scale X="0.5" Y="0.5" Z="0.5" />
-        <colour R="11" G="28" B="102" />
+        <colour R="61" G="129" B="224" />
         <models>
             <model file="sphere.3d" />
         </models>
@@ -159,7 +159,7 @@
     <group>
         <translate X="55.28" />
         <scale X="0.55" Y="0.55" Z="0.55" />
-        <colour R="255" G="140" B="0" />
+        <colour R="240" G="95" B="70" />
         <models>
             <model file="sphere.3d" />
         </models>
@@ -169,7 +169,7 @@
             <translate Z="3" />
             <scale X="0.05" Y="0.05" Z="0.05" />
             <!-- NOT IN SCALE -->
-            <colour R="207" G="207" B="207" />
+            <colour R="155" G="155" B="155" />
             <models>
                 <model file="sphere.3d" />
             </models>
@@ -180,24 +180,21 @@
             <translate Z="-3" />
             <scale X="0.025" Y="0.025" Z="0.025" />
             <!-- NOT IN SCALE -->
-            <colour R="207" G="207" B="207" />
+            <colour R="133" G="113" B="113" />
             <models>
                 <model file="sphere.3d" />
             </models>
         </group>
     </group>
 
-    <!-- Ceres -->
-    <!-- Diametro: 974km Distancia: 413832947 km Inclinação: 9.20º -->
+    <!-- Cintura de Asteroides -->
+
     <group>
-        <translate X="141.37"/>
-        <!-- Por calcular -->
-        <scale X="0.5" Y="0.5" Z="0.5" />
-        <!-- Por calcular -->
-        <colour R="38" G="70" B="135" />
-        <!-- Por calcular -->
+        <scale X="70" Y="70" Z="70" />
+        <rotate angle="90" axisX="1" />
+        <colour R="110" G="61" B="61" />
         <models>
-            <model file="sphere.3d" />
+            <model file="asteroidsBell.3d" />
         </models>
     </group>
 
@@ -206,7 +203,7 @@
     <group>
         <translate X="90.71"/>
         <scale X="5.78" Y="5.78" Z="5.78" />
-        <colour R="216" G="202" B="157" />
+        <colour R="169" G="148" B="179" />
         <models>
             <model file="sphere.3d" />
         </models>
@@ -214,12 +211,11 @@
         <!-- Io -->
         <!-- Diametro: 3642km Distancia: 422000 km Inclinação: 0.20º -->
         <group>
-            <translate X="141.37"/>
+            <translate X="1.5"/>
             <!-- Por calcular -->
-            <scale X="0.5" Y="0.5" Z="0.5" />
+            <scale X="0.05" Y="0.05" Z="0.05" />
             <!-- Por calcular -->
-            <colour R="38" G="70" B="135" />
-            <!-- Por calcular -->
+            <colour R="209" G="150" B="23" />
             <models>
                 <model file="sphere.3d" />
             </models>
@@ -228,12 +224,11 @@
         <!-- Europa -->
         <!-- Diametro: 1560km Distancia: 670900 km Inclinação: 0.47º -->
         <group>
-            <translate X="141.37"/>
+            <translate Y="1.5"/>
             <!-- Por calcular -->
-            <scale X="0.5" Y="0.5" Z="0.5" />
+            <scale X="0.05" Y="0.05" Z="0.05" />
             <!-- Por calcular -->
-            <colour R="38" G="70" B="135" />
-            <!-- Por calcular -->
+            <colour R="141" G="152" B="131" />
             <models>
                 <model file="sphere.3d" />
             </models>
@@ -242,12 +237,11 @@
         <!-- Ganymede -->
         <!-- Diametro: 5268km Distancia: 1070400 km Inclinação: 0.47º -->
         <group>
-            <translate X="141.37"/>
+            <translate Z="1.5"/>
             <!-- Por calcular -->
-            <scale X="0.5" Y="0.5" Z="0.5" />
+            <scale X="0.05" Y="0.05" Z="0.05" />
             <!-- Por calcular -->
-            <colour R="38" G="70" B="135" />
-            <!-- Por calcular -->
+            <colour R="95" G="99" B="150" />
             <models>
                 <model file="sphere.3d" />
             </models>
@@ -256,12 +250,11 @@
         <!-- Calisto -->
         <!-- Diametro: 5268km Distancia: 1882700 km Inclinação: 0.47º -->
         <group>
-            <translate X="141.37"/>
+            <translate X="1.5" Y="1" Z="1" />
             <!-- Por calcular -->
-            <scale X="0.5" Y="0.5" Z="0.5" />
+            <scale X="0.05" Y="0.05" Z="0.05" />
             <!-- Por calcular -->
-            <colour R="38" G="70" B="135" />
-            <!-- Por calcular -->
+            <colour R="150" G="101" B="24" />
             <models>
                 <model file="sphere.3d" />
             </models>
@@ -273,14 +266,14 @@
     <group>
         <translate X="108.25"/>
         <scale X="2.44" Y="2.44" Z="2.44" />
-        <colour R="227" G="224" B="192" />
+        <colour R="196" G="169" B="104" />
         <models>
             <model file="sphere.3d" />
         </models>
         <!-- Rings -->
         <group>
             <rotate angle="63" axisX="1" />
-            <scale X="3" Y="3" Z="0.1" />
+            <scale X="1.5" Y="1.5" Z="0.1" />
             <colour R="255" G="204" B="102" />
             <models>
                 <model file="ring.3d" />
@@ -293,7 +286,7 @@
     <group>
         <translate X="128.37"/>
         <scale X="0.52" Y="0.52" Z="0.52" />
-        <colour R="73" G="88" B="89" />
+        <colour R="61" G="194" B="201" />
         <models>
             <model file="sphere.3d" />
         </models>
@@ -304,7 +297,7 @@
     <group>
         <translate X="141.37"/>
         <scale X="0.5" Y="0.5" Z="0.5" />
-        <colour R="38" G="70" B="135" />
+        <colour R="6" G="78" B="194" />
         <models>
             <model file="sphere.3d" />
         </models>
@@ -317,8 +310,7 @@
         <!-- Por calcular -->
         <scale X="0.5" Y="0.5" Z="0.5" />
         <!-- Por calcular -->
-        <colour R="38" G="70" B="135" />
-        <!-- Por calcular -->
+        <colour R="186" G="143" B="227" />
         <models>
             <model file="sphere.3d" />
         </models>

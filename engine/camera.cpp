@@ -12,92 +12,106 @@ Camera::Camera()
     cameraSpeed = 1.0f;
 }
 
-float Camera::getCameraPositionX() {
+float Camera::getCameraPositionX()
+{
     return cameraPosition->getX();
 }
 
-float Camera::getCameraPositionY() {
+float Camera::getCameraPositionY()
+{
     return cameraPosition->getY();
 }
 
-float Camera::getCameraPositionZ() {
+float Camera::getCameraPositionZ()
+{
     return cameraPosition->getZ();
 }
 
-float Camera::getCameraFrontX() {
+float Camera::getCameraFrontX()
+{
     return cameraFront->getX();
 }
 
-float Camera::getCameraFrontY() {
+float Camera::getCameraFrontY()
+{
     return cameraFront->getY();
 }
 
-float Camera::getCameraFrontZ() {
+float Camera::getCameraFrontZ()
+{
     return cameraFront->getZ();
 }
 
-float Camera::getCameraUpX() {
+float Camera::getCameraUpX()
+{
     return cameraUp->getX();
 }
 
-float Camera::getCameraUpY() {
+float Camera::getCameraUpY()
+{
     return cameraUp->getY();
 }
 
-float Camera::getCameraUpZ() {
+float Camera::getCameraUpZ()
+{
     return cameraUp->getZ();
 }
 
-Point* Camera::multiplyVectorBySpeed(Point* p) {
-    Point* aux = p->clone();
+Point *Camera::multiplyVectorBySpeed(Point *p)
+{
+    Point *aux = p->clone();
     aux->multiply(cameraSpeed);
     return aux;
 }
 
-void Camera::addVectors(Point* p1, Point* p2) {
+void Camera::addVectors(Point *p1, Point *p2)
+{
     p1->add(p2);
 }
 
-void Camera::subVectors(Point* p1, Point* p2) {
+void Camera::subVectors(Point *p1, Point *p2)
+{
     p1->sub(p2);
 }
 
-Point* Camera::crossVectors(Point* p1, Point* p2) {
-    Point* aux = p1->clone();
+Point *Camera::crossVectors(Point *p1, Point *p2)
+{
+    Point *aux = p1->clone();
     aux->cross(p2);
     return aux;
 }
 
-Point* Camera::normalizeVector(Point* p) {
-    Point* aux = p->clone();
+Point *Camera::normalizeVector(Point *p)
+{
+    Point *aux = p->clone();
     aux->normalize();
     return aux;
 }
 
 void Camera::processNormalKeys(unsigned char key, int x, int y)
 {
-    Point* v;
+    Point *v;
 
     switch (key)
     {
-        case 'w':
-            v = multiplyVectorBySpeed(cameraFront);
-            addVectors(cameraPosition, v);
-            break;
-        case 'a':
-            v = multiplyVectorBySpeed(normalizeVector(crossVectors(cameraFront, cameraUp)));
-            subVectors(cameraPosition, v);
-            break;
-        case 's':
-            v = multiplyVectorBySpeed(cameraFront);
-            subVectors(cameraPosition, v);
-            break;
-        case 'd':
-            v = multiplyVectorBySpeed(normalizeVector(crossVectors(cameraFront, cameraUp)));
-            addVectors(cameraPosition, v);
-            break;
-        default:
-            break;
+    case 'w':
+        v = multiplyVectorBySpeed(cameraFront);
+        addVectors(cameraPosition, v);
+        break;
+    case 'a':
+        v = multiplyVectorBySpeed(normalizeVector(crossVectors(cameraFront, cameraUp)));
+        subVectors(cameraPosition, v);
+        break;
+    case 's':
+        v = multiplyVectorBySpeed(cameraFront);
+        subVectors(cameraPosition, v);
+        break;
+    case 'd':
+        v = multiplyVectorBySpeed(normalizeVector(crossVectors(cameraFront, cameraUp)));
+        addVectors(cameraPosition, v);
+        break;
+    default:
+        break;
     }
 }
 
