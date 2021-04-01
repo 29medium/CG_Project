@@ -15,7 +15,7 @@ void Camera::defaultCam()
     cameraPosition = new Point(0.0f, 0.0f, 10.0f);
     cameraFront = new Point(0.0f, 0.0f, -1.0f);
     cameraUp = new Point(0.0f, 1.0f, 0.0f);
-    cameraSpeed = 1.0f;
+    speedMultiplier = 0.01f;
     mouseSensitivity = 1.0f;
 }
 
@@ -62,6 +62,10 @@ float Camera::getCameraUpY()
 float Camera::getCameraUpZ()
 {
     return cameraUp->getZ();
+}
+
+void Camera::setCameraSpeed(float cameraSpeed) {
+    this->cameraSpeed = cameraSpeed * speedMultiplier;
 }
 
 Point *Camera::multiplyVectorBySpeed(Point *p) const
@@ -121,14 +125,14 @@ void Camera::processNormalKeys(unsigned char key, int x, int y)
         defaultCam();
         break;
     case 'o':
-        cameraSpeed *= 2;
-        if (cameraSpeed > 10.0f)
-            cameraSpeed = 10.0f;
+        speedMultiplier *= 2;
+        if (speedMultiplier > 0.01f)
+            speedMultiplier = 0.01f;
         break;
     case 'p':
-        cameraSpeed *= 0.5;
-        if (cameraSpeed < 1.0f)
-            cameraSpeed = 1.0f;
+        speedMultiplier *= 0.5;
+        if (speedMultiplier < 0.0001f)
+            speedMultiplier = 0.0001f;
         break;
     case 'i':
         mouseSensitivity -= 0.4;

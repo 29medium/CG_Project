@@ -20,6 +20,7 @@ Camera *cam = nullptr;
 int pointLineFill = 2;
 int window;
 bool fullscreen = false;
+float deltaTime = 0.0f, currentFrame=0.0f, lastFrame = 0.0f;
 
 void changeSize(int w, int h)
 {
@@ -41,6 +42,13 @@ void renderScene()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glLoadIdentity();
+
+    currentFrame = glutGet(GLUT_ELAPSED_TIME);
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;
+
+    cam->setCameraSpeed(deltaTime);
+
     gluLookAt(cam->getCameraPositionX(), cam->getCameraPositionY(), cam->getCameraPositionZ(),
               cam->getCameraPositionX() + cam->getCameraFrontX(), cam->getCameraPositionY() + cam->getCameraFrontY(), cam->getCameraPositionZ() + cam->getCameraFrontZ(),
               cam->getCameraUpX(), cam->getCameraUpY(), cam->getCameraUpZ());
@@ -96,12 +104,12 @@ void help()
     cout << "| W --------------------- Move Forward |" << endl;
     cout << "| S -------------------- Move Backward |" << endl;
     cout << "| A ------------------------ Move Left |" << endl;
-    cout << "| W ----------------------- Move Right |" << endl;
+    cout << "| D ----------------------- Move Right |" << endl;
     cout << "| R --------------------- Reset Camera |" << endl;
     cout << "| U ------------- Increase Sensitivity |" << endl;
-    cout << "| U ------------- Decrease Sensitivity |" << endl;
-    cout << "| U ------------------- Increase Speed |" << endl;
-    cout << "| U ------------------- Decrease Speed |" << endl;
+    cout << "| I ------------- Decrease Sensitivity |" << endl;
+    cout << "| O ------------------- Increase Speed |" << endl;
+    cout << "| P ------------------- Decrease Speed |" << endl;
     cout << "| F ---------------- Toggle Fullscreen |" << endl;
     cout << "| T -------------- Change Polygon Mode |" << endl;
     cout << "| ESC --------------------------- Exit |" << endl;
@@ -145,6 +153,7 @@ int main(int argc, char **argv)
 
     glutKeyboardFunc(processNormalKeys);
     glutMotionFunc(processMouseMotion);
+    glutSetCursor(GLUT_CURSOR_NONE);
 
     init();
 

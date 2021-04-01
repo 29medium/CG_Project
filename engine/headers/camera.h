@@ -26,6 +26,7 @@ private:
     Point * cameraFront;
     Point * cameraUp;
     float cameraSpeed;
+    float speedMultiplier;
     float mouseSensitivity;
 
 public:
@@ -64,6 +65,8 @@ public:
     void processNormalKeys(unsigned char key, int x, int y);
 
     void processMouseMotion(int xx, int yy);
+
+    void setCameraSpeed(float cameraSpeed);
 };
 
 #endif //GENERATOR_CAMERA_H
