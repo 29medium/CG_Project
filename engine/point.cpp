@@ -7,19 +7,25 @@ Point::Point(float x1, float y1, float z1)
     z = z1;
 }
 
-float Point::getX()
+float Point::getX() const
 {
     return x;
 }
 
-float Point::getY()
+float Point::getY() const
 {
     return y;
 }
 
-float Point::getZ()
+float Point::getZ() const
 {
     return z;
+}
+
+void Point::update(float x1, float y1, float z1) {
+    x = x1;
+    y = y1;
+    z = z1;
 }
 
 void Point::add(Point *p) {
@@ -58,5 +64,7 @@ void Point::normalize() {
     y /= vectorLength;
     z /= vectorLength;
 }
+
+
 
 

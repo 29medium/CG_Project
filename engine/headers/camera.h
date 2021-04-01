@@ -19,17 +19,19 @@ class Camera
 private:
     float alpha;
     float beta;
-    float r;
     float startX;
     float startY;
-    float tracking;
+    bool first_mouse;
     Point * cameraPosition;
     Point * cameraFront;
     Point * cameraUp;
     float cameraSpeed;
+    float mouseSensitivity;
 
 public:
     Camera();
+
+    void defaultCam();
 
     float getCameraPositionX();
 
@@ -49,21 +51,19 @@ public:
 
     float getCameraUpZ();
 
+    Point* multiplyVectorBySpeed(Point* p) const;
+
+    static void addVectors(Point* p1, Point* p2);
+
+    static void subVectors(Point* p1, Point* p2);
+
+    static Point* crossVectors(Point* p1, Point* p2);
+
+    static Point* normalizeVector(Point* p);
+
     void processNormalKeys(unsigned char key, int x, int y);
 
     void processMouseMotion(int xx, int yy);
-
-    void processMouseButtons(int button, int state, int xx, int yy);
-
-    Point* multiplyVectorBySpeed(Point* p);
-
-    void addVectors(Point* p1, Point* p2);
-
-    void subVectors(Point* p1, Point* p2);
-
-    Point* crossVectors(Point* p1, Point* p2);
-
-    Point* normalizeVector(Point* p);
 };
 
 #endif //GENERATOR_CAMERA_H
