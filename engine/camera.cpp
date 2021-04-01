@@ -1,15 +1,20 @@
 #include "headers/camera.h"
 
-Camera::Camera()
-{
-    alpha = 0.0f;
+Camera::Camera() {
+    defaultCam();
+}
+
+void Camera::defaultCam() {
+    startX = 400.0f;
+    startY = 400.0f;
+    alpha = -90.0f;
     beta = 0.0f;
-    r = 50.0f;
-    tracking = 0.0f;
+    first_mouse = true;
     cameraPosition = new Point(0.0f, 0.0f, 10.0f);
     cameraFront = new Point(0.0f, 0.0f, -1.0f);
     cameraUp = new Point(0.0f, 1.0f, 0.0f);
     cameraSpeed = 1.0f;
+    mouseSensitivity = 1.0f;
 }
 
 float Camera::getCameraPositionX() {
@@ -48,7 +53,7 @@ float Camera::getCameraUpZ() {
     return cameraUp->getZ();
 }
 
-Point* Camera::multiplyVectorBySpeed(Point* p) {
+Point* Camera::multiplyVectorBySpeed(Point* p) const {
     Point* aux = p->clone();
     aux->multiply(cameraSpeed);
     return aux;
@@ -96,73 +101,56 @@ void Camera::processNormalKeys(unsigned char key, int x, int y)
             v = multiplyVectorBySpeed(normalizeVector(crossVectors(cameraFront, cameraUp)));
             addVectors(cameraPosition, v);
             break;
+        case 'r':
+            defaultCam();
+            break;
+        case 'o':
+            cameraSpeed *= 2;
+            if(cameraSpeed > 10.0f)
+                cameraSpeed = 10.0f;
+            break;
+        case 'p':
+            cameraSpeed *= 0.5;
+            if(cameraSpeed < 1.0f)
+                cameraSpeed = 1.0f;
+            break;
+        case 'i':
+            mouseSensitivity -= 0.4;
+            if(mouseSensitivity < 0.4f)
+                mouseSensitivity = 0.4f;
+            break;
+        case 'u':
+            mouseSensitivity += 0.4;
+            if(mouseSensitivity > 2.0f)
+                mouseSensitivity = 2.0f;
+            break;
         default:
             break;
     }
 }
 
-void Camera::processMouseButtons(int button, int state, int xx, int yy)
-{
-    if (state == GLUT_DOWN)
-    {
+void Camera::processMouseMotion(int xx, int yy) {
+    if(first_mouse) {
         startX = xx;
         startY = yy;
-        if (button == GLUT_LEFT_BUTTON)
-            tracking = 1;
-        else if (button == GLUT_RIGHT_BUTTON)
-            tracking = 2;
-        else
-            tracking = 0;
+        first_mouse = false;
     }
-    else if (state == GLUT_UP)
-    {
-        if (tracking == 1)
-        {
-            alpha += (xx - startX);
-            beta += (yy - startY);
-        }
-        else if (tracking == 2)
-        {
 
-            r -= yy - startY;
-            if (r < 3)
-                r = 3.0;
-        }
-        tracking = 0;
-    }
-}
+    float deltaX = (xx - startX)*mouseSensitivity;
+    float deltaY = (startY - yy)*mouseSensitivity;
+    startX = xx;
+    startY = yy;
 
-void Camera::processMouseMotion(int xx, int yy)
-{
-    float deltaX, deltaY;
-    float alphaAux, betaAux;
-    float rAux;
+    alpha += deltaX;
+    beta += deltaY;
 
-    if (!tracking)
-        return;
+    if (beta > 89.0f)
+        beta = 89.0f;
+    else if (beta < -89.0f)
+        beta = -89.0f;
 
-    deltaX = xx - startX;
-    deltaY = yy - startY;
-
-    if (tracking == 1)
-    {
-
-        alphaAux = alpha + deltaX;
-        betaAux = beta + deltaY;
-
-        if (betaAux > 85.0)
-            betaAux = 85.0;
-        else if (betaAux < -85.0)
-            betaAux = -85.0;
-
-        rAux = r;
-    }
-    else if (tracking == 2)
-    {
-        alphaAux = alpha;
-        betaAux = beta;
-        rAux = r - deltaY;
-        if (rAux < 3)
-            rAux = 3;
-    }
+    cameraFront->update(cos(alpha * 3.14 / 180.0) * cos(beta * 3.14 / 180.0),
+                        sin(beta * 3.14 / 180.0),
+                        sin(alpha * 3.14 / 180.0) * cos(beta * 3.14 / 180.0));
+    cameraFront->normalize();
 }
