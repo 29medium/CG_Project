@@ -106,6 +106,7 @@ void Camera::processNormalKeys(unsigned char key, int x, int y)
         addVectors(cameraPosition, v);
         break;
     case 'a':
+        v = multiplyVectorBySpeed(normalizeVector(crossVectors(cameraFront, cameraUp)));
         subVectors(cameraPosition, v);
         break;
     case 's':

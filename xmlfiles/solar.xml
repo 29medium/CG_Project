@@ -271,10 +271,20 @@
             <model file="sphere.3d" />
         </models>
         <!-- Rings -->
+        <!-- Inner Ring -->
         <group>
             <rotate angle="63" axisX="1" />
             <scale X="1.5" Y="1.5" Z="0.1" />
             <colour R="255" G="204" B="102" />
+            <models>
+                <model file="ring.3d" />
+            </models>
+        </group>
+        <!-- Outer Ring -->
+        <group>
+            <rotate angle="63" axisX="1" />
+            <scale X="1.9" Y="1.9" Z="0.1" />
+            <colour R="176" G="142" B="84" />
             <models>
                 <model file="ring.3d" />
             </models>
@@ -290,6 +300,15 @@
         <models>
             <model file="sphere.3d" />
         </models>
+        <!-- Rings -->
+        <group>
+            <scale X="1.5" Y="1.5" Z="0" />
+            <rotate angle="30" axisX="1" />
+            <colour R="100" G="100" B="100" />
+            <models>
+                <model file="orbit.3d" />
+            </models>
+        </group>
     </group>
 
     <!-- Neptuno -->

@@ -63,11 +63,14 @@ void processNormalKeys(unsigned char key, int x, int y)
         pointLineFill = (pointLineFill + 1) % 3;
         break;
     case 'f':
-        if(fullscreen) {
+        if (fullscreen)
+        {
             glutReshapeWindow(1200, 900);
-            glutPositionWindow(0,0);
+            glutPositionWindow(0, 0);
             fullscreen = false;
-        } else {
+        }
+        else
+        {
             glutFullScreen();
             fullscreen = true;
         }
@@ -80,7 +83,8 @@ void processNormalKeys(unsigned char key, int x, int y)
     glutPostRedisplay();
 }
 
-void processMouseMotion(int xx, int yy) {
+void processMouseMotion(int xx, int yy)
+{
     cam->processMouseMotion(xx, yy);
 }
 
@@ -98,7 +102,7 @@ void help()
     cout << "| U ------------- Decrease Sensitivity |" << endl;
     cout << "| U ------------------- Increase Speed |" << endl;
     cout << "| U ------------------- Decrease Speed |" << endl;
-    cout << "| F ---------------- Toogle Fullscreen |" << endl;
+    cout << "| F ---------------- Toggle Fullscreen |" << endl;
     cout << "| T -------------- Change Polygon Mode |" << endl;
     cout << "| ESC --------------------------- Exit |" << endl;
 }
