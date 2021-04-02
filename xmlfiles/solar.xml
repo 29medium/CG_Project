@@ -177,11 +177,11 @@
     <!-- Cintura de Asteroides -->
 
     <group>
-        <scale X="20" Y="1" Z="20" />
+        <scale X="700" Y="0" Z="700" />
         <rotate angle="90" axisX="1" />
         <colour R="110" G="61" B="61" />
         <models>
-            <!--<model file="belts.3d" />-->
+            <model file="asteroidsBelt.3d" />
         </models>
     </group>
 
@@ -196,8 +196,8 @@
 
         <!-- Io -->
         <group>
-            <translate Z="40.939"/>
-            <scale X="1.019" Y="1.019" Z="1.019" />
+            <translate Z="1.7"/>
+            <scale X="0.03643" Y="0.03643" Z="0.03643" />
             <colour R="209" G="150" B="23" />
             <models>
                 <model file="sphere.3d" />
@@ -206,8 +206,8 @@
 
         <!-- Europa -->
         <group>
-            <translate Z="41.493"/>
-            <scale X="0.436" Y="0.436" Z="0.436" />
+            <translate Z="-1.5"/>
+            <scale X="0.03121" Y="0.03121" Z="0.03121" />
             <colour R="141" G="152" B="131" />
             <models>
                 <model file="sphere.3d" />
@@ -216,8 +216,8 @@
 
         <!-- Ganymede -->
         <group>
-            <translate Z="42.381"/>
-            <scale X="1.474" Y="1.474" Z="1.474" />
+            <translate X="1" Y="2" Z="1"/>
+            <scale X="0.0562" Y="0.0562" Z="0.05262" />
             <colour R="95" G="99" B="150" />
             <models>
                 <model file="sphere.3d" />
@@ -226,8 +226,8 @@
 
         <!-- Calisto -->
         <group>
-            <translate Z="44.188"/>
-            <scale X="1.344" Y="1.344" Z="1.344" />
+            <translate Y="1.5"/>
+            <scale X="0.0482" Y="0.0482" Z="0.0482" />
             <colour R="150" G="101" B="24" />
             <models>
                 <model file="sphere.3d" />
@@ -264,36 +264,36 @@
         </group>
         <!-- Titã -->
         <group>
-            <translate Z="36.438"/>
-            <scale X="1.441" Y="1.441" Z="1.441" />
-            <colour R="207" G="207" B="207" />
+            <translate X="1.2" Y="-1.2" Z="1"/>
+            <scale X="0.05149" Y="0.05149" Z="0.05149" />
+            <colour R="95" G="200" B="161" />
             <models>
                 <model file="sphere.3d" />
             </models>
         </group>
         <!-- Reia -->
         <group>
-            <translate Z="34.893"/>
-            <scale X="0.427" Y="0.427" Z="0.427" />
-            <colour R="207" G="207" B="207" />
+            <translate Y="1" Z="-1.4"/>
+            <scale X="0.01527" Y="0.01527" Z="0.01527" />
+            <colour R="155" G="155" B="155" />
             <models>
                 <model file="sphere.3d" />
             </models>
         </group>
         <!-- Jápeto -->
         <group>
-            <translate Z="41.692"/>
-            <scale X="0.411" Y="0.411" Z="0.411" />
-            <colour R="207" G="207" B="207" />
+            <translate Z="1"/>
+            <scale X="0.0147" Y="0.0147" Z="0.0147" />
+            <colour R="150" G="140" B="110" />
             <models>
                 <model file="sphere.3d" />
             </models>
         </group>
         <!-- Diome -->
         <group>
-            <translate Z="34.56"/>
-            <scale X="0.314" Y="0.314" Z="0.314" />
-            <colour R="207" G="207" B="207" />
+            <translate X="1.7" Y="1.7" />
+            <scale X="0.01123" Y="0.01123" Z="0.01123" />
+            <colour R="155" G="155" B="155" />
             <models>
                 <model file="sphere.3d" />
             </models>
@@ -317,24 +317,6 @@
                 <model file="orbit.3d" />
             </models>
         </group>
-        <!-- Titânia -->
-        <group>
-            <translate Z="15.268"/>
-            <scale X="0.441" Y="0.441" Z="0.441" />
-            <colour R="207" G="207" B="207" />
-            <models>
-                <model file="sphere.3d" />
-            </models>
-        </group>
-        <!-- Oberon -->
-        <group>
-            <translate Z="15.596"/>
-            <scale X="0.426" Y="0.426" Z="0.426" />
-            <colour R="207" G="207" B="207" />
-            <models>
-                <model file="sphere.3d" />
-            </models>
-        </group>
     </group>
 
     <!-- Neptuno -->
@@ -345,21 +327,12 @@
         <models>
             <model file="sphere.3d" />
         </models>
-        <!-- Tritão -->
-        <group>
-            <translate Z="14.647"/>
-            <scale X="0.757" Y="0.757" Z="0.757" />
-            <colour R="207" G="207" B="207" />
-            <models>
-                <model file="sphere.3d" />
-            </models>
-        </group>
     </group>
 
     <!-- Plutão -->
     <group>
         <translate X="2200"/>
-        <scale X="0.332" Y="0.332" Z="0.332" />
+        <scale X="3" Y="3" Z="3" />
         <colour R="186" G="143" B="227" />
         <models>
             <model file="sphere.3d" />
@@ -369,7 +342,7 @@
     <!-- Cometa Halley -->
     <group>
         <translate X="141.37"/>
-        <scale X="0.5" Y="0.5" Z="0.5" />
+        <scale X="1" Y="1" Z="1" />
         <colour R="186" G="143" B="227" />
         <models>
             <!--<model file="sphere.3d" />-->
@@ -380,11 +353,11 @@
 
     <!-- Cintura de Kuiper -->
     <group>
-        <scale X="300" Y="300" Z="2" />
+        <scale X="3000" Y="0" Z="3000" />
         <rotate angle="90" axisX="1" />
         <colour R="110" G="61" B="61" />
         <models>
-            <!--<model file="belts.3d" />-->
+            <model file="asteroidsBelt.3d" />
         </models>
     </group>
 

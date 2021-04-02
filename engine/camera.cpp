@@ -64,7 +64,8 @@ float Camera::getCameraUpZ()
     return cameraUp->getZ();
 }
 
-void Camera::setCameraSpeed(float cameraSpeed) {
+void Camera::setCameraSpeed(float cameraSpeed)
+{
     this->cameraSpeed = cameraSpeed * speedMultiplier * 10;
 }
 
@@ -153,6 +154,7 @@ void Camera::processMouseMotion(int xx, int yy)
 {
     if (first_mouse)
     {
+        startX = xx;
         startY = yy;
         first_mouse = false;
     }
