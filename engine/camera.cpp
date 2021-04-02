@@ -12,7 +12,7 @@ void Camera::defaultCam()
     alpha = -90.0f;
     beta = 0.0f;
     first_mouse = true;
-    cameraPosition = new Point(0.0f, 0.0f, 10.0f);
+    cameraPosition = new Point(0.0f, 0.0f, 250.0f);
     cameraFront = new Point(0.0f, 0.0f, -1.0f);
     cameraUp = new Point(0.0f, 1.0f, 0.0f);
     speedMultiplier = 0.01f;
@@ -65,7 +65,7 @@ float Camera::getCameraUpZ()
 }
 
 void Camera::setCameraSpeed(float cameraSpeed) {
-    this->cameraSpeed = cameraSpeed * speedMultiplier;
+    this->cameraSpeed = cameraSpeed * speedMultiplier * 10;
 }
 
 Point *Camera::multiplyVectorBySpeed(Point *p) const

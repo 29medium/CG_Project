@@ -1,7 +1,7 @@
 <scene>
     <!-- Sol -->
     <group>
-        <scale X="5" Y="5" Z="5" />
+        <scale X="60" Y="60" Z="60" />
         <colour R="255" G="140" B="0" />
         <models>
             <model file="sphere.3d" />
@@ -14,7 +14,7 @@
 
     <!-- Órbita Mercúrio -->
     <group>
-        <scale X="15.74" Y="15.74" Z="15.74" />
+        <scale X="128.828" Y="128.828" Z="128.828" />
         <rotate angle="90" axisX="1" />
         <colour R="255" G="255" B="255" />
         <models>
@@ -24,7 +24,7 @@
 
     <!-- Órbita Venus -->
     <group>
-        <scale X="33.77" Y="33.77" Z="33.77" />
+        <scale X="240.62" Y="240.62" Z="240.62" />
         <rotate angle="90" axisX="1" />
         <colour R="255" G="255" B="255" />
         <models>
@@ -34,7 +34,7 @@
 
     <!-- Órbita Terra -->
     <group>
-        <scale X="43.13" Y="43.13" Z="43.13" />
+        <scale X="332.81" Y="332.81" Z="332.81" />
         <rotate angle="90" axisX="1" />
         <colour R="255" G="255" B="255" />
         <models>
@@ -44,7 +44,7 @@
 
     <!-- Órbita Marte -->
     <group>
-        <scale X="55.28" Y="55.28" Z="55.28" />
+        <scale X="507.201" Y="507.201" Z="507.201" />
         <rotate angle="90" axisX="1" />
         <colour R="255" G="255" B="255" />
         <models>
@@ -54,7 +54,7 @@
 
     <!-- Órbita Júpiter -->
     <group>
-        <scale X="90.71" Y="90.71" Z="90.71" />
+        <scale X="1100" Y="1100" Z="1100" />
         <rotate angle="90" axisX="1" />
         <colour R="255" G="255" B="255" />
         <models>
@@ -64,7 +64,7 @@
 
     <!-- Órbita Saturno -->
     <group>
-        <scale X="108.25" Y="108.25" Z="108.25" />
+        <scale X="1400" Y="1400" Z="1400" />
         <rotate angle="90" axisX="1" />
         <colour R="255" G="255" B="255" />
         <models>
@@ -74,7 +74,7 @@
 
     <!-- Órbita Urano -->
     <group>
-        <scale X="128.37" Y="128.37" Z="128.37" />
+        <scale X="1700" Y="1700" Z="1700" />
         <rotate angle="90" axisX="1" />
         <colour R="255" G="255" B="255" />
         <models>
@@ -84,7 +84,7 @@
 
     <!-- Órbita Neptuno -->
     <group>
-        <scale X="141.37" Y="141.37" Z="141.37" />
+        <scale X="2000" Y="2000" Z="2000" />
         <rotate angle="90" axisX="1" />
         <colour R="255" G="255" B="255" />
         <models>
@@ -94,7 +94,7 @@
 
     <!-- Órbita Plutão -->
     <group>
-        <scale X="141.37" Y="141.37" Z="141.37" />
+        <scale X="2200" Y="2200" Z="2200" />
         <rotate angle="90" axisX="1" />
         <colour R="255" G="255" B="255" />
         <models>
@@ -109,8 +109,8 @@
 
     <!-- Mercurio -->
     <group>
-        <translate X="15.74"/>
-        <scale X="0.2" Y="0.2" Z="0.2" />
+        <translate X="128.828"/>
+        <scale X="1.365" Y="1.365" Z="1.365" />
         <colour R="186" G="184" B="181" />
         <models>
             <model file="sphere.3d" />
@@ -119,8 +119,8 @@
 
     <!-- Venus -->
     <group>
-        <translate X="33.77"/>
-        <scale X="0.45" Y="0.45" Z="0.45" />
+        <translate X="240.62" />
+        <scale X="3.386" Y="3.386" Z="3.386" />
         <colour R="237" G="184" B="100" />
         <models>
             <model file="sphere.3d" />
@@ -129,16 +129,16 @@
 
     <!-- Terra -->
     <group>
-        <translate X="43.13" />
-        <scale X="0.5" Y="0.5" Z="0.5" />
+        <translate X="332.81" />
+        <scale X="3.569" Y="3.569" Z="3.569" />
         <colour R="61" G="129" B="224" />
         <models>
             <model file="sphere.3d" />
         </models>
         <!-- Lua -->
         <group>
-            <translate Z="3" />
-            <scale X="0.15" Y="0.15" Z="0.15" />
+            <translate Z="4.423" />
+            <scale X="0.486" Y="0.486" Z="0.486" />
             <colour R="207" G="207" B="207" />
             <models>
                 <model file="sphere.3d" />
@@ -148,8 +148,8 @@
 
     <!-- Marte -->
     <group>
-        <translate X="55.28" />
-        <scale X="0.55" Y="0.55" Z="0.55" />
+        <translate X="507.201" />
+        <scale X="1.9" Y="1.9" Z="1.9" />
         <colour R="240" G="95" B="70" />
         <models>
             <model file="sphere.3d" />
@@ -187,8 +187,8 @@
 
     <!-- Jupiter -->
     <group>
-        <translate X="90.71"/>
-        <scale X="5.78" Y="5.78" Z="5.78" />
+        <translate X="1100"/>
+        <scale X="40.0" Y="40.0" Z="40.0" />
         <colour R="169" G="148" B="179" />
         <models>
             <model file="sphere.3d" />
@@ -196,8 +196,8 @@
 
         <!-- Io -->
         <group>
-            <translate X="1.5"/>
-            <scale X="0.05" Y="0.05" Z="0.05" />
+            <translate Z="40.939"/>
+            <scale X="1.019" Y="1.019" Z="1.019" />
             <colour R="209" G="150" B="23" />
             <models>
                 <model file="sphere.3d" />
@@ -206,8 +206,8 @@
 
         <!-- Europa -->
         <group>
-            <translate Y="1.5"/>
-            <scale X="0.05" Y="0.05" Z="0.05" />
+            <translate Z="41.493"/>
+            <scale X="0.436" Y="0.436" Z="0.436" />
             <colour R="141" G="152" B="131" />
             <models>
                 <model file="sphere.3d" />
@@ -216,8 +216,8 @@
 
         <!-- Ganymede -->
         <group>
-            <translate Z="1.5"/>
-            <scale X="0.05" Y="0.05" Z="0.05" />
+            <translate Z="42.381"/>
+            <scale X="1.474" Y="1.474" Z="1.474" />
             <colour R="95" G="99" B="150" />
             <models>
                 <model file="sphere.3d" />
@@ -226,10 +226,8 @@
 
         <!-- Calisto -->
         <group>
-            <translate X="1.5" Y="1" Z="1" />
-            <!-- Por calcular -->
-            <scale X="0.05" Y="0.05" Z="0.05" />
-            <!-- Por calcular -->
+            <translate Z="44.188"/>
+            <scale X="1.344" Y="1.344" Z="1.344" />
             <colour R="150" G="101" B="24" />
             <models>
                 <model file="sphere.3d" />
@@ -239,8 +237,8 @@
 
     <!-- Saturno -->
     <group>
-        <translate X="108.25"/>
-        <scale X="2.44" Y="2.44" Z="2.44" />
+        <translate X="1400"/>
+        <scale X="33.72" Y="33.72" Z="33.72" />
         <colour R="196" G="169" B="104" />
         <models>
             <model file="sphere.3d" />
@@ -304,8 +302,8 @@
 
     <!-- Urano -->
     <group>
-        <translate X="128.37"/>
-        <scale X="0.52" Y="0.52" Z="0.52" />
+        <translate X="1700"/>
+        <scale X="14.298" Y="14.298" Z="14.298" />
         <colour R="61" G="194" B="201" />
         <models>
             <model file="sphere.3d" />
@@ -341,8 +339,8 @@
 
     <!-- Neptuno -->
     <group>
-        <translate X="141.37"/>
-        <scale X="0.5" Y="0.5" Z="0.5" />
+        <translate X="2000"/>
+        <scale X="13.858" Y="13.858" Z="13.858" />
         <colour R="6" G="78" B="194" />
         <models>
             <model file="sphere.3d" />
@@ -360,8 +358,8 @@
 
     <!-- Plutão -->
     <group>
-        <translate X="141.37"/>
-        <scale X="0.5" Y="0.5" Z="0.5" />
+        <translate X="2200"/>
+        <scale X="0.332" Y="0.332" Z="0.332" />
         <colour R="186" G="143" B="227" />
         <models>
             <model file="sphere.3d" />
@@ -374,7 +372,7 @@
         <scale X="0.5" Y="0.5" Z="0.5" />
         <colour R="186" G="143" B="227" />
         <models>
-            <model file="sphere.3d" />
+            <!--<model file="sphere.3d" />-->
         </models>
 
     </group>
