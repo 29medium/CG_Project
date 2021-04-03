@@ -66,7 +66,7 @@ float Camera::getCameraUpZ()
 
 void Camera::setCameraSpeed(float cameraSpeed)
 {
-    this->cameraSpeed = cameraSpeed * speedMultiplier * 10;
+    this->cameraSpeed = cameraSpeed * speedMultiplier * 50;
 }
 
 Point *Camera::multiplyVectorBySpeed(Point *p) const
