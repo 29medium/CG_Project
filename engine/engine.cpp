@@ -50,7 +50,7 @@ void showFPS() {
         frames = 0;
     }
     char title[1024];
-    sprintf(title,"FPS: %f",fps);
+    sprintf(title,"FPS: %.2f",fps);
     glutSetWindowTitle(title);
 }
 
