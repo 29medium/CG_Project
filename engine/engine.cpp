@@ -22,6 +22,10 @@ int window;
 bool fullscreen = false;
 float deltaTime = 0.0f, currentFrame=0.0f, lastFrame = 0.0f;
 
+int timebase;
+float frames;
+float fps;
+
 void changeSize(int w, int h)
 {
     if (h == 0)
@@ -35,6 +39,19 @@ void changeSize(int w, int h)
     glViewport(0, 0, w, h);
     gluPerspective(45.0f, ratio, 1.0f, 1000.0f);
     glMatrixMode(GL_MODELVIEW);
+}
+
+void showFPS() {
+    frames++;
+    int time = glutGet(GLUT_ELAPSED_TIME);
+    if (time - timebase>1000){
+        fps = frames*1000.0/(time-timebase);
+        timebase = time;
+        frames = 0;
+    }
+    char title[1024];
+    sprintf(title,"FPS: %f",fps);
+    glutSetWindowTitle(title);
 }
 
 void renderScene()
@@ -56,8 +73,10 @@ void renderScene()
     glPolygonMode(GL_FRONT_AND_BACK, pointLineFill == 0 ? GL_POINT : (pointLineFill == 1 ? GL_LINE : GL_FILL));
 
     Group::renderGroups(groups);
+    showFPS();
 
     glutSwapBuffers();
+    glutPostRedisplay();
 }
 
 void processNormalKeys(unsigned char key, int x, int y)
@@ -156,6 +175,8 @@ int main(int argc, char **argv)
     glutSetCursor(GLUT_CURSOR_NONE);
 
     init();
+
+    timebase = glutGet(GLUT_ELAPSED_TIME);
 
     glutMainLoop();
 
