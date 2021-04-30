@@ -2,114 +2,23 @@
     <!-- Sol -->
     <group>
         <scale X="60" Y="60" Z="60" />
+        <rotate time="20" X="1" Y="0" Z="0" />
         <colour R="255" G="140" B="0" />
         <models>
             <model file="sphere.3d" />
         </models>
     </group>
 
-    <!-- ================================================================================================================ -->
-
-    <!-- Órbitas -->
-
-    <!-- Órbita Mercúrio -->
-    <group>
-        <scale X="128.828" Y="128.828" Z="128.828" />
-        <rotate angle="90" axisX="1" />
-        <colour R="255" G="255" B="255" />
-        <models>
-            <model file="orbit.3d" />
-        </models>
-    </group>
-
-    <!-- Órbita Venus -->
-    <group>
-        <scale X="240.62" Y="240.62" Z="240.62" />
-        <rotate angle="90" axisX="1" />
-        <colour R="255" G="255" B="255" />
-        <models>
-            <model file="orbit.3d" />
-        </models>
-    </group>
-
-    <!-- Órbita Terra -->
-    <group>
-        <scale X="332.81" Y="332.81" Z="332.81" />
-        <rotate angle="90" axisX="1" />
-        <colour R="255" G="255" B="255" />
-        <models>
-            <model file="orbit.3d" />
-        </models>
-    </group>
-
-    <!-- Órbita Marte -->
-    <group>
-        <scale X="507.201" Y="507.201" Z="507.201" />
-        <rotate angle="90" axisX="1" />
-        <colour R="255" G="255" B="255" />
-        <models>
-            <model file="orbit.3d" />
-        </models>
-    </group>
-
-    <!-- Órbita Júpiter -->
-    <group>
-        <scale X="1100" Y="1100" Z="1100" />
-        <rotate angle="90" axisX="1" />
-        <colour R="255" G="255" B="255" />
-        <models>
-            <model file="orbit.3d" />
-        </models>
-    </group>
-
-    <!-- Órbita Saturno -->
-    <group>
-        <scale X="1400" Y="1400" Z="1400" />
-        <rotate angle="90" axisX="1" />
-        <colour R="255" G="255" B="255" />
-        <models>
-            <model file="orbit.3d" />
-        </models>
-    </group>
-
-    <!-- Órbita Urano -->
-    <group>
-        <scale X="1700" Y="1700" Z="1700" />
-        <rotate angle="90" axisX="1" />
-        <colour R="255" G="255" B="255" />
-        <models>
-            <model file="orbit.3d" />
-        </models>
-    </group>
-
-    <!-- Órbita Neptuno -->
-    <group>
-        <scale X="2000" Y="2000" Z="2000" />
-        <rotate angle="90" axisX="1" />
-        <colour R="255" G="255" B="255" />
-        <models>
-            <model file="orbit.3d" />
-        </models>
-    </group>
-
-    <!-- Órbita Plutão -->
-    <group>
-        <scale X="2200" Y="2200" Z="2200" />
-        <rotate angle="90" axisX="1" />
-        <colour R="255" G="255" B="255" />
-        <models>
-            <model file="orbit.3d" />
-        </models>
-    </group>
-
-
-    <!-- ============================================================================================================ -->
-
     <!-- Planetas e Satélites Naturais-->
 
     <!-- Mercurio -->
     <group>
-        <translate X="128.828"/>
+        <translate time="30">
+            <point X="128.828" />
+            <point Z="-128.828" />
+            <point X="-128.828" />
+            <point Z="128.828" />
+        </translate>
         <scale X="1.365" Y="1.365" Z="1.365" />
         <colour R="186" G="184" B="181" />
         <models>
@@ -119,7 +28,12 @@
 
     <!-- Venus -->
     <group>
-        <translate X="240.62" />
+        <translate time="30">
+            <point X="240.62" />
+            <point Z="-240.62" />
+            <point X="-240.62" />
+            <point Z="240.62" />
+        </translate>
         <scale X="3.386" Y="3.386" Z="3.386" />
         <colour R="237" G="184" B="100" />
         <models>
@@ -129,7 +43,12 @@
 
     <!-- Terra -->
     <group>
-        <translate X="332.81" />
+        <translate time="30">
+            <point X="332.81" />
+            <point Z="-332.81" />
+            <point X="-332.81" />
+            <point Z="332.81" />
+        </translate>
         <scale X="3.569" Y="3.569" Z="3.569" />
         <colour R="61" G="129" B="224" />
         <models>
@@ -137,7 +56,12 @@
         </models>
         <!-- Lua -->
         <group>
-            <translate Z="4.423" />
+            <translate time="30">
+                <point X="4.423" />
+                <point Z="-4.423" />
+                <point X="-4.423" />
+                <point Z="4.423" />
+            </translate>
             <scale X="0.486" Y="0.486" Z="0.486" />
             <colour R="207" G="207" B="207" />
             <models>
@@ -148,7 +72,12 @@
 
     <!-- Marte -->
     <group>
-        <translate X="507.201" />
+        <translate time="30">
+            <point X="507.201" />
+            <point Z="-507.201" />
+            <point X="-507.201" />
+            <point Z="507.201" />
+        </translate>
         <scale X="1.9" Y="1.9" Z="1.9" />
         <colour R="240" G="95" B="70" />
         <models>

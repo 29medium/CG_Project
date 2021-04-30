@@ -10,6 +10,8 @@
 
 using namespace std;
 
+#include "point.h"
+
 class Transformation {
     float x;
     float y;
@@ -26,16 +28,42 @@ public:
     virtual void transform() {};
 };
 
-class Translation : public Transformation {
+class DynamicTranslation : public Transformation {
+    float time;
+    vector<Point*> catmull;
+    vector<Point*> orbit;
 public:
-    Translation(float xx, float yy, float zz);
+    DynamicTranslation(float t, vector<Point*> catmullPoints);
+    void transform();
+    float getTime() const;
+    vector<Point*> getCatmullPoints();
+
+    void catmullRomPoint(float t, float *coord, vector<Point *> catmullpoints);
+
+    void catmullCalculate(float t, int *index, float *p, vector<Point *> points);
+
+    void drawCurve();
+};
+
+class StaticTranslation : public Transformation {
+public:
+    StaticTranslation(float xx, float yy, float zz);
     void transform();
 };
 
-class Rotation : public Transformation {
+class DynamicRotation : public Transformation {
+    float time;
+public:
+    DynamicRotation(float t, float xx, float yy, float zz);
+    void transform();
+
+    float getTime() const;
+};
+
+class StaticRotation : public Transformation {
     float angle;
 public:
-    Rotation(float angle, float xx, float yy, float zz);
+    StaticRotation(float angle, float xx, float yy, float zz);
     void transform();
 
     float getAngle() const;

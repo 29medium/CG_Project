@@ -2,21 +2,40 @@
 
 Transformation *parseTranslate(XMLElement *element)
 {
-    float x = (element->Attribute("X") ? stof(element->Attribute("X")) : 0);
-    float y = (element->Attribute("Y") ? stof(element->Attribute("Y")) : 0);
-    float z = (element->Attribute("Z") ? stof(element->Attribute("Z")) : 0);
+    float time = (element->Attribute("time") ? stof(element->Attribute("time")) : 0);
 
-    return new Translation(x, y, z);
+    if(time==0) {
+        float x = (element->Attribute("X") ? stof(element->Attribute("X")) : 0);
+        float y = (element->Attribute("Y") ? stof(element->Attribute("Y")) : 0);
+        float z = (element->Attribute("Z") ? stof(element->Attribute("Z")) : 0);
+
+        return new StaticTranslation(x, y, z);
+    } else {
+        vector<Point*> catmull;
+        for (XMLElement *elem = element->FirstChildElement("point"); elem; elem = elem->NextSiblingElement("point")) {
+            float x = (elem->Attribute("X") ? stof(elem->Attribute("X")) : 0);
+            float y = (elem->Attribute("Y") ? stof(elem->Attribute("Y")) : 0);
+            float z = (elem->Attribute("Z") ? stof(elem->Attribute("Z")) : 0);
+
+            Point* p = new Point(x, y, z);
+            catmull.push_back(p);
+        }
+        return new DynamicTranslation(time*1000, catmull);
+    }
 }
 
 Transformation *parseRotate(XMLElement *element)
 {
-    float angle = (element->Attribute("angle") ? stof(element->Attribute("angle")) : 0);
     float x = (element->Attribute("axisX") ? stof(element->Attribute("axisX")) : 0);
     float y = (element->Attribute("axisY") ? stof(element->Attribute("axisY")) : 0);
     float z = (element->Attribute("axisZ") ? stof(element->Attribute("axisZ")) : 0);
+    float time = (element->Attribute("time") ? stof(element->Attribute("time")) : 0);
 
-    return new Rotation(angle, x, y, z);
+    if(time==0) {
+        float angle = (element->Attribute("angle") ? stof(element->Attribute("angle")) : 0);
+        return new StaticRotation(angle, x, y, z);
+    } else
+        return new DynamicRotation(time*1000, x, y, z);
 }
 
 Transformation *parseScale(XMLElement *element)
