@@ -3,6 +3,7 @@
 #define GL_SILENCE_DEPRECATION
 #include <GLUT/glut.h>
 #else
+#include <GL/glew.h>
 #include <GL/glut.h>
 #endif
 
@@ -159,6 +160,15 @@ int main(int argc, char **argv)
     glutInitWindowPosition(100, 100);
     glutInitWindowSize(800, 800);
     window = glutCreateWindow("CG-TP14 Solar System");
+
+    #ifndef __APPLE__
+    glewInit();
+    #endif
+
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    glEnableClientState(GL_VERTEX_ARRAY);
 
     groups = parseXML(argv[1]);
     if (groups.empty())

@@ -71,6 +71,8 @@ vector<Shape *> parseModel(XMLElement *element)
                 points.push_back(p);
             }
             file.close();
+
+
         }
         Shape *shape = new Shape(points);
         model.push_back(shape);
@@ -125,6 +127,7 @@ vector<Group *> parseXML(char *path)
             for (XMLElement *elem = root->FirstChildElement("group"); elem; elem = elem->NextSiblingElement("group"))
             {
                 group = parseGroup(elem);
+                group->setBuffer();
                 groups.push_back(group);
             }
         }
