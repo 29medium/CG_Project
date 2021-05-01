@@ -91,7 +91,6 @@ vector<Shape *> parseModel(XMLElement *element)
             }
             file.close();
 
-
         }
         Shape *shape = new Shape(points);
         model.push_back(shape);
@@ -105,9 +104,9 @@ Group *parseGroup(XMLElement *element, bool primary)
     vector<Transformation *> transf;
     vector<Group *> groups;
     vector<Shape *> models;
+    Group* sGroup;
 
-    for (XMLElement *elem = element->FirstChildElement(); elem; elem = elem->NextSiblingElement())
-    {
+    for (XMLElement *elem = element->FirstChildElement(); elem; elem = elem->NextSiblingElement()) {
         if (strcmp(elem->Name(), "translate") == 0)
             transf.push_back(parseTranslate(elem));
         if (strcmp(elem->Name(), "rotate") == 0)
@@ -118,8 +117,11 @@ Group *parseGroup(XMLElement *element, bool primary)
             transf.push_back(parseColour(elem));
         if (strcmp(elem->Name(), "models") == 0)
             models = parseModel(elem);
-        if (strcmp(elem->Name(), "group") == 0)
-            groups.push_back(parseGroup(elem, false));
+        if (strcmp(elem->Name(), "group") == 0) {
+            sGroup = parseGroup(elem, false);
+            sGroup->setBuffer();
+            groups.push_back(sGroup);
+        }
     }
 
     return new Group(transf, models, groups, primary);
@@ -135,26 +137,20 @@ vector<Group *> parseXML(char *path)
     strcat(final_path, path);
 
     XMLDocument doc;
-    XMLNode *root;
-    XMLElement *element;
     tinyxml2::XMLError eResult = doc.LoadFile(final_path);
+    XMLNode *root = doc.FirstChild();
 
-    if (!eResult)
+    if (!eResult && root)
     {
-        if ((root = doc.FirstChild()))
+        for (XMLElement *elem = root->FirstChildElement("group"); elem; elem = elem->NextSiblingElement("group"))
         {
-            for (XMLElement *elem = root->FirstChildElement("group"); elem; elem = elem->NextSiblingElement("group"))
-            {
-                group = parseGroup(elem, true);
-                group->setBuffer();
-                groups.push_back(group);
-            }
+            group = parseGroup(elem, true);
+            group->setBuffer();
+            groups.push_back(group);
         }
     }
     else
-    {
         cout << "File " << path << " didn't load." << endl;
-    }
 
     return groups;
 }
