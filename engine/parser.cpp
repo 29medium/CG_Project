@@ -100,7 +100,7 @@ vector<Shape *> parseModel(XMLElement *element)
     return model;
 }
 
-Group *parseGroup(XMLElement *element)
+Group *parseGroup(XMLElement *element, bool primary)
 {
     vector<Transformation *> transf;
     vector<Group *> groups;
@@ -119,10 +119,10 @@ Group *parseGroup(XMLElement *element)
         if (strcmp(elem->Name(), "models") == 0)
             models = parseModel(elem);
         if (strcmp(elem->Name(), "group") == 0)
-            groups.push_back(parseGroup(elem));
+            groups.push_back(parseGroup(elem, false));
     }
 
-    return new Group(transf, models, groups);
+    return new Group(transf, models, groups, primary);
 }
 
 vector<Group *> parseXML(char *path)
@@ -145,7 +145,7 @@ vector<Group *> parseXML(char *path)
         {
             for (XMLElement *elem = root->FirstChildElement("group"); elem; elem = elem->NextSiblingElement("group"))
             {
-                group = parseGroup(elem);
+                group = parseGroup(elem, true);
                 group->setBuffer();
                 groups.push_back(group);
             }

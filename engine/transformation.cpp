@@ -36,11 +36,13 @@ vector<Point *> DynamicTranslation::getCatmullPoints() {
     return catmull;
 }
 
-void DynamicTranslation::transform() {
-    glPushMatrix();
-    glColor3f(1,1,1);
-    drawCurve();
-    glPopMatrix();
+void DynamicTranslation::transform(bool primary) {
+    if(primary) {
+        glPushMatrix();
+        glColor3f(1, 1, 1);
+        drawCurve();
+        glPopMatrix();
+    }
 
     float coord[3] = {getX(), getY(), getZ()};
 
@@ -113,7 +115,7 @@ void DynamicTranslation::drawCurve() {
 
 StaticTranslation::StaticTranslation(float xx, float yy, float zz) : Transformation(xx, yy, zz) {}
 
-void StaticTranslation::transform() {
+void StaticTranslation::transform(bool primary) {
     glTranslatef(getX(), getY(), getZ());
 }
 
@@ -122,7 +124,7 @@ DynamicRotation::DynamicRotation(float t, float xx, float yy, float zz) : Transf
     time = t;
 }
 
-void DynamicRotation::transform(){
+void DynamicRotation::transform(bool primary){
     float angle = (glutGet(GLUT_ELAPSED_TIME) % ((int) time)) / time * 360;
 
     glRotatef(angle, getX(), getY(), getZ());
@@ -133,21 +135,21 @@ StaticRotation::StaticRotation(float a, float xx, float yy, float zz) : Transfor
     angle = a;
 }
 
-void StaticRotation::transform(){
+void StaticRotation::transform(bool primary){
     glRotatef(angle, getX(), getY(), getZ());
 }
 
 // Scale
 Scale::Scale(float xx, float yy, float zz) : Transformation(xx, yy, zz) {}
 
-void Scale::transform() {
+void Scale::transform(bool primary) {
     glScalef(getX(), getY(), getZ());
 }
 
 // Colour
 Colour::Colour(float r, float g, float b) : Transformation(r, g, b) {}
 
-void Colour::transform() {
+void Colour::transform(bool primary) {
     glColor3f(getX()/255, getY()/255, getZ()/255);
 }
 

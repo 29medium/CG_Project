@@ -21,11 +21,12 @@ private:
     vector<Transformation*> transf;
     vector<Shape*> models;
     vector<Group*> groups;
+    bool primary;
 
 public:
     Group();
 
-    Group(vector<Transformation*> t, vector<Shape*> m, vector<Group*> g);
+    Group(vector<Transformation*> t, vector<Shape*> m, vector<Group*> g, bool p);
 
     void render();
 

@@ -25,7 +25,7 @@ public:
 
     float getZ() const;
 
-    virtual void transform() {};
+    virtual void transform(bool primary) {};
 };
 
 class DynamicTranslation : public Transformation {
@@ -34,8 +34,7 @@ class DynamicTranslation : public Transformation {
     vector<Point*> orbit;
 public:
     DynamicTranslation(float t, vector<Point*> catmullPoints);
-    void transform();
-    float getTime() const;
+    void transform(bool primary);
     vector<Point*> getCatmullPoints();
 
     void catmullRomPoint(float t, float *coord, vector<Point *> catmullpoints);
@@ -48,37 +47,33 @@ public:
 class StaticTranslation : public Transformation {
 public:
     StaticTranslation(float xx, float yy, float zz);
-    void transform();
+    void transform(bool primary);
 };
 
 class DynamicRotation : public Transformation {
     float time;
 public:
     DynamicRotation(float t, float xx, float yy, float zz);
-    void transform();
-
-    float getTime() const;
+    void transform(bool primary);
 };
 
 class StaticRotation : public Transformation {
     float angle;
 public:
     StaticRotation(float angle, float xx, float yy, float zz);
-    void transform();
-
-    float getAngle() const;
+    void transform(bool primary);
 };
 
 class Scale : public Transformation {
 public:
     Scale(float xx, float yy, float zz);
-    void transform();
+    void transform(bool primary);
 };
 
 class Colour : public Transformation {
 public:
     Colour(float r, float g, float b);
-    void transform();
+    void transform(bool primary);
 };
 
 #endif //GENERATOR_TRANSFORMATION_H

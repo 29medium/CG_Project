@@ -2,18 +2,18 @@
 
 Group::Group() {}
 
-Group::Group(vector<Transformation *> t, vector<Shape *> m, vector<Group *> g)
+Group::Group(vector<Transformation *> t, vector<Shape *> m, vector<Group *> g, bool p)
 {
     transf = t;
     models = m;
     groups = g;
+    primary = p;
 }
 
 void Group::render()
 {
-
     for (int i = 0; i < transf.size(); i++)
-        transf[i]->transform();
+        transf[i]->transform(primary);
 
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
     glVertexPointer(3, GL_FLOAT, 0, 0);
