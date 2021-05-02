@@ -101,7 +101,7 @@ Point * bezierPatch(float u, float v,Shape * patch){
 
     for(int i = 0; i < 16; i++){
         Point * aux = patch->getPoint(i);
-        u_points[j] = aux;
+        pts_u[j] = aux;
         j++;
 
         if (j % 4 == 0){
