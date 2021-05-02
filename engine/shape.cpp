@@ -16,10 +16,6 @@ Point *Shape::getPoint(int i)
     return this->points.at(i);
 }
 
-vector<Point *> *Shape::getPoints()
-{
-    return this->points;
-}
 
 int Shape::size()
 {
