@@ -15,6 +15,7 @@
 #include "headers/sphere.h"
 #include "headers/cone.h"
 #include "headers/torus.h"
+#include "headers/bezier.h"
 
 using namespace std;
 
@@ -69,6 +70,15 @@ int main(int argc, char **argv)
     else if (strcmp(argv[1], "torus") == 0 && argc == 7) {
         s = torus(stof(argv[2]), stof(argv[3]), stoi(argv[4]), stoi(argv[5]));
         path = argv[6];
+    }
+    else if (strcmp(argv[1], "bezier") == 0 && argc == 5) {
+        int tessellation = atoi(argv[3]);
+        if (tessellation >= 1) {
+            vector<Patch *> * array = parseBezier(argv[2]);
+            s = bezierPoints(array, tessellation);
+            flag = 1;
+        }
+        else print_error("Erro no input");
     }
     else {
         cout << "Wrong Arguments" << endl;
