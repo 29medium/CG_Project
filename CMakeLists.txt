@@ -7,6 +7,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 PROJECT(engine)
 add_executable(${PROJECT_NAME} engine/engine.cpp engine/tinyxlm2.cpp engine/headers/tinyxml2.h engine/parser.cpp engine/headers/parser.h engine/group.cpp engine/headers/group.h engine/transformation.cpp engine/headers/transformation.h engine/point.cpp engine/headers/point.h engine/shape.cpp engine/headers/shape.h engine/camera.cpp engine/headers/camera.h)
 
+set(CMAKE_BUILD_TYPE Release)
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})
 link_directories(${OpenGL_LIBRARY_DIRS})
@@ -25,14 +26,19 @@ if  (WIN32)
 		message(ERROR ": GLUT not found")
 	endif (NOT EXISTS "${TOOLKITS_FOLDER}/glut/GL/glut.h" OR NOT EXISTS "${TOOLKITS_FOLDER}/glut/glut32.lib")	
 	
+	if (NOT EXISTS "${TOOLKITS_FOLDER}/glew/GL/glew.h" OR NOT EXISTS "${TOOLKITS_FOLDER}/glew/glew32.lib")
+  		message(ERROR ": GLEW not found")
+  	endif (NOT EXISTS "${TOOLKITS_FOLDER}/glew/GL/glew.h" OR NOT EXISTS "${TOOLKITS_FOLDER}/glew/glew32.lib")
 	
-	include_directories(${TOOLKITS_FOLDER}/glut )
+	include_directories(${TOOLKITS_FOLDER}/glut ${TOOLKITS_FOLDER}/glew)
 	target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} 
-										  ${TOOLKITS_FOLDER}/glut/glut32.lib)
+										  ${TOOLKITS_FOLDER}/glut/glut32.lib
+										  ${TOOLKITS_FOLDER}/glew/glew32.lib )
 	
-	if (EXISTS "${TOOLKITS_FOLDER}/glut/glut32.dll" )
+	if (EXISTS "${TOOLKITS_FOLDER}/glut/glut32.dll" AND EXISTS "${TOOLKITS_FOLDER}/glew/glew32.dll")
 		file(COPY ${TOOLKITS_FOLDER}/glut/glut32.dll DESTINATION ${CMAKE_BINARY_DIR})
-	endif(EXISTS "${TOOLKITS_FOLDER}/glut/glut32.dll" )	
+		file(COPY ${TOOLKITS_FOLDER}/glew/glew32.dll DESTINATION ${CMAKE_BINARY_DIR})
+	endif(EXISTS "${TOOLKITS_FOLDER}/glut/glut32.dll" AND EXISTS "${TOOLKITS_FOLDER}/glew/glew32.dll")	
 	
 	set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
 	
@@ -43,6 +49,15 @@ else (WIN32) #Linux and Mac
 	include_directories(${GLUT_INCLUDE_DIR})
 	link_directories(${GLUT_LIBRARY_DIRS})
 	add_definitions(${GLUT_DEFINITIONS})
+	
+  	if (NOT APPLE)
+			find_package(GLEW REQUIRED)
+			include_directories(${GLEW_INCLUDE_DIRS})
+			link_libraries(${GLEW_LIBRARIES})
+			target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES})	
+	else (NOT APPLE)
+			target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+	endif (NOT APPLE)
 	
 	target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
 	if(NOT GLUT_FOUND)

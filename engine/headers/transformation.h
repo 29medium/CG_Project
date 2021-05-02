@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #ifndef GENERATOR_TRANSFORMATION_H
 #define GENERATOR_TRANSFORMATION_H
 
@@ -5,6 +7,7 @@
 #define GL_SILENCE_DEPRECATION
 #include <glut.h>
 #else
+#include <GL/glew.h>
 #include <GL/glut.h>
 #endif
 
@@ -12,10 +15,12 @@ using namespace std;
 
 #include "point.h"
 
-class Transformation {
+class Transformation
+{
     float x;
     float y;
     float z;
+
 public:
     Transformation(float xx, float yy, float zz);
 
@@ -25,17 +30,19 @@ public:
 
     float getZ() const;
 
-    virtual void transform(bool primary) {};
+    virtual void transform(bool primary){};
 };
 
-class DynamicTranslation : public Transformation {
+class DynamicTranslation : public Transformation
+{
     float time;
-    vector<Point*> catmull;
-    vector<Point*> orbit;
+    vector<Point *> catmull;
+    vector<Point *> orbit;
+
 public:
-    DynamicTranslation(float t, vector<Point*> catmullPoints);
+    DynamicTranslation(float t, vector<Point *> catmullPoints);
     void transform(bool primary);
-    vector<Point*> getCatmullPoints();
+    vector<Point *> getCatmullPoints();
 
     void catmullRomPoint(float t, float *coord, vector<Point *> catmullpoints);
 
@@ -44,33 +51,40 @@ public:
     void drawCurve();
 };
 
-class StaticTranslation : public Transformation {
+class StaticTranslation : public Transformation
+{
 public:
     StaticTranslation(float xx, float yy, float zz);
     void transform(bool primary);
 };
 
-class DynamicRotation : public Transformation {
+class DynamicRotation : public Transformation
+{
     float time;
+
 public:
     DynamicRotation(float t, float xx, float yy, float zz);
     void transform(bool primary);
 };
 
-class StaticRotation : public Transformation {
+class StaticRotation : public Transformation
+{
     float angle;
+
 public:
     StaticRotation(float angle, float xx, float yy, float zz);
     void transform(bool primary);
 };
 
-class Scale : public Transformation {
+class Scale : public Transformation
+{
 public:
     Scale(float xx, float yy, float zz);
     void transform(bool primary);
 };
 
-class Colour : public Transformation {
+class Colour : public Transformation
+{
 public:
     Colour(float r, float g, float b);
     void transform(bool primary);

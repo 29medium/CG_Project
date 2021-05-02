@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #ifndef __SHAPE_H__
 #define __SHAPE_H__
 
@@ -5,6 +7,7 @@
 #define GL_SILENCE_DEPRECATION
 #include <glut.h>
 #else
+#include <GL/glew.h>
 #include <GL/glut.h>
 #endif
 
