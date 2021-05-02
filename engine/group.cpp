@@ -12,6 +12,8 @@ Group::Group(vector<Transformation *> t, vector<Shape *> m, vector<Group *> g, b
 
 void Group::render()
 {
+    glPushMatrix();
+
     for (int i = 0; i < transf.size(); i++)
         transf[i]->transform(primary);
 
@@ -20,22 +22,16 @@ void Group::render()
     glDrawArrays(GL_TRIANGLES, 0, buffer_size * 3);
 
     for (int i = 0; i < groups.size(); i++)
-    {
-        glPushMatrix();
         groups[i]->render();
-        glPopMatrix();
-    }
+
+    glPopMatrix();
 }
 
 void Group::renderGroups(vector<Group *> groups)
 {
-
     for (int i = 0; i < groups.size(); i++)
-    {
-        glPushMatrix();
         groups[i]->render();
-        glPopMatrix();
-    }
+
 }
 
 void Group::setBuffer(){

@@ -5,13 +5,13 @@ planetas = {
         "translate": None,
         "angle": 7,
         "rotate": 600,
-        "scale": 60,
+        "scale": 80,
         "colour": [255, 140, 0],
         "model": "sphere.3d",
         "moons": None
     },
     "mercurio": {
-        "translate": [88, 128],
+        "translate": [88, 100],
         "angle": None,
         "rotate": 1408,
         "scale": 2,
@@ -20,7 +20,7 @@ planetas = {
         "moons": None
     },
     "venus": {
-        "translate": [225, 240],
+        "translate": [225, 200],
         "angle": -3,
         "rotate": 5832,
         "scale": 3,
@@ -29,7 +29,7 @@ planetas = {
         "moons": None
     },
     "terra": {
-        "translate": [365, 332],
+        "translate": [365, 300],
         "angle": 23.5,
         "rotate": 24,
         "scale": 3.57,
@@ -37,10 +37,10 @@ planetas = {
         "model": "sphere.3d",
         "moons": {
             "lua": {
-                "translate": [27, 8.5],
+                "translate": [27, 30],
                 "angle": 6.68,
                 "rotate": 29.5,
-                "scale": 0.5,
+                "scale": 1,
                 "colour": [207, 207, 207],
                 "model": "sphere.3d",
                 "moons": None
@@ -48,7 +48,7 @@ planetas = {
         }
     },
     "marte": {
-        "translate": [687, 507],
+        "translate": [687, 400],
         "angle": 25,
         "rotate": 25,
         "scale": 2,
@@ -57,7 +57,7 @@ planetas = {
         "moons": None
     },
     "jupiter": {
-        "translate": [4380, 800],
+        "translate": [4380, 600],
         "angle": 3,
         "rotate": 10,
         "scale": 40,
@@ -65,37 +65,37 @@ planetas = {
         "model": "sphere.3d",
         "moons": {
             "io": {
-                "translate": [1.75, 80.939],
+                "translate": [1.75, 40],
                 "angle": None,
                 "rotate": 42.48,
-                "scale": 0.03643,
+                "scale": 0.5,
                 "colour": [209, 150, 23],
                 "model": "sphere.3d",
                 "moons": None
             },
             "europa": {
-                "translate": [3.54, 81.493],
+                "translate": [3.54, 45],
                 "angle": None,
                 "rotate": 84,
-                "scale": 0.03121,
+                "scale": 0.5,
                 "colour": [141, 152, 131],
                 "model": "sphere.3d",
                 "moons": None
             },
             "ganymede": {
-                "translate": [7.16, 82.381],
+                "translate": [7.16, 50],
                 "angle": None,
                 "rotate": 168,
-                "scale": 0.0562,
+                "scale": 0.5,
                 "colour": [95, 99, 150],
                 "model": "sphere.3d",
                 "moons": None
             },
             "calisto": {
-                "translate": [17, 84.188],
+                "translate": [17, 55],
                 "angle": None,
                 "rotate": 384,
-                "scale": 0.0482,
+                "scale": 0.5,
                 "colour": [150, 101, 24],
                 "model": "sphere.3d",
                 "moons": None
@@ -103,7 +103,7 @@ planetas = {
         }
     },
     "saturno": {
-        "translate": [10585, 1000],
+        "translate": [10585, 700],
         "angle": 27,
         "rotate": 11,
         "scale": 34,
@@ -112,18 +112,18 @@ planetas = {
         "moons": {
             "inner_rings" : {
                 "translate": None,
-                "angle": 63,
-                "rotate": None, 
-                "scale": 1.5,
+                "angle": None,
+                "rotate": None,
+                "scale": 12.75,
                 "colour": [255, 204, 102],
                 "model": "ring.3d",
                 "moons": None
             },
             "outer_rings": {
                 "translate": None,
-                "angle": 63,
+                "angle": None,
                 "rotate": None,
-                "scale": 1.9,
+                "scale": 16.15,
                 "colour": [176, 142, 84],
                 "model": "ring.3d",
                 "moons": None
@@ -131,7 +131,7 @@ planetas = {
         }
     },
     "urano": {
-        "translate": [30660, 1200],
+        "translate": [30660, 800],
         "angle": -82,
         "rotate": 17,
         "scale": 7.1,
@@ -140,17 +140,17 @@ planetas = {
         "moons": {
             "rings": {
                 "translate": None,
-                "angle": 30,
+                "angle": None,
                 "rotate": None,
-                "scale": 1.5,
+                "scale": 8,
                 "colour": [100, 100, 100],
-                "model": "orbit.3d",
+                "model": "uranusRing.3d",
                 "moons": None
             }
         }
     },
     "neptuno": {
-        "translate": [60225, 1400],
+        "translate": [60225, 900],
         "angle": 30,
         "rotate": 16,
         "scale": 6.8,
@@ -159,7 +159,7 @@ planetas = {
         "moons": None
     },
     "plutao": {
-        "translate": [90520, 1600],
+        "translate": [90520, 1000],
         "angle": -72,
         "rotate": 153,
         "scale": 3,
@@ -169,13 +169,16 @@ planetas = {
     }
 }
 
-def printPlaneta(name, p):
+def printPlaneta(name, p, pscale):
     print("<!-- " + name.capitalize() + "-->")
     print("<group>")
 
     if p["translate"]:
         y = p["translate"][0] * 30 / 365
-        size = p["translate"][1]/2
+
+        size = p["translate"][1]/pscale
+        size /= 2
+
         x1 = 0
         x2 = ((2-math.sqrt(2))*math.sqrt(4+2*math.sqrt(2))) * size / 4
         x3 = math.sqrt(2)/2*size
@@ -207,13 +210,14 @@ def printPlaneta(name, p):
         y = p["rotate"] * 10 / 24
         print("<rotate time=\"" + str(y) + "\" axisY=\"1\" />")
 
-    if p["scale"]:
-        if name in ["sun", "jupiter", "saturno", "urano", "neptuno"]:
-            scale = p["scale"]/1.5
-        else:
-            scale = p["scale"]*1.5
-        print("<scale X=\"" + str(scale) +
-              "\" Y=\"" + str(scale) + "\" Z=\"" + str(scale) + "\" />")
+
+    if name in ["sol", "jupiter", "saturno"]:
+        scale = p["scale"]/2/pscale
+    else:
+        scale = p["scale"]*1.5/pscale
+
+    scale /= 2
+    print("<scale X=\"" + str(scale) + "\" Y=\"" + str(scale) + "\" Z=\"" + str(scale) + "\" />")
     
     if p["colour"]:
         print("<colour R=\"" + str(p["colour"][0]) +
@@ -227,11 +231,11 @@ def printPlaneta(name, p):
     if p["moons"]:
         moons = p["moons"]
         for moon in moons:
-            printPlaneta(moon, moons[moon])
+            printPlaneta(moon, moons[moon], scale)
 
     print("</group>")
 
 print("<scene>")
 for planeta in planetas:
-    printPlaneta(planeta, planetas[planeta])
+    printPlaneta(planeta, planetas[planeta], 1)
 print("</scene>")
