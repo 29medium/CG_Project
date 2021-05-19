@@ -20,11 +20,15 @@ class Shape
 {
 private:
     vector<Point *> points;
+    vector<Point *> normal;
+    vector<Point *> texture;
 
 public:
     Shape();
     Shape(vector<Point *> p);
     void addPoint(Point *p);
+    void addNormal(Point *p);
+    void addTexture(Point *p);
     Point *getPoint(int i);
     int size();
 };
