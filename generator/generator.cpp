@@ -183,6 +183,7 @@ void printFile(Shape *s, char *path)
         p = s->getPoint(i);
         sprintf(buff, "%f %f %f\n", p->getX(), p->getY(), p->getZ());
         file << buff;
+        // imprimir normais no ficheiro também, fazer um vetor(Shape) de normais no cpp da figura a ser normalizada
     }
 
     file.close();

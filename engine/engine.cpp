@@ -21,7 +21,7 @@ Camera *cam = nullptr;
 int pointLineFill = 2;
 int window;
 bool fullscreen = false;
-float deltaTime = 0.0f, currentFrame=0.0f, lastFrame = 0.0f;
+float deltaTime = 0.0f, currentFrame = 0.0f, lastFrame = 0.0f;
 
 int timebase;
 float frames;
@@ -42,16 +42,18 @@ void changeSize(int w, int h)
     glMatrixMode(GL_MODELVIEW);
 }
 
-void showFPS() {
+void showFPS()
+{
     frames++;
     int time = glutGet(GLUT_ELAPSED_TIME);
-    if (time - timebase>1000){
-        fps = frames*1000.0/(time-timebase);
+    if (time - timebase > 1000)
+    {
+        fps = frames * 1000.0 / (time - timebase);
         timebase = time;
         frames = 0;
     }
     char title[1024];
-    sprintf(title,"FPS: %.2f",fps);
+    sprintf(title, "FPS: %.2f", fps);
     glutSetWindowTitle(title);
 }
 
@@ -161,14 +163,17 @@ int main(int argc, char **argv)
     glutInitWindowSize(800, 800);
     window = glutCreateWindow("CG-TP14 Solar System");
 
-    #ifndef __APPLE__
+#ifndef __APPLE__
     glewInit();
-    #endif
+#endif
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
     glCullFace(GL_BACK);
     glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_NORMAL_ARRAY);
 
     groups = parseXML(argv[1]);
     if (groups.empty())
