@@ -22,6 +22,7 @@ class Group
 private:
     float buffer_size;
     GLuint buffer;
+    GLuint bufferN;
     vector<Transformation *> transf;
     vector<Shape *> models;
     vector<Group *> groups;

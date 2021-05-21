@@ -168,10 +168,11 @@ Shape *bezierPoints(vector<Shape *> *patches, int tessellation)
 void printFile(Shape *s, char *path)
 {
     char buff[1024];
+    char buffn[1024];
     char final_path[1024];
     int i;
     int size = s->size();
-    Point *p;
+    Point *p, *pn;
 
     system("mkdir -p ../files/ ");
     strcpy(final_path, "../files/");
@@ -183,7 +184,10 @@ void printFile(Shape *s, char *path)
         p = s->getPoint(i);
         sprintf(buff, "%f %f %f\n", p->getX(), p->getY(), p->getZ());
         file << buff;
-        // imprimir normais no ficheiro também, fazer um vetor(Shape) de normais no cpp da figura a ser normalizada
+
+        pn = s->getNormal(i);
+        sprintf(buffn, "%f %f %f\n", pn->getX(), pn->getY(), pn->getZ());
+        file << buffn;
     }
 
     file.close();

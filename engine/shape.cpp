@@ -2,7 +2,8 @@
 
 Shape::Shape() {}
 
-Shape::Shape(vector<Point *> p) {
+Shape::Shape(vector<Point *> p)
+{
     points = p;
 }
 
@@ -16,6 +17,16 @@ void Shape::addNormal(Point *p)
     this->normal.push_back(p);
 }
 
+Point *Shape::getNormal(int i)
+{
+    return this->normal.at(i);
+}
+
+void Shape::setNormal(vector<Point *> n)
+{
+    this->normal = n;
+}
+
 void Shape::addTexture(Point *p)
 {
     this->texture.push_back(p);
@@ -25,7 +36,6 @@ Point *Shape::getPoint(int i)
 {
     return this->points.at(i);
 }
-
 
 int Shape::size()
 {

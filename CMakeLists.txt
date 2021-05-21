@@ -5,7 +5,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 # ENGINE
 
 PROJECT(engine)
-add_executable(${PROJECT_NAME} engine/engine.cpp engine/tinyxlm2.cpp engine/headers/tinyxml2.h engine/parser.cpp engine/headers/parser.h engine/group.cpp engine/headers/group.h engine/transformation.cpp engine/headers/transformation.h engine/point.cpp engine/headers/point.h engine/shape.cpp engine/headers/shape.h engine/camera.cpp engine/headers/camera.h)
+add_executable(${PROJECT_NAME} engine/engine.cpp engine/tinyxlm2.cpp engine/headers/tinyxml2.h engine/parser.cpp engine/headers/parser.h engine/group.cpp engine/headers/group.h engine/transformation.cpp engine/headers/transformation.h engine/point.cpp engine/headers/point.h engine/shape.cpp engine/headers/shape.h engine/camera.cpp engine/headers/camera.h engine/light.cpp engine/headers/light.h)
 
 set(CMAKE_BUILD_TYPE Release)
 find_package(OpenGL REQUIRED)

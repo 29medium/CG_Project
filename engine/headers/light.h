@@ -5,9 +5,10 @@
 
 class Light
 {
-    float position[4];
+    GLfloat position[4];
 
 public:
+    Light();
     Light(float *p);
     void renderLight();
 };

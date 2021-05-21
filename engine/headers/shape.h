@@ -28,8 +28,10 @@ public:
     Shape(vector<Point *> p);
     void addPoint(Point *p);
     void addNormal(Point *p);
+    void setNormal(vector<Point *> n);
     void addTexture(Point *p);
     Point *getPoint(int i);
+    Point *getNormal(int i);
     int size();
 };
 

@@ -12,6 +12,7 @@
 #include "headers/parser.h"
 #include "headers/group.h"
 #include "headers/camera.h"
+#include "headers/light.h"
 
 using namespace tinyxml2;
 using namespace std;
@@ -74,6 +75,9 @@ void renderScene()
               cam->getCameraUpX(), cam->getCameraUpY(), cam->getCameraUpZ());
 
     glPolygonMode(GL_FRONT_AND_BACK, pointLineFill == 0 ? GL_POINT : (pointLineFill == 1 ? GL_LINE : GL_FILL));
+
+    Light *light = new Light();
+    light->renderLight();
 
     Group::renderGroups(groups);
     showFPS();
@@ -169,7 +173,6 @@ int main(int argc, char **argv)
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
-    glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glCullFace(GL_BACK);
     glEnableClientState(GL_VERTEX_ARRAY);

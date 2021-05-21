@@ -4,23 +4,27 @@ Transformation *parseTranslate(XMLElement *element)
 {
     float time = (element->Attribute("time") ? stof(element->Attribute("time")) : 0);
 
-    if(time==0) {
+    if (time == 0)
+    {
         float x = (element->Attribute("X") ? stof(element->Attribute("X")) : 0);
         float y = (element->Attribute("Y") ? stof(element->Attribute("Y")) : 0);
         float z = (element->Attribute("Z") ? stof(element->Attribute("Z")) : 0);
 
         return new StaticTranslation(x, y, z);
-    } else {
-        vector<Point*> catmull;
-        for (XMLElement *elem = element->FirstChildElement("point"); elem; elem = elem->NextSiblingElement("point")) {
+    }
+    else
+    {
+        vector<Point *> catmull;
+        for (XMLElement *elem = element->FirstChildElement("point"); elem; elem = elem->NextSiblingElement("point"))
+        {
             float x = (elem->Attribute("X") ? stof(elem->Attribute("X")) : 0);
             float y = (elem->Attribute("Y") ? stof(elem->Attribute("Y")) : 0);
             float z = (elem->Attribute("Z") ? stof(elem->Attribute("Z")) : 0);
 
-            Point* p = new Point(x, y, z);
+            Point *p = new Point(x, y, z);
             catmull.push_back(p);
         }
-        return new DynamicTranslation(time*1000, catmull);
+        return new DynamicTranslation(time * 1000, catmull);
     }
 }
 
@@ -31,11 +35,13 @@ Transformation *parseRotate(XMLElement *element)
     float z = (element->Attribute("axisZ") ? stof(element->Attribute("axisZ")) : 0);
     float time = (element->Attribute("time") ? stof(element->Attribute("time")) : 0);
 
-    if(time==0) {
+    if (time == 0)
+    {
         float angle = (element->Attribute("angle") ? stof(element->Attribute("angle")) : 0);
         return new StaticRotation(angle, x, y, z);
-    } else
-        return new DynamicRotation(time*1000, x, y, z);
+    }
+    else
+        return new DynamicRotation(time * 1000, x, y, z);
 }
 
 Transformation *parseScale(XMLElement *element)
@@ -63,6 +69,7 @@ vector<Shape *> parseModel(XMLElement *element)
     for (XMLElement *elem = element->FirstChildElement("model"); elem; elem = elem->NextSiblingElement("model"))
     {
         vector<Point *> points;
+        vector<Point *> normais;
         string path = elem->Attribute("file");
         char *file_name = const_cast<char *>(path.c_str());
 
@@ -76,7 +83,7 @@ vector<Shape *> parseModel(XMLElement *element)
         {
             string line;
             char *lineC;
-            float x, y, z;
+            float x, y, z, xn, yn, zn;
 
             while (getline(file, line))
             {
@@ -88,11 +95,20 @@ vector<Shape *> parseModel(XMLElement *element)
 
                 Point *p = new Point(x, y, z);
                 points.push_back(p);
+
+                getline(file, line);
+                lineC = const_cast<char *>(line.c_str());
+
+                xn = stof(strtok(lineC, " "));
+                yn = stof(strtok(nullptr, " "));
+                zn = stof(strtok(nullptr, " "));
+                Point *n = new Point(xn, yn, zn);
+                normais.push_back(n);
             }
             file.close();
-
         }
         Shape *shape = new Shape(points);
+        shape->setNormal(normais);
         model.push_back(shape);
     }
 
@@ -104,9 +120,10 @@ Group *parseGroup(XMLElement *element, bool primary)
     vector<Transformation *> transf;
     vector<Group *> groups;
     vector<Shape *> models;
-    Group* sGroup;
+    Group *sGroup;
 
-    for (XMLElement *elem = element->FirstChildElement(); elem; elem = elem->NextSiblingElement()) {
+    for (XMLElement *elem = element->FirstChildElement(); elem; elem = elem->NextSiblingElement())
+    {
         if (strcmp(elem->Name(), "translate") == 0)
             transf.push_back(parseTranslate(elem));
         if (strcmp(elem->Name(), "rotate") == 0)
@@ -117,7 +134,8 @@ Group *parseGroup(XMLElement *element, bool primary)
             transf.push_back(parseColour(elem));
         if (strcmp(elem->Name(), "models") == 0)
             models = parseModel(elem);
-        if (strcmp(elem->Name(), "group") == 0) {
+        if (strcmp(elem->Name(), "group") == 0)
+        {
             sGroup = parseGroup(elem, false);
             sGroup->setBuffer();
             groups.push_back(sGroup);
