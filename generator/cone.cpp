@@ -11,8 +11,11 @@ void drawBase(float radius, float height, int slices, int stacks, float sliceAng
         alpha = i * sliceAngle;
 
         s->addPoint(new Point(radius * cos(alpha + sliceAngle), 0, radius * sin(alpha + sliceAngle)));
+        s->addNormal(new Point(0.0,-1.0,0.0));
         s->addPoint(new Point(0, 0, 0));
+        s->addNormal(new Point(0.0,-1.0,0.0));
         s->addPoint(new Point(radius * cos(alpha), 0, radius * sin(alpha)));
+        s->addNormal(new Point(0.0,-1.0,0.0));
     }
 }
 
