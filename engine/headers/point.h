@@ -18,11 +18,12 @@ public:
     float getY() const;
     float getZ() const;
     void update(float x1, float y1, float z1);
-    void add(Point* p);
-    void sub(Point* p);
+    void add(Point *p);
+    void sub(Point *p);
     void multiply(float xx);
-    void cross(Point* p);
+    void cross(Point *p);
     void normalize();
+    void normalizeWithLength(float length);
 
     Point *clone() const;
 };

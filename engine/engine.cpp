@@ -18,6 +18,7 @@ using namespace tinyxml2;
 using namespace std;
 
 vector<Group *> groups;
+Light *light;
 Camera *cam = nullptr;
 int pointLineFill = 2;
 int window;
@@ -76,8 +77,8 @@ void renderScene()
 
     glPolygonMode(GL_FRONT_AND_BACK, pointLineFill == 0 ? GL_POINT : (pointLineFill == 1 ? GL_LINE : GL_FILL));
 
-    Light *light = new Light();
     light->renderLight();
+    //
 
     Group::renderGroups(groups);
     showFPS();
@@ -178,9 +179,17 @@ int main(int argc, char **argv)
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_NORMAL_ARRAY);
 
-    groups = parseXML(argv[1]);
+    Parser *parser = new Parser();
+
+    parser->parseXML(argv[1]);
+
+    groups = parser->getGroups();
     if (groups.empty())
         return 1;
+
+    light = parser->getLight();
+
+    parser->clearGroupsAndLight();
 
     cam = new Camera();
 

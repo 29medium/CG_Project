@@ -26,18 +26,23 @@ private:
     vector<Transformation *> transf;
     vector<Shape *> models;
     vector<Group *> groups;
+    Material *material;
     bool primary;
 
 public:
     Group();
 
-    Group(vector<Transformation *> t, vector<Shape *> m, vector<Group *> g, bool p);
+    Group(vector<Transformation *> t, vector<Shape *> m, vector<Group *> g, Material *mat, bool p);
+
+    // void renderSun();
 
     void render();
 
     static void renderGroups(vector<Group *> groups);
 
     void setBuffer();
+
+    void setMaterial(Material *m);
 };
 
 #endif //GENERATOR_GROUP_H

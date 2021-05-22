@@ -1,4 +1,7 @@
 <scene>
+    <lights>
+        <light type="POINT" X="0" Y="0" Z="0" />
+    </lights>
     <!-- Sol-->
     <group>
         <rotate angle="7" axisX="1" />
@@ -6,7 +9,7 @@
         <scale X="20.0" Y="20.0" Z="20.0" />
         <colour R="255" G="140" B="0" />
         <models>
-            <model file="sphere.3d"/>
+            <model file="sphere.3d" emiR="1" emiG="1" emiB="1"/>
         </models>
     </group>
     <!-- Mercurio-->
@@ -89,7 +92,7 @@
         <scale X="2.6774999999999998" Y="2.6774999999999998" Z="2.6774999999999998" />
         <colour R="61" G="129" B="224" />
         <models>
-            <model file="sphere.3d"/>
+            <model file="sphere.3d" />
         </models>
         <!-- Lua-->
         <group>

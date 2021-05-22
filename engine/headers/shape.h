@@ -13,6 +13,7 @@
 
 #include <vector>
 #include "point.h"
+#include "material.h"
 
 using namespace std;
 
@@ -22,6 +23,7 @@ private:
     vector<Point *> points;
     vector<Point *> normal;
     vector<Point *> texture;
+    Material *material;
 
 public:
     Shape();

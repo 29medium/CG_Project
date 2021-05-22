@@ -2,13 +2,47 @@
 
 Group::Group() {}
 
-Group::Group(vector<Transformation *> t, vector<Shape *> m, vector<Group *> g, bool p)
+Group::Group(vector<Transformation *> t, vector<Shape *> m, vector<Group *> g, Material *mat, bool p)
 {
     transf = t;
     models = m;
     groups = g;
+    material = mat;
     primary = p;
 }
+
+// void Group::renderSun()
+// {
+
+//     glPushMatrix();
+
+//     for (int i = 0; i < transf.size(); i++)
+//     {
+
+//         // if (i == 0)
+//         // {
+//         //     GLfloat white[4] = {1, 1, 1, 1};
+
+//         //     glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, white);
+//         // }
+
+//         transf[i]->transform(primary);
+//     }
+
+//     glPushMatrix();
+//     material->draw();
+//     glPopMatrix();
+
+//     glBindBuffer(GL_ARRAY_BUFFER, buffer);
+//     glVertexPointer(3, GL_FLOAT, 0, 0);
+//     glBindBuffer(GL_ARRAY_BUFFER, bufferN);
+//     glNormalPointer(GL_FLOAT, 0, 0);
+//     glEnable(GL_LIGHTING);
+//     glDrawArrays(GL_TRIANGLES, 0, buffer_size * 3);
+//     glDisable(GL_LIGHTING);
+
+//     glPopMatrix();
+// }
 
 void Group::render()
 {
@@ -16,13 +50,6 @@ void Group::render()
 
     for (int i = 0; i < transf.size(); i++)
     {
-
-        // if (i == 0)
-        // {
-        //     GLfloat white[4] = {1, 1, 1, 1};
-
-        //     glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, white);
-        // }
 
         transf[i]->transform(primary);
     }
@@ -44,7 +71,20 @@ void Group::render()
 void Group::renderGroups(vector<Group *> groups)
 {
     for (int i = 0; i < groups.size(); i++)
+    {
+        // if (i == 0)
+        // {
+        //     groups[i]->renderSun();
+        // }
+        // if (i == 0)
+        // {
+        //     GLfloat white[4] = {1, 1, 1, 1};
+
+        //     glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, white);
+        // }
+
         groups[i]->render();
+    }
 }
 
 void Group::setBuffer()
@@ -85,4 +125,9 @@ void Group::setBuffer()
 
     free(points_arr);
     free(normais_arr);
+}
+
+void Group::setMaterial(Material *m)
+{
+    this->material = m;
 }

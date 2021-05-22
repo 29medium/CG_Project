@@ -13,10 +13,24 @@
 #include "tinyxml2.h"
 #include "point.h"
 #include "group.h"
+#include "light.h"
+#include "material.h"
 
 using namespace tinyxml2;
 using namespace std;
 
-vector<Group *> parseXML(char * path);
+class Parser
+{
+private:
+    vector<Group *> groups;
+    Light *light;
+
+public:
+    Parser();
+    vector<Group *> getGroups();
+    Light *getLight();
+    void parseXML(char *path);
+    void clearGroupsAndLight();
+};
 
 #endif //GENERATOR_PARSER_H

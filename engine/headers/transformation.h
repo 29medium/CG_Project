@@ -14,6 +14,7 @@
 using namespace std;
 
 #include "point.h"
+#include <vector>
 
 class Transformation
 {

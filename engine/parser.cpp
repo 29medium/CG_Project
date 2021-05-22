@@ -1,5 +1,17 @@
 #include "headers/parser.h"
 
+Parser::Parser() {}
+
+vector<Group *> Parser::getGroups()
+{
+    return groups;
+}
+
+Light *Parser::getLight()
+{
+    return light;
+}
+
 Transformation *parseTranslate(XMLElement *element)
 {
     float time = (element->Attribute("time") ? stof(element->Attribute("time")) : 0);
@@ -62,6 +74,33 @@ Transformation *parseColour(XMLElement *element)
     return new Colour(r, g, b);
 }
 
+Material *parseMaterial(XMLElement *element)
+{
+    Material *material;
+    float eR = 0, eG = 0, eB = 0;
+
+    for (XMLElement *elem = element->FirstChildElement("model"); elem; elem = elem->NextSiblingElement("model"))
+    {
+        if (elem->Attribute("emiR"))
+        {
+            eR = stof(elem->Attribute("emiR"));
+        }
+        if (elem->Attribute("emiR"))
+        {
+            eR = stof(elem->Attribute("emiR"));
+        }
+        if (elem->Attribute("emiR"))
+        {
+            eR = stof(elem->Attribute("emiR"));
+        }
+
+        Transformation *emission = new Transformation(eR, eG, eB);
+        material = new Material(NULL, NULL, NULL, emission);
+    }
+
+    return material;
+}
+
 vector<Shape *> parseModel(XMLElement *element)
 {
     vector<Shape *> model;
@@ -120,6 +159,7 @@ Group *parseGroup(XMLElement *element, bool primary)
     vector<Transformation *> transf;
     vector<Group *> groups;
     vector<Shape *> models;
+    Material *material;
     Group *sGroup;
 
     for (XMLElement *elem = element->FirstChildElement(); elem; elem = elem->NextSiblingElement())
@@ -133,7 +173,10 @@ Group *parseGroup(XMLElement *element, bool primary)
         if (strcmp(elem->Name(), "colour") == 0)
             transf.push_back(parseColour(elem));
         if (strcmp(elem->Name(), "models") == 0)
+        {
             models = parseModel(elem);
+            material = parseMaterial(elem);
+        }
         if (strcmp(elem->Name(), "group") == 0)
         {
             sGroup = parseGroup(elem, false);
@@ -142,13 +185,52 @@ Group *parseGroup(XMLElement *element, bool primary)
         }
     }
 
-    return new Group(transf, models, groups, primary);
+    return new Group(transf, models, groups, material, primary);
 }
 
-vector<Group *> parseXML(char *path)
+Light *parseLight(XMLElement *element)
 {
-    vector<Group *> groups;
+    XMLElement *luz = element->FirstChildElement();
+    Light *light1 = nullptr;
+    float position[4];
+
+    for (int i = 0; i < 3; i++)
+    {
+        position[i] = 0;
+    }
+
+    if (strcmp(luz->Attribute("type"), "POINT") == 0)
+    {
+        position[3] = 1;
+    }
+    else
+    {
+        position[3] = 0;
+    }
+
+    if (luz->Attribute("X"))
+    {
+        position[0] = stof(luz->Attribute("X"));
+    }
+    if (luz->Attribute("Y"))
+    {
+        position[1] = stof(luz->Attribute("Y"));
+    }
+    if (luz->Attribute("Z"))
+    {
+        position[2] = stof(luz->Attribute("Z"));
+    }
+
+    light1 = new Light(position);
+
+    return light1;
+}
+
+void Parser::parseXML(char *path)
+{
+    // vector<Group *> groups;
     Group *group = nullptr;
+    // Light *light = nullptr;
 
     char final_path[1024];
     strcpy(final_path, "../xmlfiles/");
@@ -160,6 +242,8 @@ vector<Group *> parseXML(char *path)
 
     if (!eResult && root)
     {
+        light = parseLight(root->FirstChildElement("lights"));
+
         for (XMLElement *elem = root->FirstChildElement("group"); elem; elem = elem->NextSiblingElement("group"))
         {
             group = parseGroup(elem, true);
@@ -169,6 +253,10 @@ vector<Group *> parseXML(char *path)
     }
     else
         cout << "File " << path << " didn't load." << endl;
+}
 
-    return groups;
+void Parser::clearGroupsAndLight()
+{
+    groups.clear();
+    light = nullptr;
 }

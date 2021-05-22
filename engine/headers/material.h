@@ -4,8 +4,6 @@
 #include "point.h"
 #include "transformation.h"
 
-using namespace std;
-
 class Material
 {
 
