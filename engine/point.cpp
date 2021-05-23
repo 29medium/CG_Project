@@ -43,6 +43,17 @@ void Point::sub(Point *p)
     z -= p->getZ();
 }
 
+Point *Point::subPoint(Point *p)
+{
+    Point *point;
+    float x1, y1, z1;
+    x1 = x - p->getX();
+    y1 = y - p->getY();
+    z1 = z - p->getZ();
+
+    point = new Point(x1, y1, z1);
+}
+
 void Point::multiply(float xx)
 {
     x *= xx;
@@ -70,4 +81,16 @@ void Point::normalize()
     x /= vectorLength;
     y /= vectorLength;
     z /= vectorLength;
+}
+
+Point *Point::normalize3Points(Point *p1, Point *p2)
+{
+    Point *v1, *v2;
+    v1 = this->subPoint(p1);
+    v2 = this->subPoint(p2);
+
+    v1->cross(v2);
+    v1->normalize();
+
+    return v1;
 }

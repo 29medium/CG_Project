@@ -2,7 +2,16 @@
 #include <GL/glew.h>
 #include <GL/glut.h>
 
-Material::Material() {}
+Material::Material()
+{
+    for (int i = 0; i < 4; i++)
+    {
+        diffuse[i] = 0.1;
+        ambient[i] = 0.1;
+        specular[i] = 0.1;
+        emission[i] = 0.1;
+    }
+}
 
 Material::Material(Transformation *d, Transformation *a, Transformation *s, Transformation *e)
 {
@@ -10,6 +19,7 @@ Material::Material(Transformation *d, Transformation *a, Transformation *s, Tran
     diffuse[3] = -1;
     ambient[3] = -1;
     specular[3] = -1;
+    emission[3] = -1;
 
     if (d != NULL)
     {
@@ -80,5 +90,9 @@ void Material::draw()
     {
         glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
     }
-    glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, emission);
+
+    if (emission[3] != 1)
+    {
+        glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, emission);
+    }
 }

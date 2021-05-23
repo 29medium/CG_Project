@@ -189,8 +189,6 @@ int main(int argc, char **argv)
 
     light = parser->getLight();
 
-    parser->clearGroupsAndLight();
-
     cam = new Camera();
 
     glutDisplayFunc(renderScene);

@@ -54,6 +54,8 @@ void Group::render()
         transf[i]->transform(primary);
     }
 
+    material->draw();
+
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
     glVertexPointer(3, GL_FLOAT, 0, 0);
     glBindBuffer(GL_ARRAY_BUFFER, bufferN);

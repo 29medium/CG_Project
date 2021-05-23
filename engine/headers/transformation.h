@@ -14,7 +14,11 @@
 using namespace std;
 
 #include "point.h"
+#include <iostream>
 #include <vector>
+#include <cstring>
+#include <string>
+#include <fstream>
 
 class Transformation
 {

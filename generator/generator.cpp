@@ -153,12 +153,18 @@ Shape *bezierPoints(vector<Shape *> *patches, int tessellation)
                 Point *p4 = bezierPatch(u2, v2, p);
 
                 s->addPoint(p2);
+                s->addNormal(p2->normalize3Points(p1, p4));
                 s->addPoint(p1);
+                s->addNormal(p1->normalize3Points(p4, p2));
                 s->addPoint(p4);
+                s->addNormal(p4->normalize3Points(p2, p1));
 
                 s->addPoint(p1);
+                s->addNormal(p1->normalize3Points(p3, p4));
                 s->addPoint(p3);
+                s->addNormal(p3->normalize3Points(p4, p1));
                 s->addPoint(p4);
+                s->addNormal(p4->normalize3Points(p1, p3));
             }
         }
     }

@@ -76,26 +76,33 @@ Transformation *parseColour(XMLElement *element)
 
 Material *parseMaterial(XMLElement *element)
 {
-    Material *material;
+    Material *material = new Material();
     float eR = 0, eG = 0, eB = 0;
+    bool hasMaterial = false;
 
     for (XMLElement *elem = element->FirstChildElement("model"); elem; elem = elem->NextSiblingElement("model"))
     {
         if (elem->Attribute("emiR"))
         {
             eR = stof(elem->Attribute("emiR"));
+            hasMaterial = true;
         }
-        if (elem->Attribute("emiR"))
+        if (elem->Attribute("emiG"))
         {
-            eR = stof(elem->Attribute("emiR"));
+            eG = stof(elem->Attribute("emiG"));
+            hasMaterial = true;
         }
-        if (elem->Attribute("emiR"))
+        if (elem->Attribute("emiB"))
         {
-            eR = stof(elem->Attribute("emiR"));
+            eB = stof(elem->Attribute("emiB"));
+            hasMaterial = true;
         }
 
-        Transformation *emission = new Transformation(eR, eG, eB);
-        material = new Material(NULL, NULL, NULL, emission);
+        if (hasMaterial)
+        {
+            Transformation *emission = new Transformation(eR, eG, eB);
+            material = new Material(NULL, NULL, NULL, emission);
+        }
     }
 
     return material;
