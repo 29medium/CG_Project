@@ -85,9 +85,10 @@ void Point::normalize()
 
 Point *Point::normalize3Points(Point *p1, Point *p2)
 {
+    Point *pAux = new Point(this->getX(), this->getY(), this->getZ());
     Point *v1, *v2;
-    v1 = this->subPoint(p1);
-    v2 = this->subPoint(p2);
+    v1 = pAux->subPoint(p1);
+    v2 = pAux->subPoint(p2);
 
     v1->cross(v2);
     v1->normalize();
