@@ -31,9 +31,11 @@ public:
     void addPoint(Point *p);
     void addNormal(Point *p);
     void setNormal(vector<Point *> n);
+    void setTexture(vector<Point *> t);
     void addTexture(Point *p);
     Point *getPoint(int i);
     Point *getNormal(int i);
+    Point *getTexture(int i);
     int size();
 };
 

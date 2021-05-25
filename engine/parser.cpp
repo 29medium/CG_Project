@@ -116,7 +116,10 @@ vector<Shape *> parseModel(XMLElement *element)
     {
         vector<Point *> points;
         vector<Point *> normais;
+        vector<Point *> texturas;
         string path = elem->Attribute("file");
+        //const char * texturefile = element->Attribute("texture");
+
         char *file_name = const_cast<char *>(path.c_str());
 
         char final_path[1024];
@@ -129,7 +132,7 @@ vector<Shape *> parseModel(XMLElement *element)
         {
             string line;
             char *lineC;
-            float x, y, z, xn, yn, zn;
+            float x, y, z, xn, yn, zn, xt, yt;
 
             while (getline(file, line))
             {
@@ -150,11 +153,21 @@ vector<Shape *> parseModel(XMLElement *element)
                 zn = stof(strtok(nullptr, " "));
                 Point *n = new Point(xn, yn, zn);
                 normais.push_back(n);
+
+                //-----------------------------------------
+                lineC = const_cast<char *>(line.c_str());
+
+                xt = stof(strtok(lineC, " "));
+                yt = stof(strtok(nullptr, " "));
+                Point *t = new Point(xn, yn);
+                texturas.push_back(t);
+                //----------------------------------------
             }
             file.close();
         }
         Shape *shape = new Shape(points);
         shape->setNormal(normais);
+        shape->setTexture(texturas);
         model.push_back(shape);
     }
 
@@ -168,6 +181,8 @@ Group *parseGroup(XMLElement *element, bool primary)
     vector<Shape *> models;
     Material *material;
     Group *sGroup;
+    const char* texturefile;
+
 
     for (XMLElement *elem = element->FirstChildElement(); elem; elem = elem->NextSiblingElement())
     {
@@ -183,6 +198,8 @@ Group *parseGroup(XMLElement *element, bool primary)
         {
             models = parseModel(elem);
             material = parseMaterial(elem);
+             if (strcmp(elem->Name(), "texture") == 0)
+            texturefile = elem->Attribute("texture");
         }
         if (strcmp(elem->Name(), "group") == 0)
         {
@@ -192,7 +209,7 @@ Group *parseGroup(XMLElement *element, bool primary)
         }
     }
 
-    return new Group(transf, models, groups, material, primary);
+    return new Group(transf, models, groups, material, primary,texturefile);
 }
 
 Light *parseLight(XMLElement *element)
