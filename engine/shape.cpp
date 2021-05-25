@@ -27,9 +27,19 @@ void Shape::setNormal(vector<Point *> n)
     this->normal = n;
 }
 
+void Shape::setTexture(vector<Point *> t)
+{
+    this->normal = t;
+}
+
 void Shape::addTexture(Point *p)
 {
     this->texture.push_back(p);
+}
+
+Point *Shape::getTexture(int i)
+{
+    return this->texture.at(i);
 }
 
 Point *Shape::getPoint(int i)

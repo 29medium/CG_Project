@@ -5,6 +5,14 @@ Point::Point(float x1, float y1, float z1)
     x = x1;
     y = y1;
     z = z1;
+    type = 0;
+}
+
+Point::Point(float x1, float y1)
+{
+    x = x1;
+    y = y1;
+    type = 1;
 }
 
 float Point::getX() const
