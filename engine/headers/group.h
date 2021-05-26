@@ -11,16 +11,16 @@
 #include <GL/glut.h>
 #endif
 
-#include <vector>
-#include "shape.h"
-#include "transformation.h"
-/*
 #ifdef __APPLE__
 #include "/usr/local/include/IL/il.h"
 #else
 #include <IL/il.h>
 #endif
-*/
+
+#include <vector>
+#include "shape.h"
+#include "transformation.h"
+
 using namespace std;
 
 class Group
@@ -34,13 +34,14 @@ private:
     vector<Shape *> models;
     vector<Group *> groups;
     Material *material;
+    unsigned int texture;
     bool primary;
-    const char* textureFile;
+    const char *textureFile;
 
 public:
     Group();
 
-    Group(vector<Transformation *> t, vector<Shape *> m, vector<Group *> g, Material *mat, bool p,const char* textureFile);
+    Group(vector<Transformation *> t, vector<Shape *> m, vector<Group *> g, Material *mat, bool p, const char *textureFile);
 
     // void renderSun();
 
@@ -51,6 +52,8 @@ public:
     void setBuffer();
 
     void setMaterial(Material *m);
+
+    void loadImage(const char *texturefile);
 };
 
 #endif //GENERATOR_GROUP_H

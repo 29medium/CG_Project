@@ -2,7 +2,7 @@
 
 Group::Group() {}
 
-Group::Group(vector<Transformation *> t, vector<Shape *> m, vector<Group *> g, Material *mat, bool p,const char* texturefile)
+Group::Group(vector<Transformation *> t, vector<Shape *> m, vector<Group *> g, Material *mat, bool p, const char *texturefile)
 {
     transf = t;
     models = m;
@@ -57,7 +57,7 @@ void Group::render()
 
     material->draw();
 
-    //glBindTexture(GL_TEXTURE_2D, texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
 
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
     glVertexPointer(3, GL_FLOAT, 0, 0);
@@ -68,7 +68,7 @@ void Group::render()
     glEnable(GL_LIGHTING);
     glDrawArrays(GL_TRIANGLES, 0, buffer_size * 3);
     glDisable(GL_LIGHTING);
-    //glBindTexture(GL_TEXTURE_2D, texture);
+    glBindTexture(GL_TEXTURE_2D, 0);
 
     for (int i = 0; i < groups.size(); i++)
         groups[i]->render();
@@ -102,7 +102,7 @@ void Group::setBuffer()
     for (int i = 0; i < models.size(); i++)
         buffer_size += models[i]->size();
 
-    int index = 0,indext = 0;
+    int index = 0, indext = 0;
     float *points_arr = (float *)malloc(sizeof(float) * buffer_size * 3);
     float *normais_arr = (float *)malloc(sizeof(float) * buffer_size * 3);
     float *texturas_arr = (float *)malloc(sizeof(float) * buffer_size * 2);
@@ -148,32 +148,33 @@ void Group::setBuffer()
     loadImage(textureFile);
 }
 
-void Group::loadImage(const char * texturefile) {
+void Group::loadImage(const char *texturefile)
+{
 
-        unsigned int t, tw, th;
-        unsigned char *texData = NULL;
+    unsigned int t, tw, th;
+    unsigned char *texData = NULL;
 
-    //ilEnable(IL_ORIGIN_SET);
-    //ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
+    ilEnable(IL_ORIGIN_SET);
+    ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
 
-        ilGenImages(1, &t);
-        ilBindImage(t);
-        ilLoadImage((ILstring)texturefile);
-        tw = ilGetInteger(IL_IMAGE_WIDTH);
-        th = ilGetInteger(IL_IMAGE_HEIGHT);
-        ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
-        texData = ilGetData();
+    ilGenImages(1, &t);
+    ilBindImage(t);
+    ilLoadImage((ILstring)texturefile);
+    tw = ilGetInteger(IL_IMAGE_WIDTH);
+    th = ilGetInteger(IL_IMAGE_HEIGHT);
+    ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
+    texData = ilGetData();
 
-        glGenTextures(1, &texture);
+    glGenTextures(1, &texture);
 
-        glBindTexture(GL_TEXTURE_2D, texture);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tw, th, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tw, th, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
 }
 
 void Group::setMaterial(Material *m)
