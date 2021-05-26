@@ -64,8 +64,8 @@ void renderScene()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glLoadIdentity();
-    //ilEnable(IL_ORIGIN_SET);
-    //ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
+    // ilEnable(IL_ORIGIN_SET);
+    // ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
 
     currentFrame = glutGet(GLUT_ELAPSED_TIME);
     deltaTime = currentFrame - lastFrame;
@@ -175,6 +175,7 @@ int main(int argc, char **argv)
     glewInit();
 #endif
 
+    // ilInit();
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     glEnable(GL_LIGHT0);

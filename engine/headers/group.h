@@ -6,15 +6,11 @@
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
 #include <GLUT/glut.h>
-#else
-#include <GL/glew.h>
-#include <GL/glut.h>
-#endif
-
-#ifdef __APPLE__
 #include "/usr/local/include/IL/il.h"
 #else
+#include <GL/glew.h>
 #include <IL/il.h>
+#include <GL/glut.h>
 #endif
 
 #include <vector>
