@@ -105,7 +105,8 @@ void Group::setBuffer()
     int index = 0, indext = 0;
     float *points_arr = (float *)malloc(sizeof(float) * buffer_size * 3);
     float *normais_arr = (float *)malloc(sizeof(float) * buffer_size * 3);
-    float *texturas_arr = (float *)malloc(sizeof(float) * buffer_size * 2);
+    //float *texturas_arr = (float *)malloc(sizeof(float) * buffer_size * 2);
+    vector<float> texturas_arr;
 
     for (int i = 0; i < models.size(); i++)
     {
@@ -123,9 +124,11 @@ void Group::setBuffer()
             index += 3;
 
             Point *auxT = models[i]->getTexture(j);
-            texturas_arr[indext] = auxT->getX();
-            texturas_arr[indext + 1] = auxT->getY();
-            indext += 2;
+            //texturas_arr[indext] = auxT->getX();
+            //texturas_arr[indext + 1] = auxT->getY();
+            //indext += 2;
+            texturas_arr.push_back(auxT->getX());
+            texturas_arr.push_back(auxT->getY());
         }
     }
 
@@ -139,11 +142,10 @@ void Group::setBuffer()
 
     glGenBuffers(1, &bufferT);
     glBindBuffer(GL_ARRAY_BUFFER, bufferT);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * buffer_size * 2, texturas_arr, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, texturas_arr.size() * sizeof(float), &(texturas_arr[0]), GL_STATIC_DRAW);
 
     free(points_arr);
     free(normais_arr);
-    free(texturas_arr);
 
     loadImage(textureFile);
 }

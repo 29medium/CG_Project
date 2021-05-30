@@ -9,7 +9,7 @@
         <scale X="20.0" Y="20.0" Z="20.0" />
         <colour R="255" G="140" B="0" />
         <models>
-            <model file="sphere.3d" emiR="1" emiG="1" emiB="1" texture="sun.jpeg"/>
+            <model file="sphere.3d" emiR="1" emiG="1" emiB="1"/>
         </models>
     </group>
     <!-- Mercurio-->

@@ -146,7 +146,6 @@ Shape *bezierPoints(vector<Shape *> *patches, int tessellation)
                 u2 = (us + 1) * divisons;
                 v = vs * divisons;
                 v2 = (vs + 1) * divisons;
-
                 Point *p1 = bezierPatch(u, v, p);
                 Point *p2 = bezierPatch(u2, v, p);
                 Point *p3 = bezierPatch(u, v2, p);
@@ -154,17 +153,23 @@ Shape *bezierPoints(vector<Shape *> *patches, int tessellation)
 
                 s->addPoint(p2);
                 s->addNormal(p2->normalize3Points(p1, p4));
+                s->addTexture(new Point(u2,v));
                 s->addPoint(p1);
                 s->addNormal(p1->normalize3Points(p4, p2));
+                s->addTexture(new Point(u,v));
                 s->addPoint(p4);
                 s->addNormal(p4->normalize3Points(p2, p1));
+                s->addTexture(new Point(u2,v2));
 
                 s->addPoint(p1);
                 s->addNormal(p1->normalize3Points(p3, p4));
+                s->addTexture(new Point(u,v));
                 s->addPoint(p3);
                 s->addNormal(p3->normalize3Points(p4, p1));
+                s->addTexture(new Point(u,v2));
                 s->addPoint(p4);
                 s->addNormal(p4->normalize3Points(p1, p3));
+                s->addTexture(new Point(u2,v2));
             }
         }
     }
@@ -175,10 +180,11 @@ void printFile(Shape *s, char *path)
 {
     char buff[1024];
     char buffn[1024];
+    char bufft[1024];
     char final_path[1024];
     int i;
     int size = s->size();
-    Point *p, *pn;
+    Point *p, *pn, *pt;
 
     system("mkdir -p ../files/ ");
     strcpy(final_path, "../files/");
@@ -194,6 +200,10 @@ void printFile(Shape *s, char *path)
         pn = s->getNormal(i);
         sprintf(buffn, "%f %f %f\n", pn->getX(), pn->getY(), pn->getZ());
         file << buffn;
+
+        pt = s->getTexture(i);
+        sprintf(bufft, "%f %f\n", pt->getX(), pt->getY());
+        file << bufft;
     }
 
     file.close();

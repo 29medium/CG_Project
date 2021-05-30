@@ -118,7 +118,7 @@ vector<Shape *> parseModel(XMLElement *element)
         vector<Point *> normais;
         vector<Point *> texturas;
         string path = elem->Attribute("file");
-        //const char * texturefile = element->Attribute("texture");
+        const char * texturefile = element->Attribute("texture");
 
         char *file_name = const_cast<char *>(path.c_str());
 
@@ -132,12 +132,13 @@ vector<Shape *> parseModel(XMLElement *element)
         {
             string line;
             char *lineC;
-            float x, y, z, xn, yn, zn, xt, yt;
+            string delimiter = " ";
+            float x, y, z;
 
             while (getline(file, line))
-            {
+            {/*
                 lineC = const_cast<char *>(line.c_str());
-
+printf("%s\n", lineC);
                 x = stof(strtok(lineC, " "));
                 y = stof(strtok(nullptr, " "));
                 z = stof(strtok(nullptr, " "));
@@ -147,7 +148,7 @@ vector<Shape *> parseModel(XMLElement *element)
 
                 getline(file, line);
                 lineC = const_cast<char *>(line.c_str());
-
+printf("%s\n", lineC);
                 xn = stof(strtok(lineC, " "));
                 yn = stof(strtok(nullptr, " "));
                 zn = stof(strtok(nullptr, " "));
@@ -155,13 +156,55 @@ vector<Shape *> parseModel(XMLElement *element)
                 normais.push_back(n);
 
                 //-----------------------------------------
+                lineC = const_cast<char *>(line.c_str());printf("%s\n", lineC);
                 lineC = const_cast<char *>(line.c_str());
-
+printf("%s\n", lineC);
                 xt = stof(strtok(lineC, " "));
                 yt = stof(strtok(nullptr, " "));
-                Point *t = new Point(xn, yn);
+                Point *t = new Point(xt, yt);
                 texturas.push_back(t);
-                //----------------------------------------
+                //----------------------------------------*/
+            size_t pos = 0;
+            string token;
+            pos = line.find(delimiter);
+            token = line.substr(0, pos);
+            x = atof(token.c_str());
+            line.erase(0, pos + delimiter.length());
+            pos = line.find(delimiter);
+            token = line.substr(0, pos);
+            y = atof(token.c_str());
+            line.erase(0, pos + delimiter.length());
+            pos = line.find(delimiter);
+            token = line.substr(0, pos);
+            z = atof(token.c_str());
+            line.erase(0, pos + delimiter.length());
+            points.push_back(new Point(x,y,z));
+
+            pos = line.find(delimiter);
+            token = line.substr(0, pos);
+            x = atof(token.c_str());
+            line.erase(0, pos + delimiter.length());
+            pos = line.find(delimiter);
+            token = line.substr(0, pos);
+            y = atof(token.c_str());
+            line.erase(0, pos + delimiter.length());
+            pos = line.find(delimiter);
+            token = line.substr(0, pos);
+            z = atof(token.c_str());
+            line.erase(0, pos + delimiter.length());
+
+            normais.push_back(new Point(x,y,z));
+
+            pos = line.find(delimiter);
+            token = line.substr(0, pos);
+            x = atof(token.c_str());
+            line.erase(0, pos + delimiter.length());
+            pos = line.find(delimiter);
+            token = line.substr(0, pos);
+            y = atof(token.c_str());
+            line.erase(0, pos + delimiter.length());
+            
+            texturas.push_back(new Point(x,y));
             }
             file.close();
         }
@@ -170,7 +213,6 @@ vector<Shape *> parseModel(XMLElement *element)
         shape->setTexture(texturas);
         model.push_back(shape);
     }
-
     return model;
 }
 
@@ -182,7 +224,6 @@ Group *parseGroup(XMLElement *element, bool primary)
     Material *material;
     Group *sGroup;
     const char* texturefile;
-
 
     for (XMLElement *elem = element->FirstChildElement(); elem; elem = elem->NextSiblingElement())
     {
@@ -198,8 +239,8 @@ Group *parseGroup(XMLElement *element, bool primary)
         {
             models = parseModel(elem);
             material = parseMaterial(elem);
-             if (strcmp(elem->Name(), "texture") == 0)
-            texturefile = elem->Attribute("texture");
+            if (strcmp(elem->Name(), "texture") == 0)
+                texturefile = elem->Attribute("texture");
         }
         if (strcmp(elem->Name(), "group") == 0)
         {
@@ -208,7 +249,6 @@ Group *parseGroup(XMLElement *element, bool primary)
             groups.push_back(sGroup);
         }
     }
-
     return new Group(transf, models, groups, material, primary,texturefile);
 }
 
@@ -252,9 +292,9 @@ Light *parseLight(XMLElement *element)
 
 void Parser::parseXML(char *path)
 {
-    // vector<Group *> groups;
+    vector<Group *> groups;
     Group *group = nullptr;
-    // Light *light = nullptr;
+    Light *light = nullptr;
 
     char final_path[1024];
     strcpy(final_path, "../xmlfiles/");
@@ -267,12 +307,11 @@ void Parser::parseXML(char *path)
     if (!eResult && root)
     {
         light = parseLight(root->FirstChildElement("lights"));
-
         for (XMLElement *elem = root->FirstChildElement("group"); elem; elem = elem->NextSiblingElement("group"))
         {
             group = parseGroup(elem, true);
-            group->setBuffer();
-            groups.push_back(group);
+            group->setBuffer();printf("bbbb\n");
+            groups.push_back(group);printf("nnnn\n");
         }
     }
     else
