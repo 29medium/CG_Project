@@ -122,7 +122,6 @@ void Group::setBuffer()
             normais_arr[index + 1] = auxN->getY();
             normais_arr[index + 2] = auxN->getZ();
             index += 3;
-
             Point *auxT = models[i]->getTexture(j);
             //texturas_arr[indext] = auxT->getX();
             //texturas_arr[indext + 1] = auxT->getY();
@@ -147,7 +146,7 @@ void Group::setBuffer()
     free(points_arr);
     free(normais_arr);
 
-    loadImage(textureFile);
+    //loadImage(textureFile);
 }
 
 void Group::loadImage(const char *texturefile)

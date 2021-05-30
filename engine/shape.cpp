@@ -29,7 +29,7 @@ void Shape::setNormal(vector<Point *> n)
 
 void Shape::setTexture(vector<Point *> t)
 {
-    this->normal = t;
+    this->texture = t;
 }
 
 void Shape::addTexture(Point *p)

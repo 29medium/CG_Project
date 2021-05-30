@@ -16,17 +16,17 @@ Point::Point(float x1, float y1)
     type = 1;
 }
 
-float Point::getX() const
+float Point::getX()
 {
     return x;
 }
 
-float Point::getY() const
+float Point::getY()
 {
     return y;
 }
 
-float Point::getZ() const
+float Point::getZ() 
 {
     return z;
 }

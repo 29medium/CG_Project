@@ -156,7 +156,6 @@ printf("%s\n", lineC);
                 normais.push_back(n);
 
                 //-----------------------------------------
-                lineC = const_cast<char *>(line.c_str());printf("%s\n", lineC);
                 lineC = const_cast<char *>(line.c_str());
 printf("%s\n", lineC);
                 xt = stof(strtok(lineC, " "));
@@ -203,7 +202,7 @@ printf("%s\n", lineC);
             token = line.substr(0, pos);
             y = atof(token.c_str());
             line.erase(0, pos + delimiter.length());
-            
+
             texturas.push_back(new Point(x,y));
             }
             file.close();
@@ -309,9 +308,9 @@ void Parser::parseXML(char *path)
         light = parseLight(root->FirstChildElement("lights"));
         for (XMLElement *elem = root->FirstChildElement("group"); elem; elem = elem->NextSiblingElement("group"))
         {
-            group = parseGroup(elem, true);
-            group->setBuffer();printf("bbbb\n");
-            groups.push_back(group);printf("nnnn\n");
+            group = parseGroup(elem, true);printf("---------......\n");
+            group->setBuffer();printf(",,,,,,,,....\n");
+            groups.push_back(group);
         }
     }
     else

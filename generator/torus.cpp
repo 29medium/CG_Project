@@ -5,6 +5,7 @@ Point * torus_texture(int slices,int stacks,int i,int j){
     float dy = 1.0/  slices;
 
     return new Point((-i*dx) + 1.0,j*dy);
+  }
 
 Point *pointCoord(float radiusIn, float radiusOut, float alpha, float beta)
 {

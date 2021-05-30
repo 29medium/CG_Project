@@ -187,7 +187,7 @@ int main(int argc, char **argv)
     Parser *parser = new Parser();
 
     parser->parseXML(argv[1]);
-
+printf("qqqqqqqqqqqqqqqqqqqqqqqqqqq\n");
     groups = parser->getGroups();
     if (groups.empty())
         return 1;

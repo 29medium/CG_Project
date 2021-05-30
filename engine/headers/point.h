@@ -16,9 +16,9 @@ private:
 public:
     Point(float x1, float y1, float z1);
     Point(float x,float y);
-    float getX() const;
-    float getY() const;
-    float getZ() const;
+    float getX();
+    float getY();
+    float getZ();
     void update(float x1, float y1, float z1);
     void add(Point *p);
     void sub(Point *p);
