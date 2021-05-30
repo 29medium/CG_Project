@@ -60,7 +60,7 @@ Point *Point::subPoint(Point *p)
     y1 = y - p->getY();
     z1 = z - p->getZ();
 
-    point = new Point(x1, y1, z1);
+    return point = new Point(x1, y1, z1);
 }
 
 void Point::multiply(float xx)
@@ -77,7 +77,7 @@ Point *Point::clone() const
 
 void Point::cross(Point *p)
 {
-    float auxX = x, auxY = y, auxZ = z;
+    float auxX = this->getX(),auxY = this->getY(),auxZ =  this->getZ();
 
     x = auxY * p->getZ() - auxZ * p->getY();
     y = auxZ * p->getX() - auxX * p->getZ();
@@ -95,7 +95,6 @@ void Point::normalize()
 Point *Point::normalize3Points(Point *p1, Point *p2)
 {
     Point *pAux = new Point(this->getX(), this->getY(), this->getZ());
-
     Point *v1, *v2;
     v1 = pAux->subPoint(p1);
     v2 = pAux->subPoint(p2);

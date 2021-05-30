@@ -9,7 +9,7 @@ Group::Group(vector<Transformation *> t, vector<Shape *> m, vector<Group *> g, M
     groups = g;
     material = mat;
     primary = p;
-    texturefile = texturefile;
+    textureFile = texturefile;
 }
 
 // void Group::renderSun()
@@ -146,7 +146,7 @@ void Group::setBuffer()
     free(points_arr);
     free(normais_arr);
 
-    //loadImage(textureFile);
+    loadImage(textureFile);
 }
 
 void Group::loadImage(const char *texturefile)

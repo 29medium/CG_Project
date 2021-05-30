@@ -118,7 +118,7 @@ vector<Shape *> parseModel(XMLElement *element)
         vector<Point *> normais;
         vector<Point *> texturas;
         string path = elem->Attribute("file");
-        const char * texturefile = element->Attribute("texture");
+        //texturefile = elem->Attribute("texture");
 
         char *file_name = const_cast<char *>(path.c_str());
 
@@ -236,10 +236,13 @@ Group *parseGroup(XMLElement *element, bool primary)
             transf.push_back(parseColour(elem));
         if (strcmp(elem->Name(), "models") == 0)
         {
+            XMLElement *elem2 = elem->FirstChildElement("model");
+            texturefile = elem2->Attribute("texture");
+            //XMLElement* xml = element->FirstChildElement("model");
+            //texturefile = xml->Attribute("texture");printf("%saaaaa\n", texturefile);
+
             models = parseModel(elem);
             material = parseMaterial(elem);
-            if (strcmp(elem->Name(), "texture") == 0)
-                texturefile = elem->Attribute("texture");
         }
         if (strcmp(elem->Name(), "group") == 0)
         {
@@ -248,6 +251,7 @@ Group *parseGroup(XMLElement *element, bool primary)
             groups.push_back(sGroup);
         }
     }
+
     return new Group(transf, models, groups, material, primary,texturefile);
 }
 
